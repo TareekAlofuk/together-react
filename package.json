@@ -37,6 +37,7 @@
     "webpack-dev-server": "^3.7.2"
   },
   "dependencies": {
+    "auto-form-react": "^0.2.1",
     "axios": "^0.19.0",
     "react": "^16.8.6",
     "react-dom": "^16.8.6",
