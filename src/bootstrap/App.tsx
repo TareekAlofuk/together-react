@@ -4,6 +4,8 @@ import { Provider as ReduxProvider } from "react-redux";
 
 import store from "./store";
 import CreateMember from '../app/member/Create/CreateMember';
+import AppLayout from './AppLayout';
+import AppRouter from './AppRouter';
 
 
 class App extends React.Component {
@@ -11,7 +13,7 @@ class App extends React.Component {
         return (
             <>
                 <ReduxProvider store={store}>
-                    <CreateMember />
+                    <AppLayout appContent={<AppRouter />} />
                 </ReduxProvider>
             </>
         )

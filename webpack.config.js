@@ -7,14 +7,13 @@ const ForkTsCheckerWebpackPlugin = require('fork-ts-checker-webpack-plugin');
 module.exports = {
     mode: 'development',
     entry: {
-        vendor: [
-            '@babel/polyfill'
-        ],
+
         main: ['./src/index.js']
     },
     output: {
         path: path.resolve(__dirname, 'build'),
-        filename: 'bundle.js'
+        filename: 'bundle.js',
+        publicPath: '/'
     },
     module: {
         rules: [
@@ -51,5 +50,9 @@ module.exports = {
             template: './public/index.html'
         }),
         new ForkTsCheckerWebpackPlugin()
-    ]
+    ],
+    devServer: {
+        contentBase: path.join(__dirname, 'public'),
+        historyApiFallback: true,
+    }
 };
