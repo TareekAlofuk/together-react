@@ -1,4 +1,5 @@
 import * as React from 'react'
+import AppBar from '../ui/AppLayout/AppBar';
 
 
 interface Props {
@@ -9,7 +10,7 @@ export default class AppLayout extends React.Component<Props> {
     render() {
         return (
             <div id="app-container">
-                <div id="app-bar"></div>
+                <AppBar />
                 <div id="app-content">
                     {
                         this.props.appContent
