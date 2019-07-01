@@ -1,0 +1,52 @@
+
+.auto-field-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.auto-text-container label {
+    display: inline-block;
+}
+
+.auto-text-field {
+    box-sizing: border-box;
+    flex: 1;
+    border: none;
+    width: 100%;
+    border-radius: 2px;
+}
+
+.auto-field.small {
+    padding: 4px;
+    font-size: 12px;
+}
+
+.auto-field.medium {
+    padding: 10px;
+    font-size: 14px;
+}
+
+.auto-field.large {
+    padding: 18px;
+    font-size: 18px;
+}
+
+.auto-field.error {
+    background: #F48FB1 !important;
+    color: #FFFFFF;
+}
+
+.auto-field.theme-default {
+    background: #EFEFEF;
+}
+
+.auto-field.theme-dark {
+    background: #2B2B2B;
+    color: #FFFFFF;
+}
+
+.auto-field.theme-light {
+    background: #FFFFFF;
+    color: #2B2B2B;
+}

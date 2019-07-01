@@ -1,0 +1,83 @@
+.auto-field-radio-container {
+    display: block;
+    position: relative;
+    padding-left: 35px;
+    cursor: pointer;
+    font-size: 22px;
+    margin-bottom: 12px;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+}
+
+/* Hide the browser's default checkbox */
+.auto-field-radio-container input {
+    position: absolute;
+    opacity: 0;
+    cursor: pointer;
+    height: 0;
+    width: 0;
+}
+
+/* Create a custom checkbox */
+.auto-field-radio-checkmark {
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 25px;
+    width: 25px;
+    background-color: #eee;
+    border-radius: 50%;
+}
+
+/* On mouse-over, add a grey background color */
+.auto-field-radio-container:hover input ~ .auto-field-radio-checkmark {
+    background-color: #EEE;
+}
+
+/* When the checkbox is checked, add a blue background */
+.auto-field-radio-container input:checked ~ .auto-field-radio-checkmark {
+    background-color: #2196F3;
+}
+
+/* Create the checkmark/indicator (hidden when not checked) */
+.auto-field-radio-checkmark:after {
+    content: "";
+    position: absolute;
+    display: none;
+}
+
+/* Show the checkmark when checked */
+.auto-field-radio-container input:checked ~ .auto-field-radio-checkmark:after {
+    display: block;
+}
+
+/* Style the checkmark/indicator */
+.auto-field-radio-container .auto-field-radio-checkmark:after {
+    top: 9px;
+    left: 9px;
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: white;
+}
+
+.auto-field-title {
+    display: inline-block;
+}
+
+.auto-field-radio.small .auto-field-title {
+    font-size: 13px;
+    margin-bottom: 8px;
+}
+
+.auto-field-radio.medium .auto-field-title {
+    font-size: 18px;
+    margin-bottom: 12px;
+}
+
+.auto-field-radio.large .auto-field-title {
+    font-size: 26px;
+    margin-bottom: 18px;
+}

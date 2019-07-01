@@ -1,0 +1,51 @@
+.auto-field-file-container [type="file"] {
+    height: 0;
+    overflow: hidden;
+    width: 0;
+}
+
+.auto-field-file-container label {
+    border: none;
+    border-radius: 5px;
+    color: #fff;
+    cursor: pointer;
+    display: inline-block;
+    font-family: 'Poppins', sans-serif;
+    font-size: inherit;
+    font-weight: 600;
+    outline: none;
+    position: relative;
+    transition: all 0.3s;
+    vertical-align: middle;
+}
+
+.auto-field-file-container label:hover {
+    opacity: 0.8;
+}
+
+.auto-field-file-container.small label {
+    padding: 0.5rem 20px;
+}
+
+.auto-field-file-container.medium label {
+    padding: 0.7rem 35px;
+}
+
+.auto-field-file-container.large label {
+    padding: 1rem 50px;
+}
+
+.auto-field-file-container.theme-default label {
+    background: #EFEFEF;
+    color: #2B2B2B;
+}
+
+.auto-field-file-container.theme-light label {
+    background: #FFFFFF;
+    color: #2B2B2B;
+}
+
+.auto-field-file-container.theme-dark label {
+    background: #2B2B2B;
+    color: #2B2B2B;
+}
