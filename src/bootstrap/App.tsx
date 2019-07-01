@@ -1,9 +1,9 @@
 import { hot } from 'react-hot-loader/root';
 import * as React from 'react'
-import Test from './../Test';
 import { Provider as ReduxProvider } from "react-redux";
 
 import store from "./store";
+import CreateMember from '../app/member/Create/CreateMember';
 
 
 class App extends React.Component {
@@ -11,7 +11,7 @@ class App extends React.Component {
         return (
             <>
                 <ReduxProvider store={store}>
-                    <Test />
+                    <CreateMember />
                 </ReduxProvider>
             </>
         )
