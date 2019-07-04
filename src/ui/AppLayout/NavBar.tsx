@@ -5,9 +5,12 @@ import { Link } from "react-router-dom";
 export default function NavBar() {
     const [selected, select] = useState('');
     return <div className="nav">
+
         <div className={`nav-item ${selected === 'home' ? 'selected' : ''}`}>
             <Link to="/home" onClick={() => select('home')}>HOME</Link>
         </div>
+
+
         <div className={`nav-item ${selected === 'item1' ? 'selected' : ''}`}>
             <Link to="/1" onClick={() => select('item1')}>ITEM 1</Link>
         </div>
