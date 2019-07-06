@@ -25,8 +25,8 @@ export default class CreateMember extends React.Component<Props , MyState> {
 
         if (this.state.redirect) {
             return <Redirect to={{
-                pathname: '/member/info',
-                state: { id: this.state.id }
+                pathname: '/member/infoMember/' + this.state.id ,
+
             }}
             />;
         }
@@ -39,33 +39,33 @@ export default class CreateMember extends React.Component<Props , MyState> {
 
                 <AutoForm
 
-                    fields={[
-                        <AutoField name='name' label='Name'  placeholder='Name' component={AutoFieldText}/>,
-                     ]}
+                fields={[
+                    <AutoField name='name' label='Name'  placeholder='Name' component={AutoFieldText}/>,
+                ]}
 
-                    onSubmit={form => {
-                        console.log(form.getValues());
-                        return false;
+                onSubmit={form => {
+                    console.log(form.getValues());
+                    return false;
 
-                    }}
+                }}
 
 
-                    onSuccess={
-                        response  => {
-                            if (response.success == true){
-                                 this.setState({redirect : true , id : response.member.id});
-                            }
-
+                onSuccess={
+                    response  => {
+                        if (response.success == true){
+                            this.setState({redirect : true , id : response.member.id});
                         }
+
                     }
-                    onError={e => console.log(e)}
-                    onComplete={() => console.log('complete')}
+                }
+                onError={e => console.log(e)}
+                onComplete={() => console.log('complete')}
 
-                    requestConfiguration={{ type: "http", url: "http://www.mocky.io/v2/5d19db4e2f0000a148fd7253", method: "post" }}
+                requestConfiguration={{ type: "http", url: "http://www.mocky.io/v2/5d19db4e2f0000a148fd7253", method: "post" }}
 
 
-                    renderButton={form => <button onClick={form.submit}>SEND</button>}
-                />
+                renderButton={form => <button onClick={form.submit}>SEND</button>}
+            />
             </div>
         )
     }
