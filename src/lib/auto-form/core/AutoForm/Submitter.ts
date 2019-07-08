@@ -42,7 +42,7 @@ export default class Submitter {
         //     this.form.props.withUpload, this.form.props.requestConfig
         // );
         const requestSenderFactory = new RequestSenderFactory(this.form.props.requestConfiguration, data, this.form.fields,
-            () => this.form.onComplete,
+            () => this.form.onComplete(),
             (error: any) => this.form.onError(error),
             (response: any) => this.form.onSuccess(response)
         );

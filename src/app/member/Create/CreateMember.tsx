@@ -6,7 +6,10 @@ import { Redirect } from "react-router";
 import Config from '../../../bootstrap/Config';
 
 interface Props {
-
+    renderButton?: boolean;
+    onSuccess?: (response: any) => void;
+    onError?: (error: any) => void;
+    onComplete?: () => void;
 }
 
 export default class CreateMember extends React.Component<Props> {
@@ -16,23 +19,32 @@ export default class CreateMember extends React.Component<Props> {
         super(props);
     }
 
+    private form: AutoForm;
+
     render() {
         const url = Config.SERVER_URL + "api/members";
         return (
             <div>
                 <AutoForm
+                    ref={ref => this.form = ref}
                     fields={[
                         <AutoField name='name' label='Name' placeholder='Name' component={AutoFieldText} />,
                     ]}
-                    onSubmit={form => {
-                        console.log(form.getValues());
-                        return false;
-                    }}
-                    onSuccess={response => console.log(response)}
+                    onSuccess={this.props.onSuccess}
+                    onError={this.props.onError}
+                    onComplete={this.props.onComplete}
                     requestConfiguration={{ type: "http", url: url, method: "post" }}
-                    renderButton={form => <button onClick={form.submit}>SEND</button>}
+                    renderButton={() => {
+                        if (this.props.renderButton === false)
+                            return null;
+                        return <button onClick={this.save}>SEND</button>;
+                    }}
                 />
             </div>
         )
+    }
+
+    public save = () => {
+        this.form.submit();
     }
 }
