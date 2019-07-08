@@ -1,0 +1,7 @@
+.default-page {
+    background: #FFF;
+    margin-top: 24px;
+    border-radius: 3px;
+    min-height: 500px;
+    padding : 16px;
+}

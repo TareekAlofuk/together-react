@@ -7,6 +7,7 @@ import AppLayout from './AppLayout';
 import AppRouter from './AppRouter';
 import { BrowserRouter } from 'react-router-dom';
 
+import "./style-loader";
 
 class App extends React.Component {
     render() {
