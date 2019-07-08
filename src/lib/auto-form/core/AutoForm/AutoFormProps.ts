@@ -1,4 +1,4 @@
-import {AxiosRequestConfig} from "axios";
+import { AxiosRequestConfig } from "axios";
 import AutoForm from "./AutoForm";
 
 export default interface AutoFormProps {
@@ -20,7 +20,7 @@ export default interface AutoFormProps {
 export interface RequestConfiguration {
     type: "http" | "firebase_database" | "firebase_firestore"
     url: string;
-    method?: "post" | "get";
+    method?: "post" | "get" | "put" | "delete" | "patch";
     withUpload?: boolean;
     axiosConfig?: AxiosRequestConfig;
     extractDataAfterFilesUploaded?: (uploadedFiles: any[], data: any) => any | false;
