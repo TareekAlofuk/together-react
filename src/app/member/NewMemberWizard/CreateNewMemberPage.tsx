@@ -54,6 +54,15 @@ export default class NewMemberWizard extends React.Component<INewMemberWizardPro
                         this.currentComponent.save();
                     }
                     break;
+                case "card":
+                    this.nextStep();
+                    break;
+                case "info":
+                    this.setState({ loading: true });
+                    if (this.currentComponent !== null) {
+                        this.currentComponent.save();
+                    }
+                    break;
             }
         } else if (action === "prev") {
 
@@ -72,6 +81,13 @@ export default class NewMemberWizard extends React.Component<INewMemberWizardPro
         switch (this.state.currentStep) {
             case "create":
                 nextStep = "card";
+                break;
+            case "card":
+                nextStep = "info";
+                break;
+
+            case "info":
+                nextStep = "upload";
                 break;
         }
         this.currentComponent = null;
@@ -105,8 +121,25 @@ export default class NewMemberWizard extends React.Component<INewMemberWizardPro
                 break;
 
             case "info":
-                return <EditMember />;
+                return <WizardStep
+                    nextButton="Next" skipButton="Skip" prevButton="Back"
+                    onAction={this.onAction} actionLoading={this.state.loading}
+                    component={<EditMember
+                        ref={ref => this.currentComponent = ref}
+                        onSuccess={(response: any) => {
+                            this.setState({ member: { ...response } }, () => this.nextStep());
+                        }} onError={error => {
+                            console.log(error);
+                        }} onComplete={() => {
+                            this.setState({ loading: false })
+                        }}
+                        editButton={false} member={this.state.member} />}
+                />;
                 break;
+
+            case "upload":
+                return <WizardStep
+                    onAction={this.onAction} component={<h1>Upload Form</h1>} />
 
         }
 

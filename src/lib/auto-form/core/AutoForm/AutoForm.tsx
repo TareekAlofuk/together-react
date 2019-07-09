@@ -26,10 +26,13 @@ export default class AutoForm
         this.validationUtils = new ValidationUtils(this);
         this.valueUtils = new ValuesUtils(this);
         this.renderer = new FieldsRenderer(this);
+        this.state = { loading: false };
+    }
+
+    componentDidMount() {
         if (this.props.initialValues) {
             this.setValues(this.props.initialValues);
         }
-        this.state = {loading: false};
     }
 
 
@@ -77,19 +80,19 @@ export default class AutoForm
     };
 
     public setLoading(loading: boolean = true): void {
-        this.setState({loading: loading});
+        this.setState({ loading: loading });
         (loading && this.props.onLoadingStart) && this.props.onLoadingStart(this);
     };
 
     public onComplete(): void {
-        this.props.onComplete && this.props.onComplete(this);
-        this.props.onLoadingEnd && this.props.onLoadingEnd(this);
         this.setLoading(false);
+        this.props.onComplete && this.props.onComplete(this);
+        this.props.onLoadingEnd && this.props.onLoadingEnd(this);        
     };
 
     public onError(reason: any): void {
-        this.props.onError && this.props.onError(reason, this);
         this.setLoading(false);
+        this.props.onError && this.props.onError(reason, this);        
     };
 
     public clear(): void {

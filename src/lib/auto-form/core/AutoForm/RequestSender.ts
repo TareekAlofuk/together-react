@@ -42,8 +42,14 @@ export default class RequestSender {
         let requestPromise = undefined;
         if (this.method === "post") {
             requestPromise = this.sendPOSTRequest();
-        } else {
+        } else if(this.method === "get"){
             requestPromise = this.sendGETRequest();
+        }else if(this.method === "put"){
+            requestPromise = this.sendPutRequest();
+        }else if(this.method === "patch"){
+            requestPromise = this.sendPatchRequest();
+        }else if(this.method === "delete"){
+            requestPromise = this.sendDeleteRequest();
         }
         return requestPromise;
     }
@@ -57,6 +63,42 @@ export default class RequestSender {
             config.params = this.data;
         }
         return Axios.get(this.url, config);
+    }
+
+    protected sendPutRequest() {
+        let config: AxiosRequestConfig = {};
+        if (this.config) {
+            config = {...this.config}
+        }
+        if (this.withUpload) {
+            config.headers["Content-Type"] = "multipart/form-data";
+        }
+
+        return Axios.put(this.url, this.data, this.config);
+    }
+
+    protected sendPatchRequest() {
+        let config: AxiosRequestConfig = {};
+        if (this.config) {
+            config = {...this.config}
+        }
+        if (this.withUpload) {
+            config.headers["Content-Type"] = "multipart/form-data";
+        }
+
+        return Axios.patch(this.url, this.data, this.config);
+    }
+
+    protected sendDeleteRequest() {
+        let config: AxiosRequestConfig = {};
+        if (this.config) {
+            config = {...this.config}
+        }
+        if (this.withUpload) {
+            config.headers["Content-Type"] = "multipart/form-data";
+        }
+
+        return Axios.delete(this.url, this.config);
     }
 
     protected sendPOSTRequest() {
