@@ -4,6 +4,7 @@ import WizardStep from './WizardStep';
 import CreateMember from '../Create/CreateMember';
 import MemberCard from '../MemberCard';
 import EditMember from '../EditMember';
+import MemberFilesUpload from '../MemberFilesUpload';
 
 export interface INewMemberWizardProps {
     route: RouteComponentProps
@@ -27,7 +28,7 @@ export default class NewMemberWizard extends React.Component<INewMemberWizardPro
 
     constructor(props: any) {
         super(props);
-        this.state = { currentStep: "card", loading: false, member: { name: 'Ali Faris Abed', id: 1 } };
+        this.state = { currentStep: "upload", loading: false, member: { name: 'Ali Faris Abed', id: 1 } };
     }
 
     private currentStep: WizardStep = null;
@@ -139,7 +140,7 @@ export default class NewMemberWizard extends React.Component<INewMemberWizardPro
 
             case "upload":
                 return <WizardStep
-                    onAction={this.onAction} component={<h1>Upload Form</h1>} />
+                    onAction={this.onAction} component={<MemberFilesUpload />} />
 
         }
 

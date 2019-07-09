@@ -1,4 +1,4 @@
 
 export default {
-    SERVER_URL: "https://localhost:5001/"
+    SERVER_URL: "http://localhost:5000/"
 }
