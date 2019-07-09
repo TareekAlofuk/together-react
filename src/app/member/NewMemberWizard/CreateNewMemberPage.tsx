@@ -2,6 +2,8 @@ import * as React from 'react';
 import { RouteComponentProps } from 'react-router';
 import WizardStep from './WizardStep';
 import CreateMember from '../Create/CreateMember';
+import MemberCard from '../MemberCard';
+import EditMember from '../EditMember';
 
 export interface INewMemberWizardProps {
     route: RouteComponentProps
@@ -10,6 +12,7 @@ export interface INewMemberWizardProps {
 interface State {
     currentStep: "create" | "card" | "info" | "upload" | "credentials" | "report";
     loading: boolean;
+    member: any;
 }
 
 export default class NewMemberWizard extends React.Component<INewMemberWizardProps, State> {
@@ -24,7 +27,7 @@ export default class NewMemberWizard extends React.Component<INewMemberWizardPro
 
     constructor(props: any) {
         super(props);
-        this.state = { currentStep: "create", loading: false };
+        this.state = { currentStep: "card", loading: false, member: { name: 'Ali Faris Abed', id: 1 } };
     }
 
     private currentStep: WizardStep = null;
@@ -87,7 +90,7 @@ export default class NewMemberWizard extends React.Component<INewMemberWizardPro
                         ref={ref => this.currentComponent = ref}
                         renderButton={false} onSuccess={(response: any) => {
                             if (response.id) {
-                                this.nextStep();
+                                this.setState({ member: { ...response } }, () => this.nextStep());
                             }
                         }} onError={error => {
                             console.log(error);
@@ -96,7 +99,15 @@ export default class NewMemberWizard extends React.Component<INewMemberWizardPro
                         }} />} />
                 break;
             case "card":
-                return <WizardStep ref={ref => this.currentStep = ref} actionLoading={this.state.loading} onAction={this.onAction} nextButton="Next" skipButton="Skip" component={<h1>Card To Print</h1>} />
+                return <WizardStep ref={ref => this.currentStep = ref}
+                    actionLoading={this.state.loading} onAction={this.onAction} nextButton="Next" skipButton="Skip"
+                    component={<MemberCard member={this.state.member} />} />
+                break;
+
+            case "info":
+                return <EditMember />;
+                break;
+
         }
 
         throw new Error("CANNOT RECOGNIZE STEP");

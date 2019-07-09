@@ -13,3 +13,38 @@
 .wizard-step .wizard-actions {
     align-self: flex-end;
 }
+
+.member-card-section {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 24px 16px;
+    flex-direction: column;
+}
+
+
+.member-card {
+    background: #343434;
+    color: #FFF;
+    border-radius: 5px;
+    width: 380px;
+    height: 210px;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    justify-content: flex-end;
+    padding: 24px;
+}
+
+.member-card-id {
+    text-align: center;
+    font-size: 18px;
+    font-weight: bold;
+}
+
+.member-card-name {
+    text-align: center;
+    font-size: 20px;
+    font-weight: bold;
+    margin-bottom: 16px;
+}
