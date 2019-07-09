@@ -1,0 +1,15 @@
+.wizard-step {
+    display: flex;
+    flex-direction: column;
+    height: 550px;
+    display: flex;
+    flex-direction: column;
+}
+
+.wizard-step .wrapped-component {
+    flex: 1;
+}
+
+.wizard-step .wizard-actions {
+    align-self: flex-end;
+}

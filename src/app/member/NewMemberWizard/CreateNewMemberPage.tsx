@@ -27,7 +27,6 @@ export default class NewMemberWizard extends React.Component<INewMemberWizardPro
         this.state = { currentStep: "create", loading: false };
     }
 
-    private lastStep: WizardStep = null;
     private currentStep: WizardStep = null;
     private currentComponent: any = null;
 
@@ -35,12 +34,9 @@ export default class NewMemberWizard extends React.Component<INewMemberWizardPro
     public render() {
 
         const currentStep = this.getCurrentStep();
-        const lastStep = this.lastStep;
 
         return (
             <div id="new-member-wizard">
-                <h1>Create Wizard</h1>
-                {lastStep !== null ? <h1>SHOULD SLIDE OUT LAST STEP</h1> : <h1>NO LAST STEP</h1>}
                 {currentStep}
             </div>
         );
@@ -75,7 +71,6 @@ export default class NewMemberWizard extends React.Component<INewMemberWizardPro
                 nextStep = "card";
                 break;
         }
-        this.lastStep = this.currentStep;
         this.currentComponent = null;
         this.setState({ currentStep: nextStep });
     }

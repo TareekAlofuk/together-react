@@ -14,18 +14,34 @@ export interface IWizardStepProps {
 
 }
 
-export default class WizardStep extends React.Component<IWizardStepProps> {
+export default class WizardStep extends React.Component<IWizardStepProps, any> {
+
+    private ref: any = null;
+
+    constructor(props: IWizardStepProps) {
+        super(props);
+        this.state = { animationClass: true };
+    }
+
+    componentDidUpdate(prevProps: IWizardStepProps) {
+        if (prevProps.component !== this.props.component && !this.state.animationClass) {
+            this.setState({ animationClass: true });
+        }
+    }
+
     public render() {
         return (
-            <div className="wizard-step">
+            <div className={`wizard-step`}>
                 <h3>Create Wizard / {this.props.title}</h3>
-                {
-                    this.props.component
-                }
+                <div
+                    ref={ref => ref && ref.addEventListener('animationend', () => this.setState({ animationClass: false }))}
+                    className={`wrapped-component ${this.state.animationClass ? 'animated bounceInUp' : ''}`}>
+                    {this.props.component}
+                </div>
                 {
                     this.renderActions()
                 }
-            </div>
+            </div >
         );
     }
 
