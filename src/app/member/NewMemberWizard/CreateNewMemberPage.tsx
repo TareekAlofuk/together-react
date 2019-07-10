@@ -64,6 +64,15 @@ export default class NewMemberWizard extends React.Component<INewMemberWizardPro
                         this.currentComponent.save();
                     }
                     break;
+                case "upload":
+                    if (this.currentComponent != null) {
+                        if (!this.currentComponent.isBusy()) {
+                            this.nextStep();
+                        }
+                    }
+                    break;
+                case "credentials":
+                    break;
             }
         } else if (action === "prev") {
 
@@ -89,6 +98,10 @@ export default class NewMemberWizard extends React.Component<INewMemberWizardPro
 
             case "info":
                 nextStep = "upload";
+                break;
+
+            case "upload":
+                nextStep = "credentials";
                 break;
         }
         this.currentComponent = null;
@@ -140,7 +153,13 @@ export default class NewMemberWizard extends React.Component<INewMemberWizardPro
 
             case "upload":
                 return <WizardStep
-                    onAction={this.onAction} component={<MemberFilesUpload />} />
+                    nextButton="Next" skipButton="Skip" prevButton="Back"
+                    onAction={this.onAction} component={<MemberFilesUpload ref={ref => this.currentComponent = ref} />} />;
+                break;
+
+            case "credentials":
+                return <WizardStep onAction={this.onAction}
+                    component={<h1>CREDENTIALS PAGE</h1>} />
 
         }
 
