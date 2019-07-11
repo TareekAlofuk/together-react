@@ -3,6 +3,7 @@ import { Container } from 'react-grid-system';
 import { Switch, Route } from 'react-router-dom';
 import NewMemberWizard from './NewMemberWizard/CreateNewMemberPage';
 import { RouteComponentProps } from 'react-router';
+import MemberList from './Collection/MemberList';
 
 export interface IMemberBaseProps {
 }
@@ -12,6 +13,7 @@ export default class MemberBase extends React.Component<IMemberBaseProps> {
         return (
             <Container fluid={false} className="default-page" id="member-page">
                 <Switch>
+                    <Route exact path="/member" component={() => <MemberList />} />
                     <Route exact path="/member/wizard" component={(route: RouteComponentProps) => <NewMemberWizard route={route} />} />
                     <Route component={() => <h1>NO MEMBER PAGE</h1>} />
                 </Switch>

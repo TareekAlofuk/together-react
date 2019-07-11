@@ -48,3 +48,56 @@
     font-weight: bold;
     margin-bottom: 16px;
 }
+
+
+.member-list {
+    padding : 16px 8px;
+}
+
+.member-list .member-list-item{
+    padding: 8px;
+    background: #EEE;
+    display: flex;
+    align-items: center;
+    border-radius: 5px;
+    overflow-wrap: break-word;
+    margin: 12px 0;
+}
+
+.member-list .member-list-item div{
+    margin: 0 8px;
+}
+
+.member-list .member-list-item .member-avatar {
+    display: flex;
+    width: 150px;
+}
+
+.member-list .member-list-item .member-id{
+    width : 60px;
+}
+
+.member-list .member-list-item .member-avatar .member-avatar {
+    width: 32px;
+    height: 32px;
+}
+
+.member-list .member-list-item .member-avatar .member-info {
+    display: flex;
+    align-items: center;
+}
+
+
+.member-list .member-list-item .member-phone {
+    width : 180px;
+}
+
+.member-list .member-list-item .member-email{
+    width : 180px;
+}
+
+.member-list .member-list-item .member-actions{
+    flex : 1;
+    display: flex;
+    justify-content: flex-end;
+}
