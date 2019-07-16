@@ -3,6 +3,8 @@ import MemberListItem from './MemberListItem';
 
 export interface IMemberListProps {
     members: any[];
+    loading?: boolean;
+    error?: boolean;
 }
 
 export default class MemberList extends React.Component<IMemberListProps> {
