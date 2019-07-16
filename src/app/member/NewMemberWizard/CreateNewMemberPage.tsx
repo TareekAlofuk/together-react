@@ -5,6 +5,7 @@ import CreateMember from '../Create/CreateMember';
 import MemberCard from '../MemberCard';
 import EditMember from '../EditMember';
 import MemberFilesUpload from '../MemberFilesUpload';
+import MemberCredentials from '../MemberCredentials';
 
 export interface INewMemberWizardProps {
     route: RouteComponentProps
@@ -33,6 +34,7 @@ export default class NewMemberWizard extends React.Component<INewMemberWizardPro
 
     private currentStep: WizardStep = null;
     private currentComponent: any = null;
+
 
 
     public render() {
@@ -72,6 +74,10 @@ export default class NewMemberWizard extends React.Component<INewMemberWizardPro
                     }
                     break;
                 case "credentials":
+                    this.setState({ loading: true });
+                    if (this.currentComponent != null) {
+                        this.currentComponent.save();
+                    }
                     break;
             }
         } else if (action === "prev") {
@@ -103,6 +109,10 @@ export default class NewMemberWizard extends React.Component<INewMemberWizardPro
             case "upload":
                 nextStep = "credentials";
                 break;
+
+            case "credentials":
+                nextStep = "report";
+                break;
         }
         this.currentComponent = null;
         this.setState({ currentStep: nextStep });
@@ -127,12 +137,12 @@ export default class NewMemberWizard extends React.Component<INewMemberWizardPro
                         }} onComplete={() => {
                             this.setState({ loading: false })
                         }} />} />
-                break;
+
             case "card":
                 return <WizardStep ref={ref => this.currentStep = ref}
                     actionLoading={this.state.loading} onAction={this.onAction} nextButton="Next" skipButton="Skip"
                     component={<MemberCard member={this.state.member} />} />
-                break;
+
 
             case "info":
                 return <WizardStep
@@ -149,17 +159,29 @@ export default class NewMemberWizard extends React.Component<INewMemberWizardPro
                         }}
                         editButton={false} member={this.state.member} />}
                 />;
-                break;
+
 
             case "upload":
                 return <WizardStep
                     nextButton="Next" skipButton="Skip" prevButton="Back"
                     onAction={this.onAction} component={<MemberFilesUpload ref={ref => this.currentComponent = ref} />} />;
-                break;
+
 
             case "credentials":
                 return <WizardStep onAction={this.onAction}
-                    component={<h1>CREDENTIALS PAGE</h1>} />
+                    nextButton="Next" skipButton="Skip" prevButton="Back"
+                    component={<MemberCredentials
+                        onComplete={() => this.setState({ loading: false })}
+                        onError={() => console.log("error")}
+                        onSuccess={() => this.nextStep()}
+                        ref={ref => this.currentComponent = ref}
+                        saveButton={false} />} />
+
+            case "report":
+                return <WizardStep
+                    onAction={this.onAction}
+                    component={<h1>MEMBER REPORT</h1>}
+                />
 
         }
 
