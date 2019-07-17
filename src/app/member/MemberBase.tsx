@@ -1,9 +1,10 @@
 import * as React from 'react';
 import {Container} from 'react-grid-system';
 import MemberRouteSwitch from "./MemberRouteSwitch";
-import {Link} from "react-router-dom";
+import {Link, RouteComponentProps} from "react-router-dom";
 
 export interface IMemberBaseProps {
+    route: RouteComponentProps
 }
 
 export default class MemberBase extends React.Component<IMemberBaseProps> {
