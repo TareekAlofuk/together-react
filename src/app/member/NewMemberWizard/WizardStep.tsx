@@ -1,5 +1,5 @@
 import * as React from 'react';
-import Button from '../../../ui/shared/Button';
+import {Button} from "semantic-ui-react";
 
 export interface IWizardStepProps {
     component: any;
@@ -20,12 +20,12 @@ export default class WizardStep extends React.Component<IWizardStepProps, any> {
 
     constructor(props: IWizardStepProps) {
         super(props);
-        this.state = { animationClass: true };
+        this.state = {animationClass: true};
     }
 
     componentDidUpdate(prevProps: IWizardStepProps) {
         if (prevProps.component !== this.props.component && !this.state.animationClass) {
-            this.setState({ animationClass: true });
+            this.setState({animationClass: true});
         }
     }
 
@@ -34,30 +34,31 @@ export default class WizardStep extends React.Component<IWizardStepProps, any> {
             <div className={`wizard-step`}>
                 <h3>Create Wizard / {this.props.title}</h3>
                 <div
-                    ref={ref => ref && ref.addEventListener('animationend', () => this.setState({ animationClass: false }))}
+                    ref={ref => ref && ref.addEventListener('animationend', () => this.setState({animationClass: false}))}
                     className={`wrapped-component ${this.state.animationClass ? 'animated bounceInUp' : ''}`}>
                     {this.props.component}
                 </div>
                 {
                     this.renderActions()
                 }
-            </div >
+            </div>
         );
     }
 
     public getWrappedComponent = () => {
         return this.props.component;
-    }
+    };
 
 
     private renderActions = (): any => {
         if (!this.anyAction()) return null;
 
-        const skipButton = this.props.skipButton ? <button onClick={() => this.props.onAction("end")}>{this.props.skipButton}</button> : null;
+        const skipButton = this.props.skipButton ?
+            <button onClick={() => this.props.onAction("end")}>{this.props.skipButton}</button> : null;
         const nextButton = this.props.nextButton ? <button onClick={() => this.props.onAction("next"
         )}>{this.props.nextButton}</button> : null;
-        const prevButton = this.props.prevButton ? <Button title={this.props.prevButton} /> : null;
-        const finishButton = this.props.finishButton ? <Button title={this.props.finishButton} /> : null;
+        const prevButton = this.props.prevButton ? <Button>{this.props.prevButton}</Button> : null;
+        const finishButton = this.props.finishButton ? <Button>{this.props.finishButton}</Button> : null;
         return <div className='wizard-actions'>
             {skipButton}
             {prevButton}
@@ -65,7 +66,7 @@ export default class WizardStep extends React.Component<IWizardStepProps, any> {
             {finishButton}
             {this.props.actionLoading && <h1>Loading...</h1>}
         </div>
-    }
+    };
 
     private anyAction = (): boolean => {
         return this.props.skipButton !== undefined || this.props.nextButton !== undefined || this.props.prevButton !== undefined || this.props.finishButton !== undefined

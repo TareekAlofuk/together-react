@@ -1,9 +1,7 @@
 import * as React from 'react';
 import {Container} from 'react-grid-system';
-import {Switch, Route} from 'react-router-dom';
-import NewMemberWizard from './NewMemberWizard/CreateNewMemberPage';
-import {RouteComponentProps} from 'react-router';
-import MemberList from './Collection/MemberList';
+import MemberRouteSwitch from "./MemberRouteSwitch";
+import {Link} from "react-router-dom";
 
 export interface IMemberBaseProps {
 }
@@ -11,24 +9,23 @@ export interface IMemberBaseProps {
 export default class MemberBase extends React.Component<IMemberBaseProps> {
     public render() {
         return (
-            <Container fluid={false} className="default-page" id="member-page">
-                <Switch>
-                    <Route exact path="/member" component={() => <MemberList members={[
-                        {
-                            id: 1,
-                            name: 'ali faris',
-                            phone: '099999999',
-                            secondaryPhone: '000000',
-                            email: 'test@gmail.com'
-                        },
-                        {
-                            id: 2, name: 'mustafa', phone: '222333', email: 'email@gmail.com'
-                        }
-                    ]}/>}/>
-                    <Route exact path="/member/wizard"
-                           component={(route: RouteComponentProps) => <NewMemberWizard route={route}/>}/>
-                    <Route component={() => <h1>NO MEMBER PAGE</h1>}/>
-                </Switch>
+            <Container style={{marginRight: 16, marginLeft: 16}} fluid={true} className={'page'} id="member-page">
+
+                <div className={'page-container'}>
+
+                    <div className={'page-menu'}>
+                        <Link className={'page-menu-option'} to={'/members'}>Home</Link>
+                        <Link className={'page-menu-option'} to={'/members/wizard'}>Create Wizard</Link>
+                    </div>
+
+                    <div className={'vertical-separator'}/>
+
+                    <div className={'option-content'}>
+                        <MemberRouteSwitch/>
+                    </div>
+
+                </div>
+
             </Container>
         );
     }
