@@ -77,6 +77,5 @@ export default function MemberRouteSwitch() {
 
         <Route component={() => <NotFound message={'PAGE NOT FOUND'}/>}/>
 
-
     </Switch>
 }

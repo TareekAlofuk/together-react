@@ -1,13 +1,13 @@
 import * as React from "react";
-import { useState } from "react";
-import { Link } from "react-router-dom";
+import {useState} from "react";
+import {Link} from "react-router-dom";
 
 export default function NavBar() {
     const [selected, select] = useState('');
     return <div className="nav">
 
         <div className={`nav-item ${selected === 'home' ? 'selected' : ''}`}>
-            <Link to="/home" onClick={() => select('home')}>HOME</Link>
+            <Link to="/members" onClick={() => select('home')}>HOME</Link>
         </div>
 
 
