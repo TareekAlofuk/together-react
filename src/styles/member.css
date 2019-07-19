@@ -146,3 +146,26 @@
     background: #FFFFFF;
     flex: 1;
 }
+
+.detail-item {
+    display: flex;
+    margin: 16px 0;
+    justify-content: center;
+}
+
+.detail-item span:nth-child(1) {
+    width: 140px;
+    background: #0653F4;
+    color: #FFFFFF;
+    padding: 8px;
+    border-radius: 3px;
+}
+
+.detail-item span:nth-child(2) {
+    flex: 1;
+    margin-left: 16px;
+    display: flex;
+    align-items: center;
+    font-size: 18px;
+    color: #777777;
+}
