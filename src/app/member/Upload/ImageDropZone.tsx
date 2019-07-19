@@ -1,6 +1,5 @@
 import * as React from "react";
 import Dropzone from "react-dropzone";
-import Config from "../../../bootstrap/Config";
 import FileUploader from "./FileUploader";
 import {Button} from "semantic-ui-react";
 
@@ -8,6 +7,8 @@ import {Button} from "semantic-ui-react";
 interface ImageDropZoneProps {
     image: any;
     label?: string;
+    uploadUrl : string;
+    name : string;
 }
 
 interface ImageDropZoneState {
@@ -75,8 +76,8 @@ export default class ImageDropZone extends React.Component<ImageDropZoneProps, I
     private uploadImage = (): void => {
         const data = new FormData();
         const {image} = this.state;
-        data.append('passport', image);
-        const url = Config.SERVER_URL + "api/members/upload-passport";
+        data.append(this.props.name, image);
+        const url = this.props.uploadUrl;
         this.setState({loading: true});
         const uploader = new FileUploader(url, data, () => this.setState(
             {loading: false}), null, undefined,
@@ -95,8 +96,8 @@ export default class ImageDropZone extends React.Component<ImageDropZoneProps, I
     };
 
     private onDrop = (file: any): void => {
-        const passportImage = file[0];
-        this.preview = URL.createObjectURL(passportImage);
-        this.setState({image: passportImage});
+        const f = file[0];
+        this.preview = URL.createObjectURL(f);
+        this.setState({image: f});
     }
 }

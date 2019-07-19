@@ -1,4 +1,4 @@
-.image-dropzone-container {
+.image-dropzone-container, .file-dropzone-container {
     padding: 24px;
     justify-content: center;
     background: #F0F0F0;
@@ -6,6 +6,10 @@
     display: flex;
     align-items: center;
     border-radius: 5px;
+}
+
+.file-dropzone-container{
+    min-height: 140px;
 }
 
 .image-dropzone-container .image-container {

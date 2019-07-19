@@ -169,3 +169,25 @@
     font-size: 18px;
     color: #777777;
 }
+
+.member-file-list {
+
+}
+
+.file-list-item {
+    margin: 16px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 8px;
+    border-radius: 3px;
+}
+
+.file-list-item > p {
+    font-size: 16px;
+    margin: 0;
+}
+
+.file-list-item:nth-child(odd) {
+    background: #EEE;
+}

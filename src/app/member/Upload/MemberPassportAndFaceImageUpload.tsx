@@ -1,5 +1,6 @@
 import * as React from 'react';
 import ImageDropZone from "./ImageDropZone";
+import Config from "../../../bootstrap/Config";
 
 export interface IMemberFilesUploadProps {
     passportImageUrl?: string;
@@ -28,10 +29,15 @@ export default class MemberPassportAndFaceImageUpload extends React.Component<IM
             <div className="files-upload">
                 <div style={{display: 'flex', justifyContent: 'space-between'}}>
                     <div style={{flex: 0.49}}>
-                        <ImageDropZone label={"Passport"} image={this.props.passportImageUrl}/>
+                        <ImageDropZone uploadUrl={Config.SERVER_URL + "api/members/upload-passport"}
+                                       name={"passport"}
+                                       label={"Passport"} image={this.props.passportImageUrl}/>
                     </div>
                     <div style={{flex: 0.49}}>
-                        <ImageDropZone label={"Identity Image"} image={this.props.faceImageUrl}/>
+                        <ImageDropZone
+                            uploadUrl={Config.SERVER_URL + "api/members/upload-faceimage"}
+                            name={"faceimage"}
+                            label={"Identity Image"} image={this.props.faceImageUrl}/>
                     </div>
                 </div>
             </div>

@@ -1,6 +1,7 @@
 import * as React from "react";
 import {Button, Divider} from "semantic-ui-react";
 import MemberPassportAndFaceImageUpload from "../Upload/MemberPassportAndFaceImageUpload";
+import MemberFiles from "../Upload/MemberFiles";
 
 interface Props {
     member: any;
@@ -31,25 +32,17 @@ export default class MemberDetails extends React.Component<Props> {
                         passportImageUrl={this.props.member.passportImage}/>
                 </div>
 
-
-                <div className={'files'}>
+                <br/><br/>
+                <Divider/>
+                <div style={{width: '50%'}}>
                     {
-                        (this.props.member && this.props.member.files) &&
-                        <ul>
-                            {
-                                this.props.member.files.map((file: any, index: number) => {
-                                    return <li key={index}>{file.displayFileName}</li>
-                                })
-                            }
-                        </ul>
+                        this.props.member.files &&
+                        <MemberFiles files={this.props.member.files}/>
                     }
-
-                    <Divider/>
-
-                    <Button>UPLOAD FILE</Button>
-
                 </div>
 
+                <br/><br/>
+                <Divider/>
 
                 <div className={'actions'}>
 
