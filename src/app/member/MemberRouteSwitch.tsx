@@ -7,6 +7,7 @@ import Config from "../../bootstrap/Config";
 import MemberDetails from "./MemberDetails/MemberDetails";
 import EditMember from "./EditMember";
 import MembershipManagement from "./MembershipManagement";
+import MemberCredentials from "./MemberCredentials";
 
 export default function MemberRouteSwitch() {
     return <Switch>
@@ -66,6 +67,9 @@ export default function MemberRouteSwitch() {
 
         <Route exact path={'/members/:id(\\d+)/membership'}
                component={() => <MembershipManagement/>}/>
+
+        <Route exact path={'/members/:id(\\d+)/credentials'}
+               component={() => <MemberCredentials/>}/>
 
         <Route component={() => <h1>TODO : 404 FOR MEMBER PAGE</h1>}/>
 
