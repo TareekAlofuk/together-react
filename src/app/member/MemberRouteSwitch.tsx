@@ -8,6 +8,7 @@ import MemberDetails from "./MemberDetails/MemberDetails";
 import EditMember from "./EditMember";
 import MembershipManagement from "./MembershipManagement";
 import MemberCredentials from "./MemberCredentials";
+import {NotFound} from "../../shared/component/NotFound";
 
 export default function MemberRouteSwitch() {
     return <Switch>
@@ -71,7 +72,11 @@ export default function MemberRouteSwitch() {
         <Route exact path={'/members/:id(\\d+)/credentials'}
                component={() => <MemberCredentials/>}/>
 
-        <Route component={() => <h1>TODO : 404 FOR MEMBER PAGE</h1>}/>
+        <Route exact path={'/members/:id(\\d+)/report'}
+               component={() => <h1>TODO : REPORT COMPONENT</h1>}/>
+
+        <Route component={() => <NotFound message={'PAGE NOT FOUND'}/>}/>
+
 
     </Switch>
 }
