@@ -1,10 +1,12 @@
 import * as React from "react";
-import {Button, Divider} from "semantic-ui-react";
+import {Button, Divider, Header} from "semantic-ui-react";
 import MemberPassportAndFaceImageUpload from "../Upload/MemberPassportAndFaceImageUpload";
 import MemberFiles from "../Upload/MemberFiles";
+import {Link, RouteComponentProps} from "react-router-dom";
 
 interface Props {
     member: any;
+    route: RouteComponentProps;
 }
 
 export default class MemberDetails extends React.Component<Props> {
@@ -42,17 +44,37 @@ export default class MemberDetails extends React.Component<Props> {
                 </div>
 
                 <br/><br/>
+                <Header size={'large'}>Actions : </Header>
                 <Divider/>
 
                 <div className={'actions'}>
 
-                    <Button>EDIT</Button>
-                    <Button>CHANGE CREDENTIALS</Button>
-                    <Button>RENEW/UPGRADE MEMBERSHIP</Button>
-                    <Button>PRINT</Button>
+                    <Button.Group>
+                        <Button color={'yellow'} onClick={() => {
+                            this.props.route.history.push(`/members/${this.props.member.id}/edit`, this.props.member)
+                        }}>
+                            EDIT
+                        </Button>
+                        <Link className={'ui orange button'}
+                              to={`/members/${this.props.member.id}/change-credentials`}>
+                            CHANGE CREDENTIALS
+                        </Link>
+                        <Link className={'ui green button'}
+                              to={`/members/${this.props.member.id}/manage-membership`}>
+                            RENEW/UPGRADE MEMBERSHIP
+                        </Link>
+
+                        <Link className={'ui blue button'}
+                              to={`/members/${this.props.member.id}/report`}>
+                            PRINT
+                        </Link>
+
+
+                    </Button.Group>
 
                 </div>
 
+                <br/>
             </div>
         )
     }

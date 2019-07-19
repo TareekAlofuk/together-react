@@ -31,13 +31,14 @@ export default class MemberFiles extends React.Component<Props> {
                 {
                     this.props.files.length === 0 &&
                     <div>
-                        <Icon size={'large'} name={'database'} />
+                        <Icon size={'large'} name={'database'}/>
                         <br/>
                         <p>NO FILES ATTACHED TO MEMBER FILES</p>
                     </div>
                 }
 
-                <FileDropZone uploadUrl={Config.SERVER_URL + "api/members/attachment"}
+                <FileDropZone label={"Upload File"}
+                              uploadUrl={Config.SERVER_URL + "api/members/attachment"}
                               name={"file"}/>
             </div>
         )

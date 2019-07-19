@@ -5,6 +5,8 @@ import MemberCollectionContainer from "./MemberCollectionContainer";
 import ReduxActions from "../../bootstrap/ReduxActions";
 import Config from "../../bootstrap/Config";
 import MemberDetails from "./MemberDetails/MemberDetails";
+import EditMember from "./EditMember";
+import MembershipManagement from "./MembershipManagement";
 
 export default function MemberRouteSwitch() {
     return <Switch>
@@ -46,7 +48,8 @@ export default function MemberRouteSwitch() {
         <Route exact path="/members/wizard"
                component={(route: RouteComponentProps) => <NewMemberWizard route={route}/>}/>
 
-        <Route exact path={"/members/:id(\\d+)"} component={() => <MemberDetails member={{
+        <Route exact path={"/members/:id(\\d+)"} component={(route: any) => <MemberDetails route={route} member={{
+            id: 1,
             name: "Ali Faris",
             type: 1,
             expiredDate: "2019-09-09",
@@ -56,6 +59,13 @@ export default function MemberRouteSwitch() {
             faceImage: "https://scotch-res.cloudinary.com/image/upload/w_1500,q_auto:good,f_auto/media/1/MyiYcendTBiZK0iU35n6_using-the-react-router-4.png.jpg",
             files: [{displayFileName: "File 1"}, {displayFileName: "File 2"}],
         }}/>}/>
+
+
+        <Route exact path={"/members/:id(\\d+)/edit"}
+               component={(route: any) => <EditMember route={route} member={{}}/>}/>
+
+        <Route exact path={'/members/:id(\\d+)/membership'}
+               component={() => <MembershipManagement/>}/>
 
         <Route component={() => <h1>TODO : 404 FOR MEMBER PAGE</h1>}/>
 
