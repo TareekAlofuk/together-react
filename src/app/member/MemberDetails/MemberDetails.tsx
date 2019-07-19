@@ -1,5 +1,6 @@
 import * as React from "react";
 import {Button, Divider} from "semantic-ui-react";
+import MemberPassportAndFaceImageUpload from "../Upload/MemberPassportAndFaceImageUpload";
 
 interface Props {
     member: any;
@@ -10,6 +11,7 @@ export default class MemberDetails extends React.Component<Props> {
     render(): JSX.Element {
         return (
             <div className={'member-details'}>
+
                 <Detail value={this.props.member.name} label={"Name"}/>
                 <Detail value={this.props.member.phone} label={"Phone"}/>
                 <Detail value={this.props.member.phone2} label={"Secondary Phone"}/>
@@ -24,8 +26,9 @@ export default class MemberDetails extends React.Component<Props> {
                 <Divider/>
 
                 <div className={'images'}>
-                    <img style={{width: 360, height: 'auto'}} src={this.props.member.passportImage}/>
-                    <img style={{width: 360, height: 'auto'}} src={this.props.member.faceImage}/>
+                    <MemberPassportAndFaceImageUpload
+                        faceImageUrl={this.props.member.faceImage}
+                        passportImageUrl={this.props.member.passportImage}/>
                 </div>
 
 
