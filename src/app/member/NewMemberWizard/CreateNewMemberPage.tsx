@@ -4,7 +4,7 @@ import WizardStep from './WizardStep';
 import CreateMember from '../Create/CreateMember';
 import MemberCard from '../MemberCard';
 import EditMember from '../EditMember';
-import MemberFilesUpload from '../MemberFilesUpload';
+import MemberPassportAndFaceImageUpload from '../Upload/MemberPassportAndFaceImageUpload';
 import MemberCredentials from '../MemberCredentials';
 
 export interface INewMemberWizardProps {
@@ -164,7 +164,7 @@ export default class NewMemberWizard extends React.Component<INewMemberWizardPro
             case "upload":
                 return <WizardStep
                     nextButton="Next" skipButton="Skip" prevButton="Back"
-                    onAction={this.onAction} component={<MemberFilesUpload ref={ref => this.currentComponent = ref} />} />;
+                    onAction={this.onAction} component={<MemberPassportAndFaceImageUpload ref={ref => this.currentComponent = ref} />} />;
 
 
             case "credentials":
