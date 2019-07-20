@@ -15,3 +15,7 @@ body {
 .ui.header {
     font-family: 'Source Sans Pro', sans-serif;
 }
+
+.redux-toastr .toastr .close-toastr{
+    height: 60% !important;
+}

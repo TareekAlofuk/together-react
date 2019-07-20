@@ -3,7 +3,7 @@ import {GETAction} from "reduxpp/dist/action/AxiosAction";
 import MemberList from "./Collection/MemberList";
 import CollectionContainer from "../../shared/component/CollectionContainer";
 import {connect} from "react-redux";
-import {Divider, Header} from "semantic-ui-react";
+import {Divider, Header, Input} from "semantic-ui-react";
 
 interface Props {
     action: string;

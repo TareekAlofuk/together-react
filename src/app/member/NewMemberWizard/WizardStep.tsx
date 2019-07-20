@@ -32,7 +32,7 @@ export default class WizardStep extends React.Component<IWizardStepProps, any> {
     public render() {
         return (
             <div className={`wizard-step`}>
-                <h3>Create Wizard / {this.props.title}</h3>
+                <h3>Wizard / {this.props.title}</h3>
                 <div
                     ref={ref => ref && ref.addEventListener('animationend', () => this.setState({animationClass: false}))}
                     className={`wrapped-component ${this.state.animationClass ? 'animated bounceInUp' : ''}`}>
@@ -54,9 +54,9 @@ export default class WizardStep extends React.Component<IWizardStepProps, any> {
         if (!this.anyAction()) return null;
 
         const skipButton = this.props.skipButton ?
-            <button onClick={() => this.props.onAction("end")}>{this.props.skipButton}</button> : null;
-        const nextButton = this.props.nextButton ? <button onClick={() => this.props.onAction("next"
-        )}>{this.props.nextButton}</button> : null;
+            <Button onClick={() => this.props.onAction("end")}>{this.props.skipButton}</Button> : null;
+        const nextButton = this.props.nextButton ? <Button onClick={() => this.props.onAction("next"
+        )}>{this.props.nextButton}</Button> : null;
         const prevButton = this.props.prevButton ? <Button>{this.props.prevButton}</Button> : null;
         const finishButton = this.props.finishButton ? <Button>{this.props.finishButton}</Button> : null;
         return <div className='wizard-actions'>

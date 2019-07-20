@@ -8,6 +8,9 @@ export default function MemberBaseMenuOptions(): JSX.Element {
         <Link className={'page-menu-option' + ` ${activeOption === 'home' ? 'active' : ''}`}
               onClick={() => setActiveOption('home')}
               to={'/members'}>Home</Link>
+        <Link className={'page-menu-option' + ` ${activeOption === 'search' ? 'active' : ''}`}
+              onClick={() => setActiveOption('search')}
+              to={'/members/search'}>Search</Link>
         <Link className={'page-menu-option' + ` ${activeOption === 'disabled' ? 'active' : ''}`}
               onClick={() => setActiveOption('disabled')}
               to={'/members/disabled'}>Disabled Membership</Link>

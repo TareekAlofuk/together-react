@@ -4,6 +4,7 @@ import logger from "redux-logger";
 import FetchArrayReducer from "reduxpp/dist/reducers/FetchArrayReducer";
 import ReduxActions from "./ReduxActions";
 import {wrapReducer} from "reduxpp/dist/utils/Utils";
+import {reducer as toastrReducer} from 'react-redux-toastr'
 
 const reducers: any = {
     RecentMembers: wrapReducer(new FetchArrayReducer(ReduxActions.GET_RECENT_MEMBERS)),
@@ -12,6 +13,7 @@ const reducers: any = {
     WillExpireMembers: wrapReducer(new FetchArrayReducer(ReduxActions.GET_NEARLY_EXPIRED_MEMBERS)),
     ArchivedMembers: wrapReducer(new FetchArrayReducer(ReduxActions.GET_ARCHIVED_MEMBERS)),
     MemberSearchResult: wrapReducer(new FetchArrayReducer(ReduxActions.SEARCH_FOR_MEMBER)),
+    toastr: toastrReducer,
 };
 console.log(reducers);
 const middleware = applyMiddleware(logger, reduxPromiseMiddleware);

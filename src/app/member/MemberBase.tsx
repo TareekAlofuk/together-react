@@ -1,18 +1,21 @@
 import * as React from 'react';
 import {Container} from 'react-grid-system';
-import {Switch, Route} from 'react-router-dom';
-import NewMemberWizard from './NewMemberWizard/CreateNewMemberPage';
-import MemberList from './Collection/MemberList';
-import {Button, Divider, Input, Menu} from "semantic-ui-react";
+import {RouteComponentProps} from 'react-router-dom';
 import MemberRouteSwitch from "./MemberRouteSwitch";
-import {RouteComponentProps} from "react-router-dom";
 import MemberBaseMenuOptions from "./MemberBaseMenuOptions";
+import {toastr} from 'react-redux-toastr'
 
 export interface IMemberBaseProps {
     route: RouteComponentProps
 }
 
+
 export default class MemberBase extends React.Component<IMemberBaseProps> {
+
+    componentDidMount() {
+        toastr.error('The title', 'The message', {timeOut: 50000});
+    }
+
     public render() {
         return (
             <Container style={{marginRight: 16, marginLeft: 16}} fluid={true} className={'page'} id="member-page">

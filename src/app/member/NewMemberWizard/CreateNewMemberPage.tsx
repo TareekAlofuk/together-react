@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { RouteComponentProps } from 'react-router';
+import {RouteComponentProps} from 'react-router';
 import WizardStep from './WizardStep';
 import CreateMember from '../Create/CreateMember';
 import MemberCard from '../MemberCard';
@@ -29,12 +29,11 @@ export default class NewMemberWizard extends React.Component<INewMemberWizardPro
 
     constructor(props: any) {
         super(props);
-        this.state = { currentStep: "upload", loading: false, member: { name: 'Ali Faris Abed', id: 1 } };
+        this.state = {currentStep: "create", loading: false, member: {}};
     }
 
     private currentStep: WizardStep = null;
     private currentComponent: any = null;
-
 
 
     public render() {
@@ -52,7 +51,7 @@ export default class NewMemberWizard extends React.Component<INewMemberWizardPro
         if (action === "next") {
             switch (this.state.currentStep) {
                 case "create":
-                    this.setState({ loading: true });
+                    this.setState({loading: true});
                     if (this.currentComponent !== null) {
                         this.currentComponent.save();
                     }
@@ -61,7 +60,7 @@ export default class NewMemberWizard extends React.Component<INewMemberWizardPro
                     this.nextStep();
                     break;
                 case "info":
-                    this.setState({ loading: true });
+                    this.setState({loading: true});
                     if (this.currentComponent !== null) {
                         this.currentComponent.save();
                     }
@@ -74,7 +73,7 @@ export default class NewMemberWizard extends React.Component<INewMemberWizardPro
                     }
                     break;
                 case "credentials":
-                    this.setState({ loading: true });
+                    this.setState({loading: true});
                     if (this.currentComponent != null) {
                         this.currentComponent.save();
                     }
@@ -85,12 +84,11 @@ export default class NewMemberWizard extends React.Component<INewMemberWizardPro
         } else if (action === "end") {
             this.props.route.history.push("/member")
         }
-    }
-
+    };
 
 
     private onResult = () => {
-    }
+    };
 
     private nextStep = () => {
         let nextStep: any = null;
@@ -115,33 +113,35 @@ export default class NewMemberWizard extends React.Component<INewMemberWizardPro
                 break;
         }
         this.currentComponent = null;
-        this.setState({ currentStep: nextStep });
-    }
+        this.setState({currentStep: nextStep});
+    };
 
     private getCurrentStep = (): React.ReactElement<WizardStep> => {
 
         switch (this.state.currentStep) {
             case "create":
                 return <WizardStep ref={ref => this.currentStep = ref}
-                    actionLoading={this.state.loading}
-                    onAction={this.onAction}
-                    nextButton="Next"
-                    component={<CreateMember
-                        ref={ref => this.currentComponent = ref}
-                        renderButton={false} onSuccess={(response: any) => {
-                            if (response.id) {
-                                this.setState({ member: { ...response } }, () => this.nextStep());
-                            }
-                        }} onError={error => {
-                            console.log(error);
-                        }} onComplete={() => {
-                            this.setState({ loading: false })
-                        }} />} />
+                                   actionLoading={this.state.loading}
+                                   onAction={this.onAction}
+                                   nextButton="Next"
+                                   title={"Create New Member"}
+                                   component={<CreateMember
+                                       ref={ref => this.currentComponent = ref}
+                                       renderButton={false} onSuccess={(response: any) => {
+                                       if (response.id) {
+                                           this.setState({member: {...response}}, () => this.nextStep());
+                                       }
+                                   }} onError={error => {
+                                       console.log(error);
+                                   }} onComplete={() => {
+                                       this.setState({loading: false})
+                                   }}/>}/>;
 
             case "card":
                 return <WizardStep ref={ref => this.currentStep = ref}
-                    actionLoading={this.state.loading} onAction={this.onAction} nextButton="Next" skipButton="Skip"
-                    component={<MemberCard member={this.state.member} />} />
+                                   actionLoading={this.state.loading} onAction={this.onAction} nextButton="Next"
+                                   skipButton="Skip"
+                                   component={<MemberCard member={this.state.member}/>}/>
 
 
             case "info":
@@ -151,31 +151,32 @@ export default class NewMemberWizard extends React.Component<INewMemberWizardPro
                     component={<EditMember
                         ref={ref => this.currentComponent = ref}
                         onSuccess={(response: any) => {
-                            this.setState({ member: { ...response } }, () => this.nextStep());
+                            this.setState({member: {...response}}, () => this.nextStep());
                         }} onError={error => {
-                            console.log(error);
-                        }} onComplete={() => {
-                            this.setState({ loading: false })
-                        }}
-                        editButton={false} member={this.state.member} />}
+                        console.log(error);
+                    }} onComplete={() => {
+                        this.setState({loading: false})
+                    }}
+                        editButton={false} member={this.state.member}/>}
                 />;
 
 
             case "upload":
                 return <WizardStep
                     nextButton="Next" skipButton="Skip" prevButton="Back"
-                    onAction={this.onAction} component={<MemberPassportAndFaceImageUpload ref={ref => this.currentComponent = ref} />} />;
+                    onAction={this.onAction}
+                    component={<MemberPassportAndFaceImageUpload ref={ref => this.currentComponent = ref}/>}/>;
 
 
             case "credentials":
                 return <WizardStep onAction={this.onAction}
-                    nextButton="Next" skipButton="Skip" prevButton="Back"
-                    component={<MemberCredentials
-                        onComplete={() => this.setState({ loading: false })}
-                        onError={() => console.log("error")}
-                        onSuccess={() => this.nextStep()}
-                        ref={ref => this.currentComponent = ref}
-                        saveButton={false} />} />
+                                   nextButton="Next" skipButton="Skip" prevButton="Back"
+                                   component={<MemberCredentials
+                                       onComplete={() => this.setState({loading: false})}
+                                       onError={() => console.log("error")}
+                                       onSuccess={() => this.nextStep()}
+                                       ref={ref => this.currentComponent = ref}
+                                       saveButton={false}/>}/>
 
             case "report":
                 return <WizardStep
