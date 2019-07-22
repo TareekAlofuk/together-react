@@ -5,6 +5,8 @@ import AutoFieldText from '../../../lib/auto-form/components/FormElement/AutoFie
 import {Redirect} from "react-router";
 import Config from '../../../bootstrap/Config';
 import {Button} from "semantic-ui-react";
+import AutoFieldSelect from "../../../lib/auto-form/components/FormElement/AutoFieldSelect/AutoFieldSelect";
+import MembershipType from "../MembershipType";
 
 interface Props {
     renderButton?: boolean;
@@ -32,6 +34,14 @@ export default class CreateMember extends React.Component<Props> {
                         <AutoField validationRules={{length: {minimum: 2}}}
                                    name='name' label='Name' placeholder='Name'
                                    component={AutoFieldText}/>,
+                        <AutoField component={AutoFieldSelect} name={'type'}
+                                   validationRules={{greaterThan: 0, lessThan: 3}}
+                                   options={[{label: 'SLIVER', value: MembershipType.SILVER},
+                                       {label: 'GOLD', value: MembershipType.GOLD},
+                                       {label: 'BUSINESS', value: MembershipType.BUSINESS}]}
+                        />,
+                        <AutoField name={'expireDate'} component={AutoFieldText} type={'date'}
+                                   defaultValue={'2019-10-10'}/>
                     ]}
                     onSuccess={this.props.onSuccess}
                     onError={this.props.onError}
