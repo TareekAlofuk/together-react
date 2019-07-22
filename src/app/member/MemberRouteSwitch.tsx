@@ -1,5 +1,5 @@
 import {Route, RouteComponentProps, Switch} from "react-router";
-import NewMemberWizard from "./NewMemberWizard/CreateNewMemberPage";
+import NewMemberWizard from "./NewMemberWizard/NewMemberWizard";
 import * as React from "react";
 import MemberCollectionContainer from "./MemberCollectionContainer";
 import ReduxActions from "../../bootstrap/ReduxActions";

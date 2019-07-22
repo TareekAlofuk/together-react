@@ -24,7 +24,8 @@ export default class WizardStep extends React.Component<IWizardStepProps, any> {
     }
 
     componentDidUpdate(prevProps: IWizardStepProps) {
-        if (prevProps.component !== this.props.component && !this.state.animationClass) {
+        console.log(prevProps , this.props);
+        if (!this.state.animationClass) {
             this.setState({animationClass: true});
         }
     }
@@ -45,17 +46,12 @@ export default class WizardStep extends React.Component<IWizardStepProps, any> {
         );
     }
 
-    public getWrappedComponent = () => {
-        return this.props.component;
-    };
-
-
     private renderActions = (): any => {
         if (!this.anyAction()) return null;
 
         const skipButton = this.props.skipButton ?
             <Button onClick={() => this.props.onAction("end")}>{this.props.skipButton}</Button> : null;
-        const nextButton = this.props.nextButton ? <Button onClick={() => this.props.onAction("next"
+        const nextButton = this.props.nextButton ? <Button color={'blue'} onClick={() => this.props.onAction("next"
         )}>{this.props.nextButton}</Button> : null;
         const prevButton = this.props.prevButton ? <Button>{this.props.prevButton}</Button> : null;
         const finishButton = this.props.finishButton ? <Button>{this.props.finishButton}</Button> : null;
