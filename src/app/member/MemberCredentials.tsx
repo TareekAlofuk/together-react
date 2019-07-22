@@ -20,12 +20,15 @@ export default class MemberCredentials extends React.Component<IMemberCredential
                 <AutoForm
                     ref={ref => this.form = ref}
                     fields={[
-                        <AutoField inlineLabel label="Username" component={AutoFieldText} name="name" placeholder="Username..." />,
-                        <AutoField inlineLabel label="Password" component={AutoFieldText} name="name" placeholder="Password..." />,
+                        <AutoField inlineLabel label="Username"
+                                   component={AutoFieldText} name="name" placeholder="Username..."/>,
+                        <AutoField inlineLabel label="Password" component={AutoFieldText} name="name"
+                                   placeholder="Password..."/>,
                     ]}
                     onSuccess={this.props.onSuccess} onError={this.props.onError} onComplete={this.props.onComplete}
-                    renderButton={() => this.props.saveButton === false ? null : <button onClick={this.save}>SAVE</button>}
-                    requestConfiguration={{  
+                    renderButton={() => this.props.saveButton === false ? null :
+                        <button onClick={this.save}>SAVE</button>}
+                    requestConfiguration={{
                         type: "http",
                         method: "post",
                         url: Config.SERVER_URL + "api/members/credentials"

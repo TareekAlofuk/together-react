@@ -13,10 +13,13 @@ export default class MemberCard extends React.Component<Props> {
                 <p className='member-card-id'>{this.props.member.id}</p>
             </div>
 
-            <div style={{ textAlign: 'center', marginTop: 16 }}>
-                <button>
+            <div style={{textAlign: 'center', marginTop: 16}}>
+                <a className={'ui button'}
+                   target={'_blank'}
+                   href={`/print-card.html?id=` + encodeURI(this.props.member.id)
+                   + '&name=' + encodeURI(this.props.member.name)}>
                     PRINT
-                </button>
+                </a>
             </div>
 
         </div>;

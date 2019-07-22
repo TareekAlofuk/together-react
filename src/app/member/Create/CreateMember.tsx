@@ -2,8 +2,9 @@ import * as React from 'react'
 import AutoForm from '../../../lib/auto-form/core/AutoForm/AutoForm';
 import AutoField from '../../../lib/auto-form/core/AutoField/AutoField';
 import AutoFieldText from '../../../lib/auto-form/components/FormElement/AutoFieldText/AutoFieldText';
-import { Redirect } from "react-router";
+import {Redirect} from "react-router";
 import Config from '../../../bootstrap/Config';
+import {Button} from "semantic-ui-react";
 
 interface Props {
     renderButton?: boolean;
@@ -28,16 +29,18 @@ export default class CreateMember extends React.Component<Props> {
                 <AutoForm
                     ref={ref => this.form = ref}
                     fields={[
-                        <AutoField name='name' label='Name' placeholder='Name' component={AutoFieldText} />,
+                        <AutoField validationRules={{length: {minimum: 2}}}
+                                   name='name' label='Name' placeholder='Name'
+                                   component={AutoFieldText}/>,
                     ]}
                     onSuccess={this.props.onSuccess}
                     onError={this.props.onError}
                     onComplete={this.props.onComplete}
-                    requestConfiguration={{ type: "http", url: url, method: "post" }}
+                    requestConfiguration={{type: "http", url: url, method: "post"}}
                     renderButton={() => {
                         if (this.props.renderButton === false)
                             return null;
-                        return <button onClick={this.save}>SEND</button>;
+                        return <Button onClick={this.save}>SEND</Button>;
                     }}
                 />
             </div>
@@ -45,6 +48,10 @@ export default class CreateMember extends React.Component<Props> {
     }
 
     public save = () => {
+        if (!this.form.validate()) {
+            this.props.onComplete && this.props.onComplete();
+            return;
+        }
         this.form.submit();
     }
 }

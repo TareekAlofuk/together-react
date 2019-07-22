@@ -15,16 +15,14 @@ export interface IWizardStepProps {
 }
 
 export default class WizardStep extends React.Component<IWizardStepProps, any> {
-
-    private ref: any = null;
-
+    
     constructor(props: IWizardStepProps) {
         super(props);
         this.state = {animationClass: true};
     }
 
     componentDidUpdate(prevProps: IWizardStepProps) {
-        console.log(prevProps , this.props);
+        console.log(prevProps, this.props);
         if (!this.state.animationClass) {
             this.setState({animationClass: true});
         }
