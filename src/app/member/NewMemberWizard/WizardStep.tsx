@@ -52,11 +52,9 @@ export default class WizardStep extends React.Component<IWizardStepProps, any> {
             <Button onClick={() => this.props.onAction("end")}>{this.props.skipButton}</Button> : null;
         const nextButton = this.props.nextButton ? <Button color={'blue'} onClick={() => this.props.onAction("next"
         )}>{this.props.nextButton}</Button> : null;
-        const prevButton = this.props.prevButton ? <Button>{this.props.prevButton}</Button> : null;
         const finishButton = this.props.finishButton ? <Button>{this.props.finishButton}</Button> : null;
         return <div className='wizard-actions'>
             {skipButton}
-            {prevButton}
             {nextButton}
             {finishButton}
             {this.props.actionLoading && <h1>Loading...</h1>}
