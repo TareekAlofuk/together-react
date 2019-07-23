@@ -57,8 +57,7 @@ export default abstract class AutoField<T extends AutoFieldProps>
     };
 
     public setValue(value: any): any {
-        this.setState({value: value});
-        this.validate();
+        this.setState({value: value} , () => this.validate());
     }
 
     public getValue() {

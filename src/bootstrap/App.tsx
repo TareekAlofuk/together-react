@@ -8,6 +8,7 @@ import AppRouter from './AppRouter';
 import {BrowserRouter} from 'react-router-dom';
 
 import "./style-loader";
+import "./validator_setup"
 
 class App extends React.Component {
     render() {

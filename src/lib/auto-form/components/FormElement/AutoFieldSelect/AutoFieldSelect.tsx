@@ -38,7 +38,11 @@ export default class AutoFieldSelect extends AutoFieldBase<Props> {
     private getStyle(): any {
         const bgColors = {"default": "#EFEFEF", "light": "#FFFFFF", "dark": "#2B2B2B"};
         return {
-            control: (styles: any) => ({...styles, backgroundColor: bgColors[this.props.theme!], border: 'none'}),
+            control: (styles: any) => ({
+                ...styles,
+                backgroundColor: this.state.error ? '#F48FB1' : bgColors[this.props.theme!],
+                border: 'none'
+            }),
         }
     }
 

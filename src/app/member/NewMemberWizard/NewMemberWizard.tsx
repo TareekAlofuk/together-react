@@ -179,21 +179,24 @@ export default class NewMemberWizard extends React.Component<INewMemberWizardPro
     }
 
     private getCreateMemberStep() {
+        const component = <div className={'create-member-step'}>
+            <CreateMember
+                ref={ref => this.currentComponent = ref}
+                renderButton={false} onSuccess={(response: any) => {
+                if (response.id) {
+                    this.setState({member: {...response}}, () => this.nextStep());
+                }
+            }} onError={() => {
+                toastr.error('Failed To Create Member', 'Check your internet connection');
+            }} onComplete={() => {
+                this.setState({loading: false})
+            }}/>
+        </div>;
         return <WizardStep ref={ref => this.currentStep = ref}
                            actionLoading={this.state.loading}
                            onAction={this.onAction}
                            nextButton="Next"
                            title={"Create New Member"}
-                           component={<CreateMember
-                               ref={ref => this.currentComponent = ref}
-                               renderButton={false} onSuccess={(response: any) => {
-                               if (response.id) {
-                                   this.setState({member: {...response}}, () => this.nextStep());
-                               }
-                           }} onError={() => {
-                               toastr.error('Failed To Create Member', 'Check your internet connection');
-                           }} onComplete={() => {
-                               this.setState({loading: false})
-                           }}/>}/>;
+                           component={component}/>;
     }
 }

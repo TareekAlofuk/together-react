@@ -1,5 +1,5 @@
 import * as React from 'react';
-import {Button} from "semantic-ui-react";
+import {Button, Divider} from "semantic-ui-react";
 
 export interface IWizardStepProps {
     component: any;
@@ -15,7 +15,7 @@ export interface IWizardStepProps {
 }
 
 export default class WizardStep extends React.Component<IWizardStepProps, any> {
-    
+
     constructor(props: IWizardStepProps) {
         super(props);
         this.state = {animationClass: true};
@@ -32,6 +32,7 @@ export default class WizardStep extends React.Component<IWizardStepProps, any> {
         return (
             <div className={`wizard-step`}>
                 <h3>Wizard / {this.props.title}</h3>
+                <Divider/>
                 <div
                     ref={ref => ref && ref.addEventListener('animationend', () => this.setState({animationClass: false}))}
                     className={`wrapped-component ${this.state.animationClass ? 'animated bounceInUp' : ''}`}>

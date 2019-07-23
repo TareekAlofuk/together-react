@@ -16,8 +16,10 @@ export default class LabelRenderer {
         if (!this.field.props.inlineLabel) {
             style.marginBottom = 8;
         }
-        if (this.field.props.labelWidth)
+        if (this.field.props.labelWidth) {
             style.width = this.field.props.labelWidth;
+            style.minWidth = this.field.props.labelWidth;
+        }
 
         const fontSizes: any = {"small": 12, "medium": 14, "large": 18};
         style.fontSize = fontSizes[size];

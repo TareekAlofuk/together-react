@@ -4,6 +4,7 @@
     height: 550px;
     display: flex;
     flex-direction: column;
+    min-height: 75vh;
 }
 
 .wizard-step .wrapped-component {
@@ -12,6 +13,11 @@
 
 .wizard-step .wizard-actions {
     align-self: flex-end;
+}
+
+/*TODO : make it resposive*/
+.create-member-step {
+    width: 550px;
 }
 
 .member-card-section {
@@ -142,7 +148,6 @@
 }
 
 .page .page-container .option-content {
-    min-height: 75vh;
     background: #FFFFFF;
     flex: 1;
 }

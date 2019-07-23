@@ -87,12 +87,12 @@ export default class AutoForm
     public onComplete(): void {
         this.setLoading(false);
         this.props.onComplete && this.props.onComplete(this);
-        this.props.onLoadingEnd && this.props.onLoadingEnd(this);        
+        this.props.onLoadingEnd && this.props.onLoadingEnd(this);
     };
 
     public onError(reason: any): void {
         this.setLoading(false);
-        this.props.onError && this.props.onError(reason, this);        
+        this.props.onError && this.props.onError(reason, this);
     };
 
     public clear(): void {
