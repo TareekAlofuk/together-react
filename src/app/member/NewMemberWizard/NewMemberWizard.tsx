@@ -30,7 +30,11 @@ export default class NewMemberWizard extends React.Component<INewMemberWizardPro
 
     constructor(props: any) {
         super(props);
-        this.state = {currentStep: "create", loading: false, member: {}};
+        this.state = {
+            currentStep: "card",
+            loading: false,
+            member: {id: 1, name: "Ali", type: 3, title: "MR.", expirationDate: '2020-10-10'}
+        };
     }
 
     private currentStep: WizardStep = null;
@@ -175,6 +179,7 @@ export default class NewMemberWizard extends React.Component<INewMemberWizardPro
         return <WizardStep ref={ref => this.currentStep = ref}
                            actionLoading={this.state.loading} onAction={this.onAction} nextButton="Next"
                            skipButton="Skip"
+                           title={"Member Card"}
                            component={<MemberCard member={this.state.member}/>}/>;
     }
 
@@ -187,6 +192,7 @@ export default class NewMemberWizard extends React.Component<INewMemberWizardPro
                     this.setState({member: {...response}}, () => this.nextStep());
                 }
             }} onError={() => {
+                //TODO : check duplicate name error
                 toastr.error('Failed To Create Member', 'Check your internet connection');
             }} onComplete={() => {
                 this.setState({loading: false})

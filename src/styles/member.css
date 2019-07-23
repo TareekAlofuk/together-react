@@ -29,7 +29,8 @@
 }
 
 .member-card {
-    background: #343434;
+    position: relative;
+    background-image: url("/images/membership_card.jpg");
     color: #FFF;
     border-radius: 5px;
     width: 380px;
@@ -38,20 +39,51 @@
     align-items: center;
     flex-direction: column;
     justify-content: flex-end;
-    padding: 24px;
+    padding: 32px 24px;
+    background-size: 100% 100%;
+}
+
+.card-type {
+    position: absolute;
+    border-top-left-radius: 90px;
+    border-bottom-left-radius: 90px;
+    width: 90px;
+    text-align: center;
+    font-size: 12px;
+    top: 40px;
+    right: 0;
+    padding: 3px;
+    color: #6e6659;
+}
+
+.card-type-1 {
+    background: #EEE;
+}
+
+.card-type-2 {
+    background: yellow;
+}
+
+.card-type-3 {
+    background: blue;
 }
 
 .member-card-id {
     text-align: center;
-    font-size: 18px;
-    font-weight: bold;
+    color: #111;
+    font-size: 14px;
+    margin-left: 16px;
+    align-self: flex-start;
 }
 
 .member-card-name {
     text-align: center;
-    font-size: 20px;
     font-weight: bold;
-    margin-bottom: 16px;
+    color: #111;
+    font-size: 18px;
+    margin-left: 16px;
+    margin-bottom: 0;
+    align-self: flex-start;
 }
 
 .member-list {
