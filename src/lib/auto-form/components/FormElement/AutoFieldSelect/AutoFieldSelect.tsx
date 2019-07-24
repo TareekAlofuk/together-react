@@ -20,8 +20,18 @@ export default class AutoFieldSelect extends AutoFieldBase<Props> {
                     className={'auto-field-select ' + this.props.className}
                     onChange={this.onValueChange}
                     options={this.props.options}
+                    value={this.getSelectValue()}
                     styles={this.getStyle()}/>
         </div>
+    }
+
+    private getSelectValue(): any {
+        for (let i = 0; i < this.props.options.length; i++) {
+            if (this.props.options[i].value === this.state.value) {
+                return {value: this.state.value, label: this.props.options[i].label};
+            }
+        }
+        return {value: '', label: ''};
     }
 
     getClassName(): any {

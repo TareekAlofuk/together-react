@@ -7,8 +7,8 @@ import {Button} from "semantic-ui-react";
 interface ImageDropZoneProps {
     image: any;
     label?: string;
-    uploadUrl : string;
-    name : string;
+    uploadUrl: string;
+    name: string;
 }
 
 interface ImageDropZoneState {
@@ -39,7 +39,7 @@ export default class ImageDropZone extends React.Component<ImageDropZoneProps, I
                             <div {...getRootProps()} className={'image-dropzone-container'}>
                                 <input {...getInputProps()} />
                                 {
-                                    this.props.image ?
+                                    (this.props.image || this.state.image) ?
                                         this.renderImageContainer()
                                         :
                                         <p style={{textAlign: 'center'}}>
@@ -63,11 +63,14 @@ export default class ImageDropZone extends React.Component<ImageDropZoneProps, I
                             }
                         </Button>
                         :
-                        <a style={{width: 160}} className={'ui blue button'}
-                           target={"_blank"}
-                           href={this.props.image}>
-                            VIEW
-                        </a>
+                        (
+                            this.props.image &&
+                            <a style={{width: 160}} className={'ui blue button'}
+                               target={"_blank"}
+                               href={this.props.image}>
+                                VIEW
+                            </a>
+                        )
                 }
             </div>
         </>;

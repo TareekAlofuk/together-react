@@ -19,6 +19,7 @@ export default class OnValueChangeHandler {
 
         let value = this.field.extractValueFormInputEvent(e);
         let error = !this.field.isValid(value);
+
         this.field.setError(error);
         if (this.field.props.afterValueChanged) {
             this.field.setState({value: value}, () => {

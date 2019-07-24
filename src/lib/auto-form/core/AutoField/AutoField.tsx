@@ -40,7 +40,7 @@ export default abstract class AutoField<T extends AutoFieldProps>
     };
 
     public isValid(value: any = null): boolean {
-        if (!value)
+        if (value === null || value === undefined)
             value = this.state.value;
         if (!this.props.validationRules) return true;
         let error = validator.single(value, this.props.validationRules);
@@ -57,7 +57,7 @@ export default abstract class AutoField<T extends AutoFieldProps>
     };
 
     public setValue(value: any): any {
-        this.setState({value: value} , () => this.validate());
+        this.setState({value: value}, () => this.validate());
     }
 
     public getValue() {

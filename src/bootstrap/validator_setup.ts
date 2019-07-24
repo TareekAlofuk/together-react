@@ -11,5 +11,23 @@ const dateExtendObject = {
     }
 };
 
+validator.validators.optional = function (value: any, options: any) {
+    if (value === null || value == undefined) {
+        return;
+    }
+
+    if (options.trim) {
+        value = String(value).trim();
+    }
+
+    if (value === '') {
+        return;
+    }
+
+    const rules = {...options};
+    delete rules.trim;
+    return validator.single(value, rules);
+};
+
 
 validator.extend(validator.validators.datetime, dateExtendObject);

@@ -1,7 +1,6 @@
 .wizard-step {
     display: flex;
     flex-direction: column;
-    height: 550px;
     display: flex;
     flex-direction: column;
     min-height: 75vh;
@@ -17,6 +16,10 @@
 
 /*TODO : make it resposive*/
 .create-member-step {
+    width: 550px;
+}
+
+.edit-member-step {
     width: 550px;
 }
 

@@ -4,6 +4,11 @@ import AutoField from '../../lib/auto-form/core/AutoField/AutoField';
 import AutoFieldText from '../../lib/auto-form/components/FormElement/AutoFieldText/AutoFieldText';
 import Config from '../../bootstrap/Config';
 import {RouteComponentProps} from "react-router";
+import AutoFieldSelect from "../../lib/auto-form/components/FormElement/AutoFieldSelect/AutoFieldSelect";
+import MembershipType from "./MembershipType";
+import DateUtils from "../../shared/utils/DateUtils";
+import AutoFormItem from "../../lib/auto-form/core/AutoFormItem/AutoFormItem";
+import AutoFormDivider from "../../lib/auto-form/components/Utils/AutoFormDivider";
 
 interface Props {
     editButton?: boolean;
@@ -38,13 +43,78 @@ export default class EditMember extends React.Component<Props> {
                         return false;
                     }}
                     fields={[
-                        <AutoField name='name' placeholder='Name...' component={AutoFieldText}/>,
-                        <AutoField name='phone' placeholder='Phone...' component={AutoFieldText}/>,
-                        <AutoField name='phone2' placeholder='Secondary Phone...' component={AutoFieldText}/>,
-                        <AutoField name='email' placeholder='Email...' component={AutoFieldText}/>,
-                        <AutoField name='address' placeholder='Address...' component={AutoFieldText}/>,
-                        <AutoField name='birthDate' type='date' placeholder='Birth Date...' component={AutoFieldText}/>,
-                        <AutoField name='jobTitle' placeholder='Job Title...' component={AutoFieldText}/>,
+                        <AutoField component={AutoFieldSelect} name={'title'}
+                                   inlineLabel label="Title" labelWidth={'140px'}
+                                   validationRules={{presence: true, length: {minimum: 2}}}
+                                   options={this.titleOption()}
+                        />,
+
+                        <AutoField validationRules={{length: {minimum: 2}}}
+                                   name='name' label='Name' placeholder='Name ...'
+                                   inlineLabel labelWidth={'140px'}
+                                   component={AutoFieldText}/>,
+
+                        <AutoField validationRules={{length: {minimum: 2}}}
+                                   name='phone' label='Phone' placeholder='Phone ...'
+                                   inlineLabel labelWidth={'140px'}
+                                   component={AutoFieldText}/>,
+
+                        <AutoField component={AutoFieldSelect} name={'type'}
+                                   inlineLabel label="Membership Type" labelWidth={'140px'}
+                                   validationRules={{numericality: {greaterThan: 0, lessThan: 4}}}
+                                   options={[{label: 'SLIVER', value: MembershipType.SILVER},
+                                       {label: 'GOLD', value: MembershipType.GOLD},
+                                       {label: 'BUSINESS', value: MembershipType.BUSINESS}]}
+                        />,
+                        <AutoField name={'expirationDate'} component={AutoFieldText} type={'date'}
+                                   inlineLabel label={'Expiration Date'} labelWidth={'140px'}
+                                   onOtherChange={this.expirationDateOnOtherChange}
+                                   validationRules={{datetime: {dateOnly: true}}}/>,
+
+                        <AutoField validationRules={{length: {minimum: 2}}}
+                                   name='passportNo' label='Passport No' placeholder='Passport No ...'
+                                   inlineLabel labelWidth={'140px'}
+                                   component={AutoFieldText}/>,
+
+                        <AutoField validationRules={{datetime: {dateOnly: true}}}
+                                   name='passportExpirationDate' label='Passport Expiration Date'
+                                   placeholder='Passport Expiration Date'
+                                   inlineLabel labelWidth={'140px'}
+                                   type={'date'}
+                                   component={AutoFieldText}/>,
+
+                        <AutoField validationRules={{datetime: {dateOnly: true}}}
+                                   name='birthDate' label='BirthDate'
+                                   placeholder='BirthDate'
+                                   inlineLabel labelWidth={'140px'}
+                                   type={'date'}
+                                   component={AutoFieldText}/>,
+
+                        <AutoFormItem component={AutoFormDivider}/>,
+
+                        <AutoField name='secondaryPhone'
+                                   inlineLabel labelWidth={'140px'} label='Secondary Phone'
+                                   placeholder='Secondary Phone...' component={AutoFieldText}/>,
+
+                        <AutoField name='email'
+                                   inlineLabel labelWidth={'140px'} label='Email'
+                                   validationRules={{optional: {trim: true, email: true}}}
+                                   placeholder='Email...' component={AutoFieldText}/>,
+
+                        <AutoField name='address'
+                                   inlineLabel labelWidth={'140px'} label='Address'
+                                   placeholder='Address...' component={AutoFieldText}/>,
+
+                        <AutoField validationRules={{optional: {datetime: {dateOnly: true}}}}
+                                   name='birthDate'
+                                   placeholder='BirthDate'
+                                   inlineLabel labelWidth={'140px'} label='BirthDate'
+                                   type={'date'}
+                                   component={AutoFieldText}/>,
+
+                        <AutoField name='jobTitle'
+                                   inlineLabel labelWidth={'140px'} label='Job Title'
+                                   placeholder='Job Title...' component={AutoFieldText}/>,
                     ]}
                     renderButton={() => this.props.editButton === false ? null :
                         <button onClick={this.save}>EDIT</button>}
@@ -56,7 +126,49 @@ export default class EditMember extends React.Component<Props> {
 
     public save(): void {
         if (this.form) {
+            if (!this.form.validate()) {
+                this.props.onComplete && this.props.onComplete();
+                return;
+            }
+
             this.form.submit();
         }
+    }
+
+    public titleOption = () => {
+        return [
+            {label: "MR.", value: "MR."},
+            {label: "MS.", value: "MS."},
+            {label: "MRS.", value: "MRS."},
+            {label: "MISS.", value: "MISS."},
+            {label: "DR.", value: "DR."},
+            {label: "PROF.", value: "PROF."},
+        ];
+    };
+
+    private expirationDateOnOtherChange = (key: string, value: any, form: AutoForm) => {
+        if (key === "type") {
+            let newExpirationDate = null;
+            switch (value) {
+                case MembershipType.SILVER:
+                    newExpirationDate = this.getDateFromNowAfter(24);
+                    break;
+                case MembershipType.GOLD:
+                    newExpirationDate = this.getDateFromNowAfter(18);
+                    break;
+                case MembershipType.BUSINESS:
+                    newExpirationDate = this.getDateFromNowAfter(12);
+                    break;
+                default:
+                    return;
+            }
+            form.getField("expirationDate").setValue(DateUtils.toString(newExpirationDate));
+        }
+    };
+
+    private getDateFromNowAfter(months: number) {
+        const date = new Date();
+        date.setMonth(date.getMonth() + months);
+        return date;
     }
 }

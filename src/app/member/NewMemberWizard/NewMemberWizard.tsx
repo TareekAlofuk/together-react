@@ -31,7 +31,7 @@ export default class NewMemberWizard extends React.Component<INewMemberWizardPro
     constructor(props: any) {
         super(props);
         this.state = {
-            currentStep: "card",
+            currentStep: "upload",
             loading: false,
             member: {id: 1, name: "Ali", type: 3, title: "MR.", expirationDate: '2020-10-10'}
         };
@@ -159,19 +159,23 @@ export default class NewMemberWizard extends React.Component<INewMemberWizardPro
     }
 
     private getEditMemberStep() {
-        return <WizardStep
-            nextButton="Next" skipButton="Skip" prevButton="Back"
-            onAction={this.onAction} actionLoading={this.state.loading}
-            component={<EditMember
+        const component = <div className={'edit-member-step'}>
+            <EditMember
                 ref={ref => this.currentComponent = ref}
                 onSuccess={(response: any) => {
                     this.setState({member: {...response}}, () => this.nextStep());
-                }} onError={error => {
-
-            }} onComplete={() => {
-                this.setState({loading: false})
-            }}
-                editButton={false} member={this.state.member}/>}
+                }}
+                onError={error => console.log(error)}//todo : display error message
+                onComplete={() => {
+                    this.setState({loading: false})
+                }}
+                editButton={false} member={this.state.member}/>
+        </div>;
+        return <WizardStep
+            nextButton="Next" skipButton="Skip" prevButton="Back"
+            onAction={this.onAction} actionLoading={this.state.loading}
+            title={"Edit Member"}
+            component={component}
         />;
     }
 
