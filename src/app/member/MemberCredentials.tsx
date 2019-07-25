@@ -9,6 +9,7 @@ export interface IMemberCredentialsProps {
     onSuccess?: any;
     onError?: any;
     onComplete?: any;
+    memberId: any;
 }
 
 export default class MemberCredentials extends React.Component<IMemberCredentialsProps> {
@@ -21,9 +22,16 @@ export default class MemberCredentials extends React.Component<IMemberCredential
                     ref={ref => this.form = ref}
                     fields={[
                         <AutoField inlineLabel label="Username"
-                                   component={AutoFieldText} name="name" placeholder="Username..."/>,
-                        <AutoField inlineLabel label="Password" component={AutoFieldText} name="name"
+                                   labelWidth={'120px'}
+                                   validationRules={{length: {minimum: 3}}}
+                                   component={AutoFieldText} name="username" placeholder="Username..."/>,
+                        <AutoField inlineLabel labelWidth={'120px'} label="Password" component={AutoFieldText}
+                                   name="password"
+                                   validationRules={{length: {minimum: 4}}}
                                    placeholder="Password..."/>,
+                        <AutoField component={AutoFieldText}
+                                   defaultValue={this.props.memberId} name="memberId"
+                                   type={"hidden"}/>,
                     ]}
                     onSuccess={this.props.onSuccess} onError={this.props.onError} onComplete={this.props.onComplete}
                     renderButton={() => this.props.saveButton === false ? null :
@@ -31,7 +39,7 @@ export default class MemberCredentials extends React.Component<IMemberCredential
                     requestConfiguration={{
                         type: "http",
                         method: "post",
-                        url: Config.SERVER_URL + "api/members/credentials"
+                        url: Config.SERVER_URL + `api/members/${this.props.memberId}/credentials`
                     }}
                 />
             </div>

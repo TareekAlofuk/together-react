@@ -9,6 +9,8 @@ interface ImageDropZoneProps {
     label?: string;
     uploadUrl: string;
     name: string;
+    onError?: (error: any) => void;
+    onSuccess?: (response: any) => void;
 }
 
 interface ImageDropZoneState {
@@ -83,7 +85,9 @@ export default class ImageDropZone extends React.Component<ImageDropZoneProps, I
         const url = this.props.uploadUrl;
         this.setState({loading: true});
         const uploader = new FileUploader(url, data, () => this.setState(
-            {loading: false}), null, undefined,
+            {loading: false, image: null}),
+            (error: any) => this.props.onError(error),
+            (response: any) => this.props.onSuccess(response),
             (completed: any) => this.setState({progress: completed})
         );
         uploader.upload();

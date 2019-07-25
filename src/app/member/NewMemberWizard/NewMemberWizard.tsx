@@ -140,21 +140,32 @@ export default class NewMemberWizard extends React.Component<INewMemberWizardPro
         />;
     }
 
+    //TODO : checkout error messages
+
     private getCredentialsStep() {
+        const component = <div className={"member-credential-step"}>
+            <MemberCredentials
+                memberId={this.state.member.id}
+                onComplete={() => this.setState({loading: false})}
+                onError={() => {
+                    toastr.error('Fail To Save Member Credentials',
+                        'check your internet connection');
+                }}
+                onSuccess={() => this.nextStep()}
+                ref={ref => this.currentComponent = ref}
+                saveButton={false}/>
+        </div>;
         return <WizardStep onAction={this.onAction}
                            nextButton="Next" skipButton="Skip" prevButton="Back"
-                           component={<MemberCredentials
-                               onComplete={() => this.setState({loading: false})}
-                               onError={() => console.log("error")}
-                               onSuccess={() => this.nextStep()}
-                               ref={ref => this.currentComponent = ref}
-                               saveButton={false}/>}/>;
+                           title={"Member Credentials"}
+                           component={component}/>;
     }
 
     private getUploadStep() {
         return <WizardStep
             nextButton="Next" skipButton="Skip" prevButton="Back"
             onAction={this.onAction}
+            title={"Upload Passport Image / Identity Image"}
             component={<MemberPassportAndFaceImageUpload ref={ref => this.currentComponent = ref}/>}/>;
     }
 

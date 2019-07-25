@@ -3,17 +3,17 @@ import Axios from "axios";
 export default class FileUploader {
     private url: string;
     private data: any;
-    private onComplete?: () => void;
-    private onError?: (error: any) => void;
-    private onSuccess?: (response: any) => void;
-    private onProgress?: (percent: number, loaded: number, total: number) => void;
+    private readonly onComplete?: () => void;
+    private readonly onError?: (error: any) => void;
+    private readonly onSuccess?: (response: any) => void;
+    private readonly onProgress?: (percent: number, loaded: number, total: number) => void;
 
     public constructor(url: string, data: any, onComplete?: any, onError?: any, onSuccess?: any, onProgress?: any) {
         this.url = url;
         this.data = data;
         this.onComplete = onComplete;
         this.onError = onError;
-        this.onSuccess = this.onSuccess;
+        this.onSuccess = onSuccess;
         this.onProgress = onProgress;
     }
 
