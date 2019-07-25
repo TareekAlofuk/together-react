@@ -7,7 +7,7 @@ export default class AppBar extends React.Component {
         return (
             <div id="app-bar">
                 <div className="logo">
-                    <img src="/images/logo.jpg"/>
+                    <img src="/images/logo.png"/>
                     <span style={{color: '#FFFF'}}>Together</span>
                 </div>
                 <NavBar/>

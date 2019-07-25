@@ -32,9 +32,9 @@ export default class NewMemberWizard extends React.Component<INewMemberWizardPro
     constructor(props: any) {
         super(props);
         this.state = {
-            currentStep: "finish",
+            currentStep: "create",
             loading: false,
-            member: {id: 1, name: "Ali", type: 3, title: "MR.", expirationDate: '2020-10-10'}
+            member: {}
         };
     }
 

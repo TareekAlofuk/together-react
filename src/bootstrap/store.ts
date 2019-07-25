@@ -11,6 +11,8 @@ const reducers: any = {
     DisabledMembers: wrapReducer(new FetchArrayReducer(ReduxActions.GET_DISABLED_MEMBERS)),
     ExpiredMembers: wrapReducer(new FetchArrayReducer(ReduxActions.GET_EXPIRED_MEMBERS)),
     WillExpireMembers: wrapReducer(new FetchArrayReducer(ReduxActions.GET_NEARLY_EXPIRED_MEMBERS)),
+    WillExpirePassport: wrapReducer(new FetchArrayReducer(ReduxActions.GET_NEARLY_EXPIRED_MEMBERS)),
+    MemberWithBirthDate: wrapReducer(new FetchArrayReducer(ReduxActions.GET_MEMBER_WITH_BIRTH_DATE)),
     ArchivedMembers: wrapReducer(new FetchArrayReducer(ReduxActions.GET_ARCHIVED_MEMBERS)),
     MemberSearchResult: wrapReducer(new FetchArrayReducer(ReduxActions.SEARCH_FOR_MEMBER)),
     toastr: toastrReducer,

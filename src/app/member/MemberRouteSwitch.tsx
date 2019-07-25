@@ -40,7 +40,7 @@ export default function MemberRouteSwitch() {
                                               url={url}/>
         }}/>
 
-        <Route exact path="/members/nearly-expired" component={() => {
+        <Route exact path="/members/will-expired" component={() => {
             const url = Config.SERVER_URL + "api/members/will-expired";
             return <MemberCollectionContainer title="Memberships Will Expired Soon"
                                               action={ReduxActions.GET_NEARLY_EXPIRED_MEMBERS}
@@ -78,6 +78,23 @@ export default function MemberRouteSwitch() {
                component={() => <h1>TODO : REPORT COMPONENT</h1>}/>
 
         <Route exact path={'/members/search'} component={MemberSearch}/>
+
+
+        <Route exact path="/members/passport-will-expire" component={() => {
+            const url = Config.SERVER_URL + "api/members/passport-will-expire";
+            return <MemberCollectionContainer title="Passport Will Expired Soon"
+                                              action={ReduxActions.GET_PASSPORT_NEARLY_EXPIRED}
+                                              reducerKey={"WillExpirePassport"}
+                                              url={url}/>
+        }}/>
+
+        <Route exact path="/members/on-birth-date" component={() => {
+            const url = Config.SERVER_URL + "api/members/on-birth-date";
+            return <MemberCollectionContainer title="Member With BirthDate"
+                                              action={ReduxActions.GET_MEMBER_WITH_BIRTH_DATE}
+                                              reducerKey={"MemberWithBirthDate"}
+                                              url={url}/>
+        }}/>
 
         <Route component={() => <NotFound message={'PAGE NOT FOUND'}/>}/>
 

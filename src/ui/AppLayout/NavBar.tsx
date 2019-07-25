@@ -3,7 +3,7 @@ import {useState} from "react";
 import {Link} from "react-router-dom";
 
 export default function NavBar() {
-    const [selected, select] = useState('');
+    const [selected, select] = useState('home');
     return <div className="nav">
 
         <div className={`nav-item ${selected === 'home' ? 'selected' : ''}`}>
@@ -11,14 +11,14 @@ export default function NavBar() {
         </div>
 
 
-        <div className={`nav-item ${selected === 'item1' ? 'selected' : ''}`}>
-            <Link to="/1" onClick={() => select('item1')}>ITEM 1</Link>
+        <div className={`nav-item ${selected === 'services' ? 'selected' : ''}`}>
+            <Link to="/2" onClick={() => select('services')}>Services</Link>
         </div>
-        <div className={`nav-item ${selected === 'item2' ? 'selected' : ''}`}>
-            <Link to="/2" onClick={() => select('item2')}>ITEM 2</Link>
+        <div className={`nav-item ${selected === 'wallet' ? 'selected' : ''}`}>
+            <Link to="/3" onClick={() => select('wallet')}>Wallet</Link>
         </div>
-        <div className={`nav-item ${selected === 'item3' ? 'selected' : ''}`}>
-            <Link to="/3" onClick={() => select('item3')}>ITEM 3</Link>
+        <div className={`nav-item ${selected === 'users' ? 'selected' : ''}`}>
+            <Link to="/1" onClick={() => select('users')}>Users</Link>
         </div>
     </div>
 }
