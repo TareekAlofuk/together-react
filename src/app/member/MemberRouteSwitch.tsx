@@ -41,7 +41,7 @@ export default function MemberRouteSwitch() {
         }}/>
 
         <Route exact path="/members/will-expired" component={() => {
-            const url = Config.SERVER_URL + "api/members/will-expired";
+            const url = Config.SERVER_URL + "api/members/will-expire";
             return <MemberCollectionContainer title="Memberships Will Expired Soon"
                                               action={ReduxActions.GET_NEARLY_EXPIRED_MEMBERS}
                                               reducerKey={"WillExpireMembers"}
