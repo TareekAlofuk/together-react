@@ -71,7 +71,8 @@ export default function MemberRouteSwitch() {
                component={() => <MembershipManagement/>}/>
 
         <Route exact path={'/members/:id(\\d+)/credentials'}
-               component={() => <MemberCredentials/>}/>
+               component={(route: any) => <MemberCredentials
+                   memberId={route.match.params.id}/>}/>
 
         <Route exact path={'/members/:id(\\d+)/report'}
                component={() => <h1>TODO : REPORT COMPONENT</h1>}/>

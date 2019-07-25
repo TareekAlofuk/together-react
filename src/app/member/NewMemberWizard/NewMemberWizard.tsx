@@ -7,6 +7,7 @@ import EditMember from '../EditMember';
 import MemberPassportAndFaceImageUpload from '../Upload/MemberPassportAndFaceImageUpload';
 import MemberCredentials from '../MemberCredentials';
 import {toastr} from "react-redux-toastr";
+import WizardCompletedStep from "./WizardCompletedStep";
 
 export interface INewMemberWizardProps {
     route: RouteComponentProps
@@ -31,7 +32,7 @@ export default class NewMemberWizard extends React.Component<INewMemberWizardPro
     constructor(props: any) {
         super(props);
         this.state = {
-            currentStep: "upload",
+            currentStep: "finish",
             loading: false,
             member: {id: 1, name: "Ali", type: 3, title: "MR.", expirationDate: '2020-10-10'}
         };
@@ -136,7 +137,7 @@ export default class NewMemberWizard extends React.Component<INewMemberWizardPro
     private getFinishStep() {
         return <WizardStep
             onAction={this.onAction}
-            component={<h1>DONE</h1>}
+            component={<WizardCompletedStep memberId={this.state.member.id}/>}
         />;
     }
 
