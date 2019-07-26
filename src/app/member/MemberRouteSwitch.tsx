@@ -51,17 +51,8 @@ export default function MemberRouteSwitch() {
         <Route exact path="/members/wizard"
                component={(route: RouteComponentProps) => <NewMemberWizard route={route}/>}/>
 
-        <Route exact path={"/members/:id(\\d+)"} component={(route: any) => <MemberDetails route={route} member={{
-            id: 1,
-            name: "Ali Faris",
-            type: 1,
-            expirationDate: "2019-09-09",
-            phone: "0780003434",
-            phone2: "045345345",
-            passportImage: "https://i.ytimg.com/vi/WzX0zNAgScA/maxresdefault.jpg",
-            faceImage: "https://scotch-res.cloudinary.com/image/upload/w_1500,q_auto:good,f_auto/media/1/MyiYcendTBiZK0iU35n6_using-the-react-router-4.png.jpg",
-            files: [{displayFileName: "File 1"}, {displayFileName: "File 2"}],
-        }}/>}/>
+        <Route exact path={"/members/:id(\\d+)"}
+               component={(route: any) => <MemberDetails memberId={route.match.params.id} route={route}/>}/>
 
 
         <Route exact path={"/members/:id(\\d+)/edit"}

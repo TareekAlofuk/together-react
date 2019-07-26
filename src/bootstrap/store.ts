@@ -5,6 +5,7 @@ import FetchArrayReducer from "reduxpp/dist/reducers/FetchArrayReducer";
 import ReduxActions from "./ReduxActions";
 import {wrapReducer} from "reduxpp/dist/utils/Utils";
 import {reducer as toastrReducer} from 'react-redux-toastr'
+import FetchObjectReducer from "reduxpp/dist/reducers/FetchObjectReducer";
 
 const reducers: any = {
     RecentMembers: wrapReducer(new FetchArrayReducer(ReduxActions.GET_RECENT_MEMBERS)),
@@ -15,6 +16,7 @@ const reducers: any = {
     MemberWithBirthDate: wrapReducer(new FetchArrayReducer(ReduxActions.GET_MEMBER_WITH_BIRTH_DATE)),
     ArchivedMembers: wrapReducer(new FetchArrayReducer(ReduxActions.GET_ARCHIVED_MEMBERS)),
     MemberSearchResult: wrapReducer(new FetchArrayReducer(ReduxActions.SEARCH_FOR_MEMBER)),
+    MemberDetail : wrapReducer(new FetchObjectReducer(ReduxActions.FETCH_MEMBER_DETAIL)),
     toastr: toastrReducer,
 };
 console.log(reducers);

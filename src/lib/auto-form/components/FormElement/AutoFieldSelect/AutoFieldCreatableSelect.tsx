@@ -4,14 +4,14 @@ import AutoFieldBase from "../Common/AutoFieldBase";
 import AutoFieldBaseProps, {AUTO_FIELD_BASE_DEFAULT_PROPS} from "../Common/AutoFieldBaseProps";
 import "../../../styles/select_style.css";
 import "../../../styles/common-style.css"
-import Select from "react-select";
+import Select from "react-select/creatable";
 
 interface Props extends AutoFieldBaseProps {
     options: ISelectOption[];
     clearable?: boolean;
 }
 
-export default class AutoFieldSelect extends AutoFieldBase<Props> {
+export default class AutoFieldCreatableSelect extends AutoFieldBase<Props> {
 
     static defaultProps = {...AUTO_FIELD_BASE_DEFAULT_PROPS};
 
@@ -33,6 +33,9 @@ export default class AutoFieldSelect extends AutoFieldBase<Props> {
                 return {value: this.state.value, label: this.props.options[i].label};
             }
         }
+        if (this.state.value.trim()) {
+            return {value: this.state.value, label: this.state.value};
+        }
         return {value: '', label: ''};
     }
 
@@ -44,6 +47,7 @@ export default class AutoFieldSelect extends AutoFieldBase<Props> {
     }
 
     public extractValueFormInputEvent(e: any): any {
+        if (!e) return;
         return e.value;
     }
 

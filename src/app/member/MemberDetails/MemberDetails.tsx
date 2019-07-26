@@ -1,17 +1,43 @@
 import * as React from "react";
-import {Button, Divider, Header} from "semantic-ui-react";
+import {Button, Divider, Header, Loader} from "semantic-ui-react";
 import MemberPassportAndFaceImageUpload from "../Upload/MemberPassportAndFaceImageUpload";
 import MemberFiles from "../Upload/MemberFiles";
 import {Link, RouteComponentProps} from "react-router-dom";
+import {connect} from "react-redux";
+import {GETAction} from "reduxpp/dist/action/AxiosAction";
+import ReduxActions from "../../../bootstrap/ReduxActions";
+import Config from "../../../bootstrap/Config";
 
 interface Props {
     member: any;
     route: RouteComponentProps;
+    loading: boolean;
+    error: boolean;
+    memberId: number;
+    dispatch: (action: any) => void;
 }
 
-export default class MemberDetails extends React.Component<Props> {
+class MemberDetails extends React.Component<Props> {
+
+    constructor(props: any) {
+        super(props);
+    }
+
+    componentWillMount() {
+        const url = Config.SERVER_URL + "api/members/" + this.props.memberId;
+        const action = GETAction(ReduxActions.FETCH_MEMBER_DETAIL, url);
+        this.props.dispatch(action);
+    }
 
     render(): JSX.Element {
+
+        if (this.props.loading) {
+            return <Loader inline/>
+        }
+        if (this.props.error || !this.props.member) {
+            return <h1>Error</h1>
+        }
+
         return (
             <div className={'member-details'}>
 
@@ -113,3 +139,11 @@ function Detail(props: any) {
         <span>{props.value}</span>
     </div>;
 }
+
+export default connect((store: any) => {
+    return {
+        loading: store.MemberDetail.loading,
+        error: store.MemberDetail.error,
+        member: store.MemberDetail.object
+    }
+})(MemberDetails);

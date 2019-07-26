@@ -9,6 +9,10 @@ import MembershipType from "./MembershipType";
 import DateUtils from "../../shared/utils/DateUtils";
 import AutoFormItem from "../../lib/auto-form/core/AutoFormItem/AutoFormItem";
 import AutoFormDivider from "../../lib/auto-form/components/Utils/AutoFormDivider";
+import {JOB_TITLE_SELECT_OPTIONS} from "./JobTitleOptions";
+import {Button} from "semantic-ui-react";
+import AutoFieldCreatableSelect
+    from "../../lib/auto-form/components/FormElement/AutoFieldSelect/AutoFieldCreatableSelect";
 
 interface Props {
     editButton?: boolean;
@@ -105,19 +109,16 @@ export default class EditMember extends React.Component<Props> {
                                    inlineLabel labelWidth={'140px'} label='Address'
                                    placeholder='Address...' component={AutoFieldText}/>,
 
-                        <AutoField validationRules={{optional: {datetime: {dateOnly: true}}}}
-                                   name='birthDate'
-                                   placeholder='BirthDate'
-                                   inlineLabel labelWidth={'140px'} label='BirthDate'
-                                   type={'date'}
-                                   component={AutoFieldText}/>,
-
                         <AutoField name='jobTitle'
                                    inlineLabel labelWidth={'140px'} label='Job Title'
-                                   placeholder='Job Title...' component={AutoFieldText}/>,
+                                   options={JOB_TITLE_SELECT_OPTIONS}
+                                   placeholder='Job Title...' component={AutoFieldCreatableSelect} clearable/>,
                     ]}
                     renderButton={() => this.props.editButton === false ? null :
-                        <button onClick={this.save}>EDIT</button>}
+                        <div style={{textAlign: 'right', marginTop: 16}}>
+                            <Button color={"green"} onClick={this.save}>EDIT</Button>
+                        </div>
+                    }
                     requestConfiguration={{method: 'put', url: url, type: 'http'}}
                 />
             </div>
