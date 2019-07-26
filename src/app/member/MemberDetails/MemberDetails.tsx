@@ -59,10 +59,12 @@ export default class MemberDetails extends React.Component<Props> {
                               to={`/members/${this.props.member.id}/change-credentials`}>
                             CHANGE CREDENTIALS
                         </Link>
-                        <Link className={'ui green button'}
-                              to={`/members/${this.props.member.id}/manage-membership`}>
+                        <Button color={"green"} onClick={() => {
+                            this.props.route.history.push(`/members/${this.props.member.id}/upgrade`,
+                                {member: this.props.member});
+                        }}>
                             RENEW/UPGRADE MEMBERSHIP
-                        </Link>
+                        </Button>
 
                         <Link className={'ui blue button'}
                               to={`/members/${this.props.member.id}/report`}>

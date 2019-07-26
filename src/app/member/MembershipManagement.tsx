@@ -22,7 +22,6 @@ export default class MembershipManagement extends React.Component<Props> {
                         {label: "BUSINESS", value: 3},
                     ]}/>,
                     <AutoField name={'expireDate'} component={AutoFieldText} type={'date'}/>,
-                    <AutoFormItem component={RenewButtons}/>
                 ]} renderButton={() => <Button>SAVE</Button>} requestConfiguration={{
                     type: "http",
                     url: ""
@@ -34,13 +33,3 @@ export default class MembershipManagement extends React.Component<Props> {
 }
 
 
-class RenewButtons extends AutoFormItem<any, any> {
-    renderContent(): JSX.Element {
-        return <div>
-            <Button.Group>
-                <Button color={'blue'}>+1 Year</Button>
-                <Button color={'blue'}>+1 Month</Button>
-            </Button.Group>
-        </div>
-    }
-}

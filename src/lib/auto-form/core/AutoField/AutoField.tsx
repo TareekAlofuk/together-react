@@ -65,7 +65,7 @@ export default abstract class AutoField<T extends AutoFieldProps>
     }
 
     public clear(): void {
-        this.setValue('');
+        this.setState({value: ''});
     };
 
     public getTag(): any {

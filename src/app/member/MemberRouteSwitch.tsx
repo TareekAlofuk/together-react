@@ -6,10 +6,10 @@ import ReduxActions from "../../bootstrap/ReduxActions";
 import Config from "../../bootstrap/Config";
 import MemberDetails from "./MemberDetails/MemberDetails";
 import EditMember from "./EditMember";
-import MembershipManagement from "./MembershipManagement";
 import MemberCredentials from "./MemberCredentials";
 import {NotFound} from "../../shared/component/NotFound";
 import MemberSearch from "./Collection/MemberSearch";
+import UpgradeMembership from "./UpgradeMembership";
 
 export default function MemberRouteSwitch() {
     return <Switch>
@@ -55,7 +55,7 @@ export default function MemberRouteSwitch() {
             id: 1,
             name: "Ali Faris",
             type: 1,
-            expiredDate: "2019-09-09",
+            expirationDate: "2019-09-09",
             phone: "0780003434",
             phone2: "045345345",
             passportImage: "https://i.ytimg.com/vi/WzX0zNAgScA/maxresdefault.jpg",
@@ -67,8 +67,8 @@ export default function MemberRouteSwitch() {
         <Route exact path={"/members/:id(\\d+)/edit"}
                component={(route: any) => <EditMember route={route} member={{}}/>}/>
 
-        <Route exact path={'/members/:id(\\d+)/membership'}
-               component={() => <MembershipManagement/>}/>
+        <Route exact path={'/members/:id(\\d+)/upgrade'}
+               component={(route: any) => <UpgradeMembership route={route} memberId={route.match.params.id}/>}/>
 
         <Route exact path={'/members/:id(\\d+)/credentials'}
                component={(route: any) => <MemberCredentials

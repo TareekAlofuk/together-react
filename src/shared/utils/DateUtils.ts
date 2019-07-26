@@ -7,4 +7,11 @@ export default class DateUtils {
         return year + "-" + month + "-" + day;
     }
 
+    static fixEFCoreDate(value: string) {
+        if (value) {
+            return value.replace("T00:00:00", "");
+        }
+        return value;
+    }
+
 }

@@ -112,6 +112,10 @@
     width: 60px;
 }
 
+.member-list .member-list-item .member-title {
+    width: 100px;
+}
+
 .member-list .member-list-item .member-avatar .member-avatar {
     width: 32px;
     height: 32px;
@@ -123,11 +127,23 @@
 }
 
 .member-list .member-list-item .member-phone {
-    width: 180px;
+    width: 120px;
 }
 
 .member-list .member-list-item .member-email {
-    width: 180px;
+    width: 140px;
+}
+
+.member-list .member-list-item .member-type {
+    width: 120px;
+}
+
+.member-list .member-list-item .member-job-title {
+    width: 120px;
+}
+
+.member-list .member-list-item .member-join-date {
+    width: 80px;
 }
 
 .member-list .member-list-item .member-actions {
