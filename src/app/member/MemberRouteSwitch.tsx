@@ -13,12 +13,21 @@ import UpgradeMembership from "./UpgradeMembership";
 
 export default function MemberRouteSwitch() {
     return <Switch>
+
         <Route exact path="/members" component={() => {
             const url = Config.SERVER_URL + "api/members";
             return <MemberCollectionContainer title={'Recent Members'} action={ReduxActions.GET_RECENT_MEMBERS}
                                               reducerKey={"RecentMembers"}
                                               url={url}/>
         }}/>
+
+        <Route exact path="/members/recent" component={() => {
+            const url = Config.SERVER_URL + "api/members/recent";
+            return <MemberCollectionContainer title={'Recent Members'} action={ReduxActions.GET_RECENT_MEMBERS}
+                                              reducerKey={"RecentMembers"}
+                                              url={url}/>
+        }}/>
+
         <Route exact path="/members/disabled" component={() => {
             const url = Config.SERVER_URL + "api/members/disabled";
             return <MemberCollectionContainer title={"Disabled Memberships"} action={ReduxActions.GET_DISABLED_MEMBERS}

@@ -5,9 +5,15 @@ import {Link} from "react-router-dom";
 export default function MemberBaseMenuOptions(): JSX.Element {
     const [activeOption, setActiveOption] = useState('');
     return <div className={'page-menu'}>
+
         <Link className={'page-menu-option' + ` ${activeOption === 'home' ? 'active' : ''}`}
               onClick={() => setActiveOption('home')}
               to={'/members'}>Home</Link>
+
+        <Link className={'page-menu-option' + ` ${activeOption === 'recent' ? 'active' : ''}`}
+              onClick={() => setActiveOption('recent')}
+              to={'/members/recent'}>Recent Members</Link>
+
         <Link className={'page-menu-option' + ` ${activeOption === 'search' ? 'active' : ''}`}
               onClick={() => setActiveOption('search')}
               to={'/members/search'}>Search</Link>

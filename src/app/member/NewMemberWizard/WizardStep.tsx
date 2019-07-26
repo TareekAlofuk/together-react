@@ -3,7 +3,7 @@ import {Button, Divider} from "semantic-ui-react";
 
 export interface IWizardStepProps {
     component: any;
-    onAction: (action: "end" | "next" | "prev") => any;
+    onAction: (action: "end" | "next" | "skip") => any;
     title?: string;
 
     nextButton?: string;
@@ -49,15 +49,19 @@ export default class WizardStep extends React.Component<IWizardStepProps, any> {
         if (!this.anyAction()) return null;
 
         const skipButton = this.props.skipButton ?
-            <Button onClick={() => this.props.onAction("end")}>{this.props.skipButton}</Button> : null;
-        const nextButton = this.props.nextButton ? <Button color={'blue'} onClick={() => this.props.onAction("next"
-        )}>{this.props.nextButton}</Button> : null;
-        const finishButton = this.props.finishButton ? <Button>{this.props.finishButton}</Button> : null;
+            <Button loading={this.props.actionLoading} disabled={this.props.actionLoading}
+                    onClick={() => this.props.onAction("skip")}>{this.props.skipButton}</Button> : null;
+        const nextButton = this.props.nextButton ?
+            <Button loading={this.props.actionLoading} disabled={this.props.actionLoading}
+                    color={'blue'} onClick={() => this.props.onAction("next"
+            )}>{this.props.nextButton}</Button> : null;
+        const finishButton = this.props.finishButton ?
+            <Button loading={this.props.actionLoading} disabled={this.props.actionLoading}
+                    onClick={() => this.props.onAction("skip")}>{this.props.finishButton}</Button> : null;
         return <div className='wizard-actions'>
             {skipButton}
             {nextButton}
             {finishButton}
-            {this.props.actionLoading && <h1>Loading...</h1>}
         </div>
     };
 

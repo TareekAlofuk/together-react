@@ -1,5 +1,5 @@
 import * as React from 'react';
-import {Component} from "react";
+import {Component} from 'react';
 import {Divider, Header, Input} from "semantic-ui-react";
 import CollectionContainer from "../../../shared/component/CollectionContainer";
 import MemberList from "./MemberList";
@@ -17,6 +17,7 @@ interface Props {
 
 class MemberSearch extends Component<Props> {
     render() {
+        console.log(this.props);
         return (
             <div>
                 <div style={{display: 'flex', justifyContent: 'space-between', alignItems: 'center'}}>
@@ -26,7 +27,8 @@ class MemberSearch extends Component<Props> {
                 <Divider/>
                 <CollectionContainer loading={this.props.loading} error={this.props.error}
                                      collection={this.props.members}
-                                     renderCollection={() => <MemberList members={this.props.members}/>}/>
+                                     renderCollection={() => <MemberList
+                                         members={this.props.members}/>}/>
             </div>
         );
     }
@@ -48,3 +50,5 @@ export default connect((store: any) => {
         members: store.MemberSearchResult.array
     }
 })(MemberSearch);
+
+

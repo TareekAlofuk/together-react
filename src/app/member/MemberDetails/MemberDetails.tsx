@@ -1,8 +1,8 @@
 import * as React from "react";
-import {Button, Divider, Header, Icon, Loader} from "semantic-ui-react";
+import {Divider, Header, Icon, Loader, Menu} from "semantic-ui-react";
 import MemberPassportAndFaceImageUpload from "../Upload/MemberPassportAndFaceImageUpload";
 import MemberFiles from "../Upload/MemberFiles";
-import {Link, RouteComponentProps} from "react-router-dom";
+import {RouteComponentProps} from "react-router-dom";
 import {connect} from "react-redux";
 import {GETAction} from "reduxpp/dist/action/AxiosAction";
 import ReduxActions from "../../../bootstrap/ReduxActions";
@@ -45,9 +45,35 @@ class MemberDetails extends React.Component<Props> {
         return (
             <div className={'member-details'}>
 
-                <Header size={"medium"}>Member Detail Page</Header>
-                <Divider/>
 
+                <div style={{display: 'flex', justifyContent: 'space-between', alignItems: 'center'}}>
+                    <Header style={{margin: 0}} size={"medium"}>Member Detail Page</Header>
+                    <Menu style={{margin: 0}} secondary>
+                        <Menu.Item name={'EDIT'}
+                                   onClick={() => this.props.route.history.push(
+                                       `/members/${this.props.member.id}/edit`, this.props.member)
+                                   }/>
+
+                        <Menu.Item disabled name={'CREDENTIALS'}
+                                   onClick={() => this.props.route.history.push(
+                                       `/members/${this.props.member.id}/credentials`, this.props.member)
+                                   }/>
+
+                        <Menu.Item name={'RENEW/UPGRADE'}
+                                   onClick={() => this.props.route.history.push(
+                                       `/members/${this.props.member.id}/upgrade`,
+                                       {member: this.props.member})
+                                   }/>
+
+                        <Menu.Item name={'PRINT'}
+                                   onClick={() => this.props.route.history.push(
+                                       `/members/${this.props.member.id}/report`,
+                                       {member: this.props.member})
+                                   }/>
+                    </Menu>
+                </div>
+
+                <Divider/>
 
                 <Row>
                     <Col>
@@ -84,39 +110,6 @@ class MemberDetails extends React.Component<Props> {
                 <br/><br/>
                 <Divider hidden/>
                 <MemberAttachmentContainer memberId={this.props.memberId}/>
-
-                <br/><br/>
-                <Header size={'large'}>Actions : </Header>
-                <Divider/>
-
-                <div className={'actions'}>
-
-                    <Button.Group>
-                        <Button color={'yellow'} onClick={() => {
-                            this.props.route.history.push(`/members/${this.props.member.id}/edit`, this.props.member)
-                        }}>
-                            EDIT
-                        </Button>
-                        <Link className={'ui orange button'}
-                              to={`/members/${this.props.member.id}/change-credentials`}>
-                            CHANGE CREDENTIALS
-                        </Link>
-                        <Button color={"green"} onClick={() => {
-                            this.props.route.history.push(`/members/${this.props.member.id}/upgrade`,
-                                {member: this.props.member});
-                        }}>
-                            RENEW/UPGRADE MEMBERSHIP
-                        </Button>
-
-                        <Link className={'ui blue button'}
-                              to={`/members/${this.props.member.id}/report`}>
-                            PRINT
-                        </Link>
-
-
-                    </Button.Group>
-
-                </div>
 
                 <br/>
             </div>

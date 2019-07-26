@@ -12,7 +12,8 @@ export default class MemberList extends React.Component<IMemberListProps> {
         return (
             <div className="member-list">
                 {
-                    this.props.members.map(member => <MemberListItem key={member.id} member={member}/>)
+                    this.props.members.map(
+                        member => <MemberListItem key={member.id} member={member}/>)
                 }
             </div>
         );

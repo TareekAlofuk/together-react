@@ -9,7 +9,7 @@ import Config from "../../bootstrap/Config";
 import AutoFormItem from "../../lib/auto-form/core/AutoFormItem/AutoFormItem";
 import AutoFormItemProps from "../../lib/auto-form/core/AutoFormItem/AutoFormItemProps";
 import DateUtils from "../../shared/utils/DateUtils";
-import {RouteComponentProps} from "react-router";
+import {Redirect, RouteComponentProps} from "react-router";
 import {Link} from "react-router-dom";
 import {toastr} from "react-redux-toastr";
 
@@ -26,8 +26,10 @@ export default class UpgradeMembership extends React.Component<Props> {
     }
 
     render() {
-        //TODO : redirect to details when member not passed with route
-        console.log(this.props.route);
+        if (!this.props.route.location.state["member"]) {
+            return <Redirect to={`/members/${this.props.memberId}`}/>
+        }
+
         return (
             <div>
 

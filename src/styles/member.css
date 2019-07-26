@@ -1,8 +1,6 @@
 .wizard-step {
     display: flex;
     flex-direction: column;
-    display: flex;
-    flex-direction: column;
     min-height: 75vh;
 }
 
@@ -14,7 +12,7 @@
     align-self: flex-end;
 }
 
-/*TODO : make it resposive*/
+/*TODO : make it responsive*/
 .create-member-step, .edit-member-step, .member-credential-step {
     width: 550px;
 }
@@ -173,7 +171,7 @@
 
 .page .page-container .page-menu .page-menu-option {
     font-size: 18px;
-    color: #1C2055;
+    color: #111111;
     padding: 8px 16px;
     margin: 8px 0;
     transition: background .3s ease-in;
@@ -181,13 +179,13 @@
 }
 
 .page .page-container .page-menu .page-menu-option.active {
-    background: #1C2055;
+    background: rgb(113, 103, 89);;
     color: #FFFFFF;
 }
 
 .page .page-container .page-menu .page-menu-option:hover:not(.active) {
-    background: #4698A4;
-    color: #FFFFFF;
+    background: #EEE;
+    color: #111;
 }
 
 .page .page-container .option-content {
@@ -207,7 +205,7 @@
 
 .detail-item span:nth-child(1) {
     width: 140px;
-    background: #0653F4;
+    background: rgb(113, 103, 89);
     color: #FFFFFF;
     padding: 8px;
     border-radius: 3px;

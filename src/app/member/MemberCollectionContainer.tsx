@@ -3,7 +3,7 @@ import {GETAction} from "reduxpp/dist/action/AxiosAction";
 import MemberList from "./Collection/MemberList";
 import CollectionContainer from "../../shared/component/CollectionContainer";
 import {connect} from "react-redux";
-import {Divider, Header, Input} from "semantic-ui-react";
+import {Divider, Header} from "semantic-ui-react";
 
 interface Props {
     action: string;
@@ -17,6 +17,7 @@ interface Props {
     reducerKey: string;
 
     title: string;
+
 }
 
 class MemberCollectionContainer extends React.Component<Props> {
@@ -33,7 +34,8 @@ class MemberCollectionContainer extends React.Component<Props> {
                 <Divider/>
                 <CollectionContainer loading={this.props.loading} error={this.props.error}
                                      collection={this.props.members}
-                                     renderCollection={() => <MemberList members={this.props.members}/>}/>
+                                     renderCollection={() => <MemberList
+                                         members={this.props.members}/>}/>
             </div>
         )
     }
@@ -47,3 +49,4 @@ export default connect((store: any, props: any) => {
         members: store[props.reducerKey].array
     }
 })(MemberCollectionContainer);
+

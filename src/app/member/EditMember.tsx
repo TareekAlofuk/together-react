@@ -42,10 +42,6 @@ export default class EditMember extends React.Component<Props> {
                     onComplete={this.props.onComplete}
                     onError={this.props.onError}
                     onSuccess={this.props.onSuccess}
-                    onSubmit={form => {
-                        console.log(form.getValues());
-                        return false;
-                    }}
                     fields={[
                         <AutoField component={AutoFieldSelect} name={'title'}
                                    inlineLabel label="Title" labelWidth={'140px'}

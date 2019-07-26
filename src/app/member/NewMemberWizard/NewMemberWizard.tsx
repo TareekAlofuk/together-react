@@ -46,7 +46,7 @@ export default class NewMemberWizard extends React.Component<INewMemberWizardPro
         );
     }
 
-    private onAction = (action: "next" | "prev" | "end") => {
+    private onAction = (action: "next" | "skip" | "end") => {
         if (action === "next") {
             switch (this.state.currentStep) {
                 case "create":
@@ -69,8 +69,8 @@ export default class NewMemberWizard extends React.Component<INewMemberWizardPro
                     this.setStateToTrueAndCallSave();
                     break;
             }
-        } else if (action === "prev") {
-
+        } else if (action === "skip") {
+            this.nextStep();
         } else if (action === "end") {
             this.props.route.history.push("/member")
         }
@@ -98,7 +98,7 @@ export default class NewMemberWizard extends React.Component<INewMemberWizardPro
                 break;
 
             case "upload":
-                //TODO:skip credentials page
+                //NOTE:skip credentials page
                 nextStep = "finish";
                 break;
 
@@ -226,5 +226,4 @@ export default class NewMemberWizard extends React.Component<INewMemberWizardPro
 }
 
 
-//TODO : checkout join date when creating new member
 //TODO : print card page

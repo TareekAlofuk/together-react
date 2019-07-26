@@ -12,7 +12,7 @@ export interface IMemberBaseProps {
 export default class MemberBase extends React.Component<IMemberBaseProps> {
     public render() {
         return (
-            <Container style={{marginRight: 16, marginLeft: 16}} fluid={true} className={'page'} id="member-page">
+            <Container style={{margin: 24}} fluid={true} className={'page'} id="member-page">
 
                 <div className={'page-container'}>
 
