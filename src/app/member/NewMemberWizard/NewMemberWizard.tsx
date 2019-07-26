@@ -159,7 +159,8 @@ export default class NewMemberWizard extends React.Component<INewMemberWizardPro
             nextButton="Next" skipButton="Skip" prevButton="Back"
             onAction={this.onAction}
             title={"Upload Passport Image / Identity Image"}
-            component={<MemberPassportAndFaceImageUpload ref={ref => this.currentComponent = ref}/>}/>;
+            component={<MemberPassportAndFaceImageUpload memberId={this.state.member.id}
+                                                         ref={ref => this.currentComponent = ref}/>}/>;
     }
 
     private getEditMemberStep() {

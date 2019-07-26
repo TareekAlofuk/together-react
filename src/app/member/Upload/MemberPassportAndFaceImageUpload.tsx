@@ -6,6 +6,7 @@ import {toastr} from "react-redux-toastr";
 export interface IMemberFilesUploadProps {
     passportImageUrl?: string;
     faceImageUrl?: string;
+    memberId: number;
 }
 
 export default class MemberPassportAndFaceImageUpload extends React.Component<IMemberFilesUploadProps, any> {
@@ -30,20 +31,21 @@ export default class MemberPassportAndFaceImageUpload extends React.Component<IM
             <div className="files-upload">
                 <div style={{display: 'flex', justifyContent: 'space-between'}}>
                     <div style={{flex: 0.49}}>
-                        <ImageDropZone uploadUrl={Config.SERVER_URL + "api/members/upload-passport"}
-                                       name={"passport"}
-                                       onError={() => {
-                                           toastr.error('Failed To Upload Passport Image', 'Check your internet connection');
-                                       }}
-                                       onSuccess={() => {
-                                           toastr.success('Succeed Upload Passport Image', '');
-                                       }}
-                                       label={"Passport"} image={this.props.passportImageUrl}/>
+                        <ImageDropZone
+                            uploadUrl={Config.SERVER_URL + `api/members/${this.props.memberId}/upload-passport`}
+                            name={"passport"}
+                            onError={() => {
+                                toastr.error('Failed To Upload Passport Image', 'Check your internet connection');
+                            }}
+                            onSuccess={() => {
+                                toastr.success('Succeed Upload Passport Image', '');
+                            }}
+                            label={"Passport"} image={this.props.passportImageUrl}/>
                     </div>
                     <div style={{flex: 0.49}}>
                         <ImageDropZone
-                            uploadUrl={Config.SERVER_URL + "api/members/upload-faceimage"}
-                            name={"faceimage"}
+                            uploadUrl={Config.SERVER_URL + `api/members/${this.props.memberId}/upload-identity-image`}
+                            name={"identityImage"}
                             onError={() => {
                                 toastr.error('Failed To Upload Identity Image', 'Check your internet connection');
                             }}

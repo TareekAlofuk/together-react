@@ -8,6 +8,9 @@ interface FileDropZoneProps {
     label?: string;
     uploadUrl: string;
     name: string;
+    onError?: (error: any) => void;
+    onSuccess?: (response: any) => void;
+    accept?: string;
 }
 
 interface FileDropZoneState {
@@ -28,7 +31,7 @@ export default class FileDropZone extends React.Component<FileDropZoneProps, Fil
             <div style={{textAlign: 'center', margin: '6px 0'}}>
                 <b>{this.props.label}</b>
             </div>
-            <Dropzone accept="image/*" onDrop={this.onDrop}>
+            <Dropzone accept={this.props.accept} onDrop={this.onDrop}>
                 {
                     ({getRootProps, getInputProps}) => (
                         <div>
@@ -67,7 +70,9 @@ export default class FileDropZone extends React.Component<FileDropZoneProps, Fil
         const url = this.props.uploadUrl;
         this.setState({loading: true});
         const uploader = new FileUploader(url, data, () => this.setState(
-            {loading: false}), null, undefined,
+            {loading: false, file: null}),
+            (error: any) => this.props.onError && this.props.onError(error),
+            (response: any) => this.props.onSuccess && this.props.onSuccess(response),
             (completed: any) => this.setState({progress: completed})
         );
         uploader.upload();

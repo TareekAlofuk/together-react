@@ -16,7 +16,9 @@ const reducers: any = {
     MemberWithBirthDate: wrapReducer(new FetchArrayReducer(ReduxActions.GET_MEMBER_WITH_BIRTH_DATE)),
     ArchivedMembers: wrapReducer(new FetchArrayReducer(ReduxActions.GET_ARCHIVED_MEMBERS)),
     MemberSearchResult: wrapReducer(new FetchArrayReducer(ReduxActions.SEARCH_FOR_MEMBER)),
-    MemberDetail : wrapReducer(new FetchObjectReducer(ReduxActions.FETCH_MEMBER_DETAIL)),
+    MemberDetail: wrapReducer(new FetchObjectReducer(ReduxActions.FETCH_MEMBER_DETAIL)),
+    MemberAttachments: wrapReducer(new FetchArrayReducer(ReduxActions.GET_MEMBER_ATTACHMENTS)),
+
     toastr: toastrReducer,
 };
 console.log(reducers);

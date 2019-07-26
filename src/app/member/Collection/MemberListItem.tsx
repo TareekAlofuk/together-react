@@ -1,7 +1,7 @@
 import * as React from 'react';
-import {Button} from "semantic-ui-react";
 import {getMembershipTypeText} from "../MembershipType";
 import DateUtils from "../../../shared/utils/DateUtils";
+import {Link} from "react-router-dom";
 
 export interface IMemberListItemProps {
     member: any;
@@ -49,8 +49,12 @@ export default class MemberListItem extends React.Component<IMemberListItemProps
                 </div>
 
                 <div className="member-actions">
-                    <Button color='yellow' icon="edit"/>
-                    <Button color='blue' icon="file"/>
+                    <Link className={'ui icon button yellow'} to={`/members/${this.props.member.id}/edit`}>
+                        <i className={'icon edit'}/>
+                    </Link>
+                    <Link className={'ui icon button blue'} to={`/members/${this.props.member.id}`}>
+                        <i className={'icon file'}/>
+                    </Link>
                 </div>
             </div>
         );
