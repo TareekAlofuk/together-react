@@ -8,6 +8,7 @@ import MemberPassportAndFaceImageUpload from '../Upload/MemberPassportAndFaceIma
 import MemberCredentials from '../MemberCredentials';
 import {toastr} from "react-redux-toastr";
 import WizardCompletedStep from "./WizardCompletedStep";
+import {getMemberErrorMessage} from "../MemberErrorResponse";
 
 export interface INewMemberWizardProps {
     route: RouteComponentProps
@@ -20,14 +21,6 @@ interface State {
 }
 
 export default class NewMemberWizard extends React.Component<INewMemberWizardProps, State> {
-
-    // 1 - Create New Member Form
-    // 2 - Print Card Section
-    // 3 - Edit Member Info Form
-    // 4 - Upload Passport / FaceImage Form
-    // 5 - User Credentials Form
-    // 6 - Member Info Report Section        
-
 
     constructor(props: any) {
         super(props);
@@ -105,7 +98,8 @@ export default class NewMemberWizard extends React.Component<INewMemberWizardPro
                 break;
 
             case "upload":
-                nextStep = "credentials";
+                //TODO:skip credentials page
+                nextStep = "finish";
                 break;
 
             case "credentials":
@@ -141,8 +135,6 @@ export default class NewMemberWizard extends React.Component<INewMemberWizardPro
         />;
     }
 
-    //TODO : checkout error messages
-
     private getCredentialsStep() {
         const component = <div className={"member-credential-step"}>
             <MemberCredentials
@@ -177,7 +169,13 @@ export default class NewMemberWizard extends React.Component<INewMemberWizardPro
                 onSuccess={(response: any) => {
                     this.setState({member: {...response}}, () => this.nextStep());
                 }}
-                onError={error => console.log(error)}//todo : display error message
+                onError={error => {
+                    let message = "check your internet connection";
+                    if (error.response && error.response.data) {
+                        message = getMemberErrorMessage(error.response.data.errorCode);
+                    }
+                    toastr.error('Failed To Create Member', message);
+                }}
                 onComplete={() => {
                     this.setState({loading: false})
                 }}
@@ -207,9 +205,12 @@ export default class NewMemberWizard extends React.Component<INewMemberWizardPro
                 if (response.id) {
                     this.setState({member: {...response}}, () => this.nextStep());
                 }
-            }} onError={() => {
-                //TODO : check duplicate name error
-                toastr.error('Failed To Create Member', 'Check your internet connection');
+            }} onError={(error) => {
+                let message = "check your internet connection";
+                if (error.response && error.response.data) {
+                    message = getMemberErrorMessage(error.response.data.errorCode);
+                }
+                toastr.error('Failed To Create Member', message);
             }} onComplete={() => {
                 this.setState({loading: false})
             }}/>
@@ -222,3 +223,7 @@ export default class NewMemberWizard extends React.Component<INewMemberWizardPro
                            component={component}/>;
     }
 }
+
+
+//TODO : checkout join date when creating new member
+//TODO : print card page
