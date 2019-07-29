@@ -18,6 +18,7 @@ const reducers: any = {
     MemberSearchResult: wrapReducer(new FetchArrayReducer(ReduxActions.SEARCH_FOR_MEMBER)),
     MemberDetail: wrapReducer(new FetchObjectReducer(ReduxActions.FETCH_MEMBER_DETAIL)),
     MemberAttachments: wrapReducer(new FetchArrayReducer(ReduxActions.GET_MEMBER_ATTACHMENTS)),
+    ServicesDetails : wrapReducer(new FetchArrayReducer(ReduxActions.GET_SERVICES_DETAILS)),
 
     toastr: toastrReducer,
 };

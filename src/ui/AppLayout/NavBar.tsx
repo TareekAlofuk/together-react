@@ -12,7 +12,7 @@ export default function NavBar() {
 
 
         <div className={`nav-item ${selected === 'services' ? 'selected' : ''}`}>
-            <Link to="/2" onClick={() => select('services')}>Services</Link>
+            <Link to="/services" onClick={() => select('services')}>Services</Link>
         </div>
         <div className={`nav-item ${selected === 'wallet' ? 'selected' : ''}`}>
             <Link to="/3" onClick={() => select('wallet')}>Wallet</Link>

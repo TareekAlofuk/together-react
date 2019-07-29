@@ -28,7 +28,7 @@ export default class LabelRenderer {
             <label style={style}>
                 {this.field.props.label}
             </label>
-            <span style={{padding: 8}}/>
+            <span style={{padding: this.field.props.inlineLabel ? 1 : 8}}/>
         </>
     };
 }

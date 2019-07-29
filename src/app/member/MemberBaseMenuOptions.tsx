@@ -10,6 +10,10 @@ export default function MemberBaseMenuOptions(): JSX.Element {
               onClick={() => setActiveOption('home')}
               to={'/members'}>Home</Link>
 
+        <Link className={'page-menu-option' + ` ${activeOption === 'create-wizard' ? 'active' : ''}`}
+              onClick={() => setActiveOption('create-wizard')}
+              to={'/members/wizard'}>Create Member Wizard</Link>
+
         <Link className={'page-menu-option' + ` ${activeOption === 'recent' ? 'active' : ''}`}
               onClick={() => setActiveOption('recent')}
               to={'/members/recent'}>Recent Members</Link>
@@ -33,15 +37,13 @@ export default function MemberBaseMenuOptions(): JSX.Element {
               onClick={() => setActiveOption('birth-date')}
               to={'/members/on-birth-date'}>With BirthDate</Link>
 
-        <Link className={'page-menu-option' + ` ${activeOption === 'create-wizard' ? 'active' : ''}`}
-              onClick={() => setActiveOption('create-wizard')}
-              to={'/members/wizard'}>Create Member Wizard</Link>
-
         <Link className={'page-menu-option' + ` ${activeOption === 'disabled' ? 'active' : ''}`}
               onClick={() => setActiveOption('disabled')}
               to={'/members/disabled'}>Disabled Membership</Link>
+
         <Link className={'page-menu-option' + ` ${activeOption === 'archived' ? 'active' : ''}`}
               onClick={() => setActiveOption('archived')}
               to={'/members/archived'}>Archived Members</Link>
+
     </div>;
 }

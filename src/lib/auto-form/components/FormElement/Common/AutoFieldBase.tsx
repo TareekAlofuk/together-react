@@ -17,7 +17,10 @@ export default abstract class AutoFieldBase<T extends Props> extends AutoField<T
         const labelRenderer = new LabelRenderer(this);
         const fieldRenderer: AutoFieldRenderer = new AutoFieldRenderer(this);
         const field = (
-            <div className={"auto-field-container"}>
+            <div className={"auto-field-container"} style={{
+                flexDirection: this.props.inlineLabel ? 'column' : 'row',
+                alignItems: 'flex-start'
+            }}>
                 {
                     labelRenderer.render(this.props.size!)
                 }
