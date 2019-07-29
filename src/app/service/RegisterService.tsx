@@ -79,7 +79,7 @@ class RegisterService extends React.Component<Props> {
                                              validationRules={{numericality: {greaterThan: 0}}}
                                              inlineLabel placeholder={"Count"} name={'count'}
                                              type={'number'} component={AutoFieldText}/>,
-                                  <AutoField label="New Price" inlineLabel placeholder={"New Price"} name={'newPrice'}
+                                  <AutoField label="New Price" inlineLabel placeholder={"New Price"} name={'finalPrice'}
                                              type={'number'} readOnly component={AutoFieldText}/>
                               ],
 
@@ -106,7 +106,7 @@ class RegisterService extends React.Component<Props> {
 
         const priceField = this.form.getField('price');
         const commissionField = this.form.getField('commission');
-        const newPriceField = this.form.getField('newPrice');
+        const newPriceField = this.form.getField('finalPrice');
         const countField = this.form.getField('count');
 
         const price = priceField.getValue() ? priceField.getValue() : 0;
