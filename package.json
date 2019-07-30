@@ -39,14 +39,16 @@
     "typescript": "^3.5.2",
     "webpack": "^4.35.0",
     "webpack-cli": "^3.3.5",
-    "webpack-dev-server": "^3.7.2"
+    "webpack-dev-server": "^3.7.2",
+    "@types/react-redux-toastr": "^7.4.1",
+    "@types/react-select": "^3.0.0"
   },
   "dependencies": {
-    "@types/react-redux-toastr": "^7.4.1",
-    "@types/react-select": "^3.0.0",
+    "@types/react-autocomplete": "^1.8.5",
     "axios": "^0.19.0",
     "moment": "^2.24.0",
     "react": "^16.8.6",
+    "react-autocomplete": "^1.8.1",
     "react-dom": "^16.8.6",
     "react-dropzone": "^10.1.5",
     "react-grid-system": "^4.4.6",
