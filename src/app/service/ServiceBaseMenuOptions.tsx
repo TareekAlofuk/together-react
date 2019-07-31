@@ -16,7 +16,7 @@ export default function ServiceBaseMenuOptions(): JSX.Element {
 
         <Link className={'page-menu-option' + ` ${activeOption === 'report' ? 'active' : ''}`}
               onClick={() => setActiveOption('report')}
-              to={'/services'}>Service Report</Link>
+              to={'/services/usage'}>Service Report</Link>
 
         <div className={'page-menu-option' + ` ${activeOption === 'store' ? 'active' : ''}`}
              onClick={() => setActiveOption('store')}

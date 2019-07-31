@@ -4,29 +4,28 @@ import Config from "../../bootstrap/Config";
 import * as AutoComplete from "react-autocomplete";
 
 interface Props {
+    onItemMemberSelected: (item: any) => void;
 }
 
 interface State {
     suggestions: any[];
     value: string;
+    selected: string | null;
     loading: boolean;
 }
 
-export default class AutoCompleteEmployee extends React.Component<Props, State> {
+export default class AutoCompleteMember extends React.Component<Props, State> {
 
     private cancelSourceRequest: any = null;
-    private requestTimer: any;
 
     constructor(props: any) {
         super(props);
-        this.state = {value: '', suggestions: [{name: 'one', id: 10}], loading: false};
+        this.state = {selected: null, value: '', suggestions: [], loading: false};
     }
 
     private loadSuggestions = (value: any) => {
-        console.log('loadSuggestions', value);
 
         if (this.cancelSourceRequest) {
-            console.log('cancel');
             this.cancelSourceRequest.cancel();
         }
 
@@ -39,37 +38,49 @@ export default class AutoCompleteEmployee extends React.Component<Props, State> 
             params: {query: value}
         })
             .then(res => {
-                console.log(res.data);
                 this.setState({loading: false, suggestions: res.data});
             })
-            .catch((error) => {
-
-                console.log('error', error);
+            .catch(() => {
                 this.setState({loading: false});
             });
     };
 
-
     render() {
         return <AutoComplete
-            inputProps={{id: 'states-autocomplete'}}
-            wrapperStyle={{position: 'relative', display: 'inline-block'}}
+            inputProps={{
+                style: {
+                    padding: 16, borderRadius: 3, border: 'none', backgroundColor: '#EEE',
+                    fontSize: 18, width: '100%', textAlign: 'center'
+                },
+                placeholder: 'NAME OR ID ...'
+            }}
+            wrapperStyle={{position: 'relative', display: 'inline-block', width: '100%'}}
             value={this.state.value}
             items={this.state.suggestions}
             getItemValue={(item) => item.name}
             onSelect={(value, item) => {
-                console.log('onSelect', value, item);
+                console.log(item);
+                this.setState({selected: item}, () => {
+                    this.props.onItemMemberSelected && this.props.onItemMemberSelected(item);
+                });
                 this.setState({value});
             }}
             onChange={(event, value) => {
-                console.log(event, value);
+                if (this.state.selected) {
+                    this.setState({selected: null}, () => {
+                        this.props.onItemMemberSelected && this.props.onItemMemberSelected(null);
+                    });
+                }
                 this.setState({value});
                 this.loadSuggestions(value);
             }}
-
             renderItem={(item, isHighlighted) => (
-                <div className={`item ${isHighlighted ? 'item-highlighted' : ''}`}
-                     key={Math.random()}>
+                <div style={{
+                    background: isHighlighted ? '#EEE' : '#FFF', padding: 6,
+                    fontSize: 15, color: isHighlighted ? 'blue' : 'black'
+                }}
+                     className={`item ${isHighlighted ? 'item-highlighted' : ''}`}
+                     key={item.id}>
                     {item.name}
                 </div>
             )}

@@ -1,0 +1,34 @@
+.service-usage-list {
+
+}
+
+.service-usage-item {
+    padding: 10px 6px;
+    margin: 8px 0;
+    background: #EFEFEF;
+    border-radius: 3px;
+}
+
+.service-usage-item.captions {
+    background: #6e6659;
+    color: #FFFFFF;
+}
+
+.service-usage-item span {
+    min-width: 100px;
+    display: inline-block;
+    font-size: 16px;
+    text-overflow: ellipsis;
+    margin: 0 8px;
+}
+
+.service-usage-item span.service-name {
+    width: 140px;
+    font-weight: bold;
+}
+
+.service-usage-detail {
+    background: #EFEFEF;
+    margin-bottom: 16px;
+    padding: 16px;
+}

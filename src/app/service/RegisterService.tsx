@@ -8,8 +8,8 @@ import AutoFieldText from "../../lib/auto-form/components/FormElement/AutoFieldT
 import {GETAction} from "reduxpp/dist/action/AxiosAction";
 import Config from "../../bootstrap/Config";
 import ReduxActions from "../../bootstrap/ReduxActions";
-import MembershipType from "../member/MembershipType";
 import {Button, Divider, Header, Loader} from "semantic-ui-react";
+import {Redirect, RouteComponentProps} from "react-router";
 
 interface Props {
     loading: boolean;
@@ -17,6 +17,7 @@ interface Props {
     services: any[];
     memberId: number;
     dispatch: (action: any) => void;
+    route: RouteComponentProps;
 }
 
 class RegisterService extends React.Component<Props> {
@@ -24,18 +25,25 @@ class RegisterService extends React.Component<Props> {
     private form: AutoForm;
 
     componentWillMount() {
+        if (!this.props.route.location.state) {
+            return
+        }
         const url = Config.SERVER_URL + "api/services/all";
-        const action = GETAction(ReduxActions.GET_SERVICES_DETAILS, url, {membershipType: MembershipType.BUSINESS});
+        const membershipType = this.props.route.location.state["member"]["type"];
+        const action = GETAction(ReduxActions.GET_SERVICES_DETAILS, url, {membershipType: membershipType});
         this.props.dispatch(action);
     }
 
     render(): JSX.Element {
+        if (!this.props.route.location.state) {
+            return <Redirect to={'/services/register'}/>
+        }
         if (this.props.loading)
             return <Loader inline/>;
         else if (this.props.error || !this.props.services)
             return <h1>Error</h1>;
         else if (this.props.services.length === 0)
-            return <h1>Empty</h1>;
+            return <h1>NO SERVICES ASSOCIATED WITH THIS MEMBER</h1>;
 
         return (
             <div id={"register-service-form"}>
@@ -57,7 +65,7 @@ class RegisterService extends React.Component<Props> {
                                                  discountField.setValue('');
                                                  this.form.getField('price').setValue('');
                                                  this.form.getField('commission').setValue('');
-                                                 this.form.getField('newPrice').setValue('');
+                                                 this.form.getField('finalPrice').setValue('');
                                              }
 
                                          }}

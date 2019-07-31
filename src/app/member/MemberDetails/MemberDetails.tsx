@@ -11,6 +11,7 @@ import {Col, Row} from "react-grid-system";
 import FileDropZone from "../Upload/FileDropZone";
 import {toastr} from "react-redux-toastr";
 import {addItemToLast} from "reduxpp/dist/action/FetchArrayAction";
+import Detail from "../../common/Detail";
 
 interface Props {
     member: any;
@@ -136,17 +137,6 @@ enum MembershipType {
     GOLD = 2,
     BUSINESS = 3
 
-}
-
-function Detail(props: any) {
-    if (props.value === null || props.value === undefined) {
-        return null;
-    }
-
-    return <div className={'detail-item'}>
-        <span>{props.label}</span>
-        <span>{props.value}</span>
-    </div>;
 }
 
 export default connect((store: any) => {
