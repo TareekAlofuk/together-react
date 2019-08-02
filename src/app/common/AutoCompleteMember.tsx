@@ -5,6 +5,7 @@ import * as AutoComplete from "react-autocomplete";
 
 interface Props {
     onItemMemberSelected: (item: any) => void;
+    error?: boolean;
 }
 
 interface State {
@@ -49,11 +50,12 @@ export default class AutoCompleteMember extends React.Component<Props, State> {
         return <AutoComplete
             inputProps={{
                 style: {
-                    padding: 16, borderRadius: 3, border: 'none', backgroundColor: '#EEE',
+                    padding: 16, borderRadius: 3, border: 'none', backgroundColor: this.props.error ? '#E00' : '#EEE',
                     fontSize: 18, width: '100%', textAlign: 'center'
                 },
                 placeholder: 'NAME OR ID ...'
             }}
+            menuStyle={{zIndex: 100}}
             wrapperStyle={{position: 'relative', display: 'inline-block', width: '100%'}}
             value={this.state.value}
             items={this.state.suggestions}
