@@ -5,6 +5,11 @@
     border-radius: 3px;
 }
 
+.wallet-action-item.captions {
+    background: #6e6659;
+    color: #FFFFFF;
+}
+
 .wallet-action-item > span {
     width: 120px;
     text-overflow: ellipsis;

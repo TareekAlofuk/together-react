@@ -15,10 +15,10 @@ export default function NavBar() {
             <Link to="/services" onClick={() => select('services')}>Services</Link>
         </div>
         <div className={`nav-item ${selected === 'wallet' ? 'selected' : ''}`}>
-            <Link to="/3" onClick={() => select('wallet')}>Wallet</Link>
+            <Link to="/wallet" onClick={() => select('wallet')}>Wallet</Link>
         </div>
         <div className={`nav-item ${selected === 'users' ? 'selected' : ''}`}>
-            <Link to="/1" onClick={() => select('users')}>Users</Link>
+            <Link to="/users" onClick={() => select('users')}>Users</Link>
         </div>
     </div>
 }

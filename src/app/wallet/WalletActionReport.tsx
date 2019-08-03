@@ -12,6 +12,14 @@ export default class WalletActionReport extends React.Component<Props> {
         return (
             <div>
                 <div className={'wallet-action-list'}>
+                    <div className={'wallet-action-item captions'}>
+                        <span>Action</span>
+                        <span>Time</span>
+                        <span>Amount</span>
+                        <span>New Amount</span>
+                        <span>Receiver</span>
+                        <span>Ref. Person</span>
+                    </div>
                     {
                         this.props.actions.map((item: any) => {
                             return <div className={'wallet-action-item'}>
