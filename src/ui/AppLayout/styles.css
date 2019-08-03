@@ -59,3 +59,8 @@
 #app-bar > .nav .nav-item.selected::after {
     width: 100%;
 }
+
+
+#app-bar .actions {
+    padding: 0 16px;
+}

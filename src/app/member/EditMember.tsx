@@ -13,6 +13,7 @@ import {JOB_TITLE_SELECT_OPTIONS} from "./JobTitleOptions";
 import {Button} from "semantic-ui-react";
 import AutoFieldCreatableSelect
     from "../../lib/auto-form/components/FormElement/AutoFieldSelect/AutoFieldCreatableSelect";
+import {memberTitleOption} from "./Form/MemberTitleOptions";
 
 interface Props {
     editButton?: boolean;
@@ -27,15 +28,11 @@ export default class EditMember extends React.Component<Props> {
 
     private form: AutoForm = null;
 
-    componentDidMount() {
-        console.log(this.props.route);
-    }
-
     render() {
-        const member = this.props.route ? this.props.route.location.state : this.props.member;
+        const member = this.props.route ? this.props.route.location.state.member : this.props.member;
         const url = Config.SERVER_URL + "api/members/" + this.props.member.id;
         return (
-            <div>
+            <div className={'member-form-container'}>
                 <AutoForm
                     ref={ref => this.form = ref}
                     initialValues={member}
@@ -46,7 +43,7 @@ export default class EditMember extends React.Component<Props> {
                         <AutoField component={AutoFieldSelect} name={'title'}
                                    inlineLabel label="Title" labelWidth={'140px'}
                                    validationRules={{presence: true, length: {minimum: 2}}}
-                                   options={this.titleOption()}
+                                   options={memberTitleOption()}
                         />,
 
                         <AutoField validationRules={{length: {minimum: 2}}}
@@ -111,7 +108,7 @@ export default class EditMember extends React.Component<Props> {
                                    placeholder='Job Title...' component={AutoFieldCreatableSelect} clearable/>,
                     ]}
                     renderButton={() => this.props.editButton === false ? null :
-                        <div style={{textAlign: 'right', marginTop: 16}}>
+                        <div className={'member-form-button-wrapper'}>
                             <Button color={"green"} onClick={this.save}>EDIT</Button>
                         </div>
                     }
@@ -127,34 +124,22 @@ export default class EditMember extends React.Component<Props> {
                 this.props.onComplete && this.props.onComplete();
                 return;
             }
-
             this.form.submit();
         }
     }
-
-    public titleOption = () => {
-        return [
-            {label: "MR.", value: "MR."},
-            {label: "MS.", value: "MS."},
-            {label: "MRS.", value: "MRS."},
-            {label: "MISS.", value: "MISS."},
-            {label: "DR.", value: "DR."},
-            {label: "PROF.", value: "PROF."},
-        ];
-    };
 
     private expirationDateOnOtherChange = (key: string, value: any, form: AutoForm) => {
         if (key === "type") {
             let newExpirationDate = null;
             switch (value) {
                 case MembershipType.SILVER:
-                    newExpirationDate = this.getDateFromNowAfter(24);
+                    newExpirationDate = DateUtils.getDateFromNowAfterByMonths(24);
                     break;
                 case MembershipType.GOLD:
-                    newExpirationDate = this.getDateFromNowAfter(18);
+                    newExpirationDate = DateUtils.getDateFromNowAfterByMonths(18);
                     break;
                 case MembershipType.BUSINESS:
-                    newExpirationDate = this.getDateFromNowAfter(12);
+                    newExpirationDate = DateUtils.getDateFromNowAfterByMonths(12);
                     break;
                 default:
                     return;
@@ -162,10 +147,4 @@ export default class EditMember extends React.Component<Props> {
             form.getField("expirationDate").setValue(DateUtils.toString(newExpirationDate));
         }
     };
-
-    private getDateFromNowAfter(months: number) {
-        const date = new Date();
-        date.setMonth(date.getMonth() + months);
-        return date;
-    }
 }

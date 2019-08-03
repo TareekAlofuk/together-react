@@ -7,7 +7,7 @@ enum MembershipType {
 export default MembershipType;
 
 
-export function getMembershipTypeText(type: MembershipType) {
+export function getMembershipTypeText(type: MembershipType) : string {
     switch (type) {
         case MembershipType.SILVER:
             return "SILVER";

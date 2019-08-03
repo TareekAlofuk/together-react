@@ -55,13 +55,12 @@ export default class AutoCompleteMember extends React.Component<Props, State> {
                 },
                 placeholder: 'NAME OR ID ...'
             }}
-            menuStyle={{zIndex: 100}}
+            menuStyle={{zIndex: 100, left: 0, top: 0, position: 'absolute'}}
             wrapperStyle={{position: 'relative', display: 'inline-block', width: '100%'}}
             value={this.state.value}
             items={this.state.suggestions}
             getItemValue={(item) => item.name}
             onSelect={(value, item) => {
-                console.log(item);
                 this.setState({selected: item}, () => {
                     this.props.onItemMemberSelected && this.props.onItemMemberSelected(item);
                 });

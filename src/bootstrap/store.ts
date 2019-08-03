@@ -24,7 +24,7 @@ const reducers: any = {
 
     toastr: toastrReducer,
 };
-console.log(reducers);
+
 const middleware = applyMiddleware(logger, reduxPromiseMiddleware);
 
 const store = createStore(combineReducers(reducers), middleware);

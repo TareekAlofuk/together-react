@@ -19,3 +19,8 @@ body {
 .redux-toastr .toastr .close-toastr{
     height: 60% !important;
 }
+
+
+.zero-margin{
+    margin: 0;
+}

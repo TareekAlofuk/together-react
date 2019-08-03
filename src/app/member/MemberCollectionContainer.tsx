@@ -42,7 +42,6 @@ class MemberCollectionContainer extends React.Component<Props> {
 }
 
 export default connect((store: any, props: any) => {
-    console.log(store, props);
     return {
         loading: store[props.reducerKey].loading,
         error: store[props.reducerKey].error,

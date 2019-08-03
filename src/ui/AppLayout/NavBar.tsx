@@ -20,5 +20,8 @@ export default function NavBar() {
         <div className={`nav-item ${selected === 'users' ? 'selected' : ''}`}>
             <Link to="/users" onClick={() => select('users')}>Users</Link>
         </div>
+        <div className={`nav-item ${selected === 'profile' ? 'selected' : ''}`}>
+            <Link to="/profile" onClick={() => select('profile')}>Profile</Link>
+        </div>
     </div>
 }

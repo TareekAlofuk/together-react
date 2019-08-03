@@ -1,0 +1,15 @@
+.member-detail-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+
+.member-form-container {
+    width: 550px;
+}
+
+.member-form-button-wrapper{
+    margin-top: 16px;
+    text-align: right;
+}

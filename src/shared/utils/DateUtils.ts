@@ -14,4 +14,10 @@ export default class DateUtils {
         return value;
     }
 
+    static getDateFromNowAfterByMonths(months: number) {
+        const date = new Date();
+        date.setMonth(date.getMonth() + months);
+        return date;
+    }
+
 }
