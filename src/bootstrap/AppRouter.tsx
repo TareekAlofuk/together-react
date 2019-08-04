@@ -9,7 +9,7 @@ export default class AppRouter extends React.Component {
         return (
             <Switch>
                 <Route path="/members" component={(route: RouteComponentProps) => <MemberBase route={route}/>}/>
-                <Route path="/services" component={(route: RouteComponentProps) => <ServiceBase route={route}/>}/>
+                <Route path="/services" component={() => <ServiceBase/>}/>
                 <Route path="/wallet" component={(route: RouteComponentProps) => <WalletBase route={route}/>}/>
                 <Route exact path={'/'} component={() => <Redirect to={'/members'}/>}/>
                 <Route component={() => <h1>404 PAGE NOT FOUND</h1>}/>

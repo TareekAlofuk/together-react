@@ -53,6 +53,12 @@ class MemberListItem extends React.Component<IMemberListItemProps> {
                 </div>
 
                 <div className="member-actions">
+                    <Button className={'ui icon button blue'}>
+                        <i className={'icon mobile alternate'}/>
+                    </Button>
+                    <Button className={'ui icon button blue'}>
+                        <i className={'icon envelope'}/>
+                    </Button>
                     <Button className={'ui icon button yellow'}
                             onClick={() => {
                                 this.props.history.push(
