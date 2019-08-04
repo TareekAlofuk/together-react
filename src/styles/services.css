@@ -32,3 +32,12 @@
     margin-bottom: 16px;
     padding: 16px;
 }
+
+.empty-service-usage-detail-box {
+    height: 234px;
+    background: #EFEFEF;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 16px;
+}

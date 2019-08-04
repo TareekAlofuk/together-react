@@ -1,4 +1,4 @@
-import AutoForm from "../../lib/auto-form/core/AutoForm/AutoForm";
+import AutoForm from "../../../lib/auto-form/core/AutoForm/AutoForm";
 
 export interface PriceCalculator {
     calculate(): number;

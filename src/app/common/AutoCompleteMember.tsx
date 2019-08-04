@@ -2,10 +2,13 @@ import * as React from "react";
 import Axios from "axios";
 import Config from "../../bootstrap/Config";
 import * as AutoComplete from "react-autocomplete";
+import {TextAlignProperty} from "csstype";
 
 interface Props {
     onItemMemberSelected: (item: any) => void;
     error?: boolean;
+    placeholder?: string;
+    align?: TextAlignProperty;
 }
 
 interface State {
@@ -16,6 +19,8 @@ interface State {
 }
 
 export default class AutoCompleteMember extends React.Component<Props, State> {
+
+    static defaultProps = {placeholder: 'NAME OR ID ...', align: 'center'};
 
     private cancelSourceRequest: any = null;
 
@@ -50,12 +55,12 @@ export default class AutoCompleteMember extends React.Component<Props, State> {
         return <AutoComplete
             inputProps={{
                 style: {
-                    padding: 16, borderRadius: 3, border: 'none', backgroundColor: this.props.error ? '#E00' : '#EEE',
-                    fontSize: 18, width: '100%', textAlign: 'center'
+                    padding: 8, borderRadius: 3, border: 'none', backgroundColor: this.props.error ? '#E00' : '#EEE',
+                    fontSize: 16, width: '100%', textAlign: this.props.align
                 },
-                placeholder: 'NAME OR ID ...'
+                placeholder: this.props.placeholder
             }}
-            menuStyle={{zIndex: 100, left: 0, top: 0, position: 'absolute'}}
+            menuStyle={{zIndex: 100, left: 0, top: 40, position: 'absolute', border: '1px solid #EEE'}}
             wrapperStyle={{position: 'relative', display: 'inline-block', width: '100%'}}
             value={this.state.value}
             items={this.state.suggestions}
@@ -78,7 +83,8 @@ export default class AutoCompleteMember extends React.Component<Props, State> {
             renderItem={(item, isHighlighted) => (
                 <div style={{
                     background: isHighlighted ? '#EEE' : '#FFF', padding: 6,
-                    fontSize: 15, color: isHighlighted ? 'blue' : 'black'
+                    fontSize: isHighlighted ? 18 : 15, color: isHighlighted ? 'rgb(113, 102, 89)' : 'black',
+                    fontWeight: isHighlighted ? 'bold' : 'normal'
                 }}
                      className={`item ${isHighlighted ? 'item-highlighted' : ''}`}
                      key={item.id}>

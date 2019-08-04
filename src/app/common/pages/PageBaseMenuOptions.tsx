@@ -14,7 +14,7 @@ export default function PageBaseMenuOptions(props: Props) {
         {
             props.options.map((item: MenuOption, index: number) => {
                 if (item.disabled) {
-                    return renderDisabledOption(item, activeOption, setActiveOption)
+                    return renderDisabledOption(index, item, activeOption, setActiveOption)
                 }
                 return renderSimpleOption(index, item, activeOption, setActiveOption)
             })
@@ -32,8 +32,8 @@ function renderSimpleOption(index: number, item: MenuOption, activeOption: strin
     </Link>;
 }
 
-function renderDisabledOption(item: MenuOption, activeOption: string, setActiveOption: React.Dispatch<React.SetStateAction<string>>) {
-    return <div style={{color: '#AAA'}}
+function renderDisabledOption(index: number, item: MenuOption, activeOption: string, setActiveOption: React.Dispatch<React.SetStateAction<string>>) {
+    return <div style={{color: '#AAA'}} key={index}
                 className={getOptionClassName(item, item.name === activeOption)}
                 onClick={() => setActiveOption(item.name)}>
         {item.label}

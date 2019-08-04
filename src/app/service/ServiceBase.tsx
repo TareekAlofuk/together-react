@@ -2,10 +2,8 @@ import * as React from 'react';
 import PageBase from "../common/pages/PageBase";
 import MenuOption from "../common/pages/MenuOption";
 import {RouteComponentProps, RouteProps} from "react-router";
-import SelectMemberToRegisterService from "./SelectMemberToRegisterService";
-import SelectMemberToServiceUsageReport from "./SelectMemberToServiceUsageReport";
-import RegisterService from "./RegisterService";
-import ServicesUsage from "./ServicesUsage";
+import RegisterServiceSegment from "./Register/RegisterServiceSegment";
+import ServicesUsageSegment from "./Usage/ServicesUsageSegment";
 
 
 export default function ServicePageBase() {
@@ -23,27 +21,27 @@ const options: MenuOption[] = [
 const routes: RouteProps[] = [
     {
         exact: true, path: '/services', component: (route: RouteComponentProps): any => {
-            return <SelectMemberToRegisterService route={route}/>;
+            return <RegisterServiceSegment route={route}/>;
         }
     },
     {
         exact: true, path: '/services/register', component: (route: RouteComponentProps): any => {
-            return <SelectMemberToRegisterService route={route}/>;
+            return <RegisterServiceSegment route={route}/>;
         }
     },
     {
         exact: true, path: '/services/usage', component: (route: RouteComponentProps): any => {
-            return <SelectMemberToServiceUsageReport route={route}/>
+            return <ServicesUsageSegment route={route}/>
         }
     },
     {
         exact: true, path: '/services/register/:id(\\d+)', component: (route: any): any => {
-            return <RegisterService memberId={route.match.params.id} route={route}/>
+            return null;
         }
     },
     {
         exact: true, path: '/services/usage/:id(\\d+)', component: (route: any): any => {
-            return <ServicesUsage memberId={route.match.params.id}/>
+            return null;
         }
     }
 ];

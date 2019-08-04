@@ -1,9 +1,9 @@
 import * as React from "react";
-import {useState} from "react";
-import "./../../styles/services.css"
-import Detail from "../common/Detail";
+import "../../../styles/services.css"
 import {Col, Row} from "react-grid-system";
 import {Header} from "semantic-ui-react";
+import ServiceUsageItem from "./ServiceUsageItem";
+import Detail from "../../common/Detail";
 
 interface Props {
     services: any[];
@@ -44,14 +44,7 @@ export default class ServiceUsageCollection extends React.Component<Props, State
                             </Col>
                         </Row>
                     </div> :
-                    <div style={{
-                        height: 234,
-                        background: '#EFEFEF',
-                        display: 'flex',
-                        alignItems: 'center',
-                        justifyContent: 'center',
-                        marginBottom: 16
-                    }}>
+                    <div className={'empty-service-usage-detail-box'}>
                         <Header size={"small"}>SELECT ITEM</Header>
                     </div>
             }
@@ -79,24 +72,4 @@ export default class ServiceUsageCollection extends React.Component<Props, State
         </div>
     }
 
-}
-
-function ServiceUsageItem(props: any) {
-
-    const [selected, setSelected] = useState(false);
-
-    return <div className={`service-usage-item ${selected ? 'selected' : ''}`}
-                onClick={() => {
-                    console.log(props.item, !selected);
-                    props.onItemSelected && props.onItemSelected(props.item, !selected);
-                    setSelected(!selected);
-                }}>
-        <span className={'service-name'}>{props.item.serviceName}</span>
-        <span>{props.item.time}</span>
-        <span>{props.item.referencePerson}</span>
-        <span>{props.item.price}</span>
-        <span>{props.item.count}</span>
-        <span>{props.item.discount}</span>
-        <span>{props.item.finalPrice}</span>
-    </div>
 }
