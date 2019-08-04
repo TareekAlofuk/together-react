@@ -1,9 +1,9 @@
 import * as React from 'react';
-import AutoCompleteMember from "../common/AutoCompleteMember";
 import {Divider, Header} from "semantic-ui-react";
 import RegisterService from "./RegisterService";
 import {RouteComponentProps} from "react-router";
 import {Col, Row} from "react-grid-system";
+import AutoCompleteMember from "../../common/AutoCompleteMember";
 
 
 interface State {

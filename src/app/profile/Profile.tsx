@@ -42,7 +42,7 @@ class Profile extends React.Component<Props> {
                 <NetworkingComponent loading={this.props.loadingMember}
                                      error={this.props.errorMember}
                                      ready={!!this.props.member}
-                                     component={<MemberMainInfo member={this.props.member}/>}/>
+                                     component={() => <MemberMainInfo member={this.props.member}/>}/>
 
                 <Divider hidden/><Divider hidden/><Divider hidden/>
                 {

@@ -1,5 +1,5 @@
 import * as React from "react";
-import {getWalletActionTypeText, WalletActionType} from "./WalletAction";
+import {getWalletActionTypeText, WalletActionType} from "./WalletActionType";
 import "./../../styles/wallet.css"
 
 interface Props {

@@ -8,6 +8,7 @@ import ReduxActions from "../../bootstrap/ReduxActions";
 import {Divider, Header} from "semantic-ui-react";
 import AutoCompleteMember from "../common/AutoCompleteMember";
 import {RouteComponentProps} from "react-router";
+import {Col, Row} from "react-grid-system";
 
 interface Props {
     loading: boolean;
@@ -40,11 +41,15 @@ class WalletActionReportContainer extends React.Component<Props, State> {
         return (
             <div>
                 <Header>Select Member</Header>
-                <AutoCompleteMember onItemMemberSelected={item => {
-                    if (!item)
-                        return;
-                    this.setState({memberId: item.id}, () => this.fetchReport());
-                }}/>
+                <Row>
+                    <Col>
+                        <AutoCompleteMember onItemMemberSelected={item => {
+                            if (!item)
+                                return;
+                            this.setState({memberId: item.id}, () => this.fetchReport());
+                        }}/>
+                    </Col>
+                </Row>
                 <Divider/>
                 <CollectionContainer loading={this.props.loading} error={this.props.error}
                                      collection={this.props.actions}

@@ -2,7 +2,6 @@ import {Route, Switch} from "react-router";
 import * as React from "react";
 import {Header} from "semantic-ui-react";
 import ServicesUsage from "../service/Usage/ServicesUsage";
-import WalletActionReportContainer from "../wallet/WalletActionReportContainer";
 import MemberPassportAndFaceImageUpload from "../member/Upload/MemberPassportAndFaceImageUpload";
 import Config from "../../bootstrap/Config";
 
@@ -14,7 +13,7 @@ export default function ProfileRouteSwitch(props: Props) {
     return <Switch>
 
         <Route exact path="/profile/services" component={(route: any) => {
-            return <ServicesUsage memberId={props.member.id}/>
+            return <ServicesUsage member={props.member}/>
         }}/>
 
         <Route exact path="/profile/wallet" component={(route: any) => {

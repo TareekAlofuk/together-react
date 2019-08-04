@@ -4,9 +4,10 @@ import AutoField from "../../lib/auto-form/core/AutoField/AutoField";
 import AutoFieldText from "../../lib/auto-form/components/FormElement/AutoFieldText/AutoFieldText";
 import {Button, Divider, Header} from "semantic-ui-react";
 import Config from "../../bootstrap/Config";
-import AutoFieldProps from "../../lib/auto-form/core/AutoField/AutoFieldProps";
-import AutoCompleteMember from "../common/AutoCompleteMember";
-import {Row} from "react-grid-system";
+import {toastr} from "react-redux-toastr";
+import {getWalletErrorMessage} from "./WalletError";
+import MemberAutoCompleteField from "../common/MemberAutoCompleteField";
+import {getWalletActionTypeText, WalletActionType} from "./WalletActionType";
 
 interface Props {
     actionType: WalletActionType;
@@ -17,9 +18,7 @@ export default class WalletAction extends React.Component<Props> {
     render() {
         return (
             <div style={{width: 500}}>
-                <Header size={"medium"}>
-                    {this.props.actionType === WalletActionType.DEPOSIT ? "Deposit" : "Withdraw"}
-                </Header>
+                <Header size={"medium"}>{getWalletActionTypeText(this.props.actionType)}</Header>
                 <Divider/>
 
                 <AutoForm fields={[
@@ -34,6 +33,14 @@ export default class WalletAction extends React.Component<Props> {
                               <Button color={'green'}
                                       onClick={form.submit}>SUBMIT</Button>
                           </div>}
+                          onSuccess={() => toastr.success('Succeed to submit', '')}
+                          onError={(error) => {
+                              let message = 'checkout your internet connection';
+                              if (error && error.response && error.response.data && error.response.data.errorCode) {
+                                  message = getWalletErrorMessage(error.response.data.errorCode);
+                              }
+                              toastr.error('Fail to submit', message);
+                          }}
                           requestConfiguration={{
                               type: "http",
                               method: "post",
@@ -43,33 +50,4 @@ export default class WalletAction extends React.Component<Props> {
         )
     }
 
-}
-
-
-class MemberAutoCompleteField extends AutoField<AutoFieldProps> {
-
-    renderContent(): any {
-
-        return <div>
-            <Row style={{margin: 0}}>
-                <AutoCompleteMember error={this.state.error}
-                                    onItemMemberSelected={(item: any) => this.onValueChange(item ? item.id : -1)}/>
-            </Row>
-        </div>
-    }
-
-    extractValueFormInputEvent(e: any): any {
-        return e;
-    }
-}
-
-export enum WalletActionType {
-    DEPOSIT = 1,
-    WITHDRAW = 2
-}
-
-export function getWalletActionTypeText(actionType: WalletActionType) {
-    if (actionType === WalletActionType.DEPOSIT) return "DEPOSIT";
-    else if (actionType === WalletActionType.WITHDRAW) return "WITHDRAW";
-    return "UNKNOWN";
 }
