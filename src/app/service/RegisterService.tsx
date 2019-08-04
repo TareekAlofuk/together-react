@@ -10,6 +10,7 @@ import Config from "../../bootstrap/Config";
 import ReduxActions from "../../bootstrap/ReduxActions";
 import {Button, Divider, Header, Loader} from "semantic-ui-react";
 import {Redirect, RouteComponentProps} from "react-router";
+import RegisterServiceAutoFormPriceCalculator from "./PriceCalculator";
 
 interface Props {
     loading: boolean;
@@ -38,6 +39,8 @@ class RegisterService extends React.Component<Props> {
         if (!this.props.route.location.state) {
             return <Redirect to={'/services/register'}/>
         }
+
+
         if (this.props.loading)
             return <Loader inline/>;
         else if (this.props.error || !this.props.services)
@@ -108,32 +111,8 @@ class RegisterService extends React.Component<Props> {
     private calculateNewPrice = () => {
         const serviceField = this.form.getField('serviceId');
         const service = this.getServiceInfo(serviceField.getValue());
-        if (!service) {
-            return;
-        }
-
-        const priceField = this.form.getField('price');
-        const commissionField = this.form.getField('commission');
-        const newPriceField = this.form.getField('finalPrice');
-        const countField = this.form.getField('count');
-
-        const price = priceField.getValue() ? priceField.getValue() : 0;
-        const commission = commissionField.getValue() ? commissionField.getValue() : 0;
-        const count = countField.getValue();
-
-        if (service.discount) {
-            //TODO : SHOULD WE CONSIDER 100% DISCOUNT
-            const discount = service.discount / 100;
-            if (service.discountOptions === 1) {
-                const newPrice = price - (price * discount);
-                newPriceField.setValue(newPrice * count);
-            } else if (service.discountOptions === 2) {
-                const newPrice = price - (commission * discount);
-                newPriceField.setValue(newPrice * count);
-            }
-        } else {
-            //TODO : HANDLE
-        }
+        const calculator = new RegisterServiceAutoFormPriceCalculator(this.form, service);
+        calculator.calculate();
     };
 
     private getServicesOptions(): any[] {
@@ -142,7 +121,7 @@ class RegisterService extends React.Component<Props> {
         });
     }
 
-    private getServiceInfo(id: any): any {
+    public getServiceInfo(id: any): any {
         for (let i = 0; i < this.props.services.length; i++) {
             if (this.props.services[i].id === id) {
                 return this.props.services[i];

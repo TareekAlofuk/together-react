@@ -26,8 +26,8 @@ export default class WalletAction extends React.Component<Props> {
                     <AutoField name={'memberId'} component={MemberAutoCompleteField}
                                validationRules={{numericality: {greaterThan: 0}}}/>,
                     [
-                        <AutoField name={'amount'} type={'number'} component={AutoFieldText}/>,
-                        <AutoField name={'receiver'} component={AutoFieldText}/>,
+                        <AutoField placeholder={"Amount"} name={'amount'} type={'number'} component={AutoFieldText}/>,
+                        <AutoField placeholder={"Receiver"} name={'receiver'} component={AutoFieldText}/>,
                     ]
                 ]}
                           renderButton={(form: AutoForm) => <div>
