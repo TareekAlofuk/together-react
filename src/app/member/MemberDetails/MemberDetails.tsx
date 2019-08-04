@@ -1,7 +1,6 @@
 import * as React from "react";
-import {Divider, Header, Icon, Loader} from "semantic-ui-react";
+import {Divider, Header, Loader} from "semantic-ui-react";
 import MemberPassportAndFaceImageUpload from "../Upload/MemberPassportAndFaceImageUpload";
-import MemberFiles from "../Upload/MemberFiles";
 import {RouteComponentProps} from "react-router-dom";
 import {connect} from "react-redux";
 import {GETAction} from "reduxpp/dist/action/AxiosAction";
@@ -12,6 +11,7 @@ import {toastr} from "react-redux-toastr";
 import {addItemToLast} from "reduxpp/dist/action/FetchArrayAction";
 import MemberDetailHeader from "./MemberDetailHeader";
 import MemberMainInfo from "./MemberMainInfo";
+import MemberAttachmentsContainer from "../Upload/MemberAttachmentsContainer";
 
 interface Props {
     member: any;
@@ -63,7 +63,7 @@ class MemberDetails extends React.Component<Props> {
 
                 <br/><br/>
                 <Divider hidden/>
-                <MemberAttachmentContainer memberId={this.props.memberId}/>
+                <MemberAttachmentsWithRedux memberId={this.props.memberId}/>
 
                 <br/>
             </div>
@@ -83,40 +83,19 @@ export default connect((store: any) => {
 
 
 interface MemberAttachmentProps {
-    loading: boolean;
-    error: boolean;
-    attachments: any[];
     memberId: number;
     dispatch: (action: any) => void;
 }
 
 class MemberAttachments extends React.Component<MemberAttachmentProps> {
 
-    componentWillMount() {
-        const url = Config.SERVER_URL + `api/members/${this.props.memberId}/attachments`;
-        const action = GETAction(ReduxActions.GET_MEMBER_ATTACHMENTS, url);
-        this.props.dispatch(action);
-    }
-
     render() {
-        let component = null;
-
-        if (this.props.loading) {
-            component = this.loading();
-        } else if (this.props.error || !this.props.attachments) {
-            component = this.error();
-        } else if (this.props.attachments.length === 0) {
-            component = this.empty();
-        } else {
-            component = <MemberFiles files={this.props.attachments}/>;
-        }
 
         return <div style={{width: '50%'}}>
             <Header dividing size={"medium"}>Attachments:</Header>
             {
-                component
+                <MemberAttachmentsContainer memberId={this.props.memberId}/>
             }
-
             <Divider/>
             <FileDropZone label={"Upload File"}
                           onError={() => toastr.error('Fail to upload attachment', '')}
@@ -129,32 +108,6 @@ class MemberAttachments extends React.Component<MemberAttachmentProps> {
                           name={"file"}/>
         </div>
     }
-
-    private loading = () => {
-        return <div style={{textAlign: 'center', padding: 24}}>
-            <Loader inline/>
-        </div>
-    };
-
-    private error = () => {
-        return <div style={{padding: 24}}>
-            <Header size={"small"}>Fail to load attachments</Header>
-            <Icon size={'large'} color={"red"} name={"exclamation triangle"}/>
-        </div>
-    };
-
-    private empty = () => {
-        return <div style={{textAlign: 'center'}}>
-            <Header size={"small"}>No Attachments</Header>
-            <Icon size={'large'} name={'file'}/>
-        </div>;
-    }
 }
 
-const MemberAttachmentContainer = connect((store: any) => {
-    return {
-        loading: store.MemberAttachments.loading,
-        error: store.MemberAttachments.error,
-        attachments: store.MemberAttachments.array,
-    }
-})(MemberAttachments);
+const MemberAttachmentsWithRedux = connect()(MemberAttachments);

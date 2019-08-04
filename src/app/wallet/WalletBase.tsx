@@ -5,6 +5,7 @@ import MenuOption from "../common/pages/MenuOption";
 import WalletAction from "./WalletAction";
 import WalletActionReportContainer from "./WalletActionReportContainer";
 import {WalletActionType} from "./WalletActionType";
+import WalletActions from "./WalletActions";
 
 export interface IMemberBaseProps {
     route: RouteComponentProps
@@ -27,5 +28,5 @@ const options: MenuOption[] = [
 const routes: RouteProps[] = [
     {exact: true, path: '/wallet/deposit', component: () => <WalletAction actionType={WalletActionType.DEPOSIT}/>},
     {exact: true, path: '/wallet/withdraw', component: () => <WalletAction actionType={WalletActionType.WITHDRAW}/>},
-    {exact: true, path: '/wallet/actions', component: (route: any) => <WalletActionReportContainer route={route}/>},
+    {exact: true, path: '/wallet/actions', component: (route: any) => <WalletActions route={route}/>},
 ];
