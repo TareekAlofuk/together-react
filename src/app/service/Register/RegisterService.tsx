@@ -14,6 +14,8 @@ import RegisterServiceAutoFormPriceCalculator from "./PriceCalculator";
 import NetworkingComponent from "../../common/NetworkingComponent";
 import {toastr} from "react-redux-toastr";
 import {getServiceErrorMessage} from "../ServiceError";
+import AutoFieldRadioButton
+    from "../../../lib/auto-form/components/FormElement/AutoFieldRadioButton/AutoFieldRadioButton";
 
 interface Props {
     loading: boolean;
@@ -66,6 +68,11 @@ class RegisterService extends React.Component<Props> {
 
                           <AutoField type={"hidden"} defaultValue={this.props.member.id} component={AutoFieldText}
                                      name={"memberId"}/>,
+
+                          <AutoField name={'discountType'}
+                                     title={'Discount Type'} component={AutoFieldRadioButton}
+                                     defaultValue={'ratio'} afterValueChanged={() => this.calculateNewPrice()}
+                                     options={[{label: 'Ratio', value: 'ratio'}, {label: 'Fixed', value: 'fixed'}]}/>,
                           [
                               <AutoField label="Price" afterValueChanged={() => this.calculateNewPrice()}
                                          inlineLabel placeholder={"Price"} name={'price'}
@@ -75,13 +82,13 @@ class RegisterService extends React.Component<Props> {
                                          name={'commission'} type={'number'} component={AutoFieldText}/>,
                               <AutoField label="Discount"
                                          inlineLabel placeholder={"Discount"} name={'discount'}
-                                         type={'number'} readOnly component={AutoFieldText}/>,
+                                         type={'number'} component={AutoFieldText}/>,
                               <AutoField label="Count" defaultValue={'1'}
                                          afterValueChanged={() => this.calculateNewPrice()}
                                          validationRules={{numericality: {greaterThan: 0}}}
                                          inlineLabel placeholder={"Count"} name={'count'}
                                          type={'number'} component={AutoFieldText}/>,
-                              <AutoField label="New Price" inlineLabel placeholder={"New Price"} name={'finalPrice'}
+                              <AutoField label="Final Price" inlineLabel placeholder={"Final Price"} name={'finalPrice'}
                                          type={'number'} readOnly component={AutoFieldText}/>
                           ],
 

@@ -45,3 +45,8 @@ export default class AppRouter extends React.Component {
         )
     }
 }
+
+
+//TODO : print card
+//TODO : services form => discount editable , discount type
+//TODO : REMOVE ALL SLEEP

@@ -21,22 +21,31 @@ export default class RegisterServiceAutoFormPriceCalculator implements PriceCalc
         const commissionField = this.form.getField('commission');
         const newPriceField = this.form.getField('finalPrice');
         const countField = this.form.getField('count');
+        const discountTypeField = this.form.getField('discountType');
 
         const price = priceField.getValue() ? priceField.getValue() : 0;
         const commission = commissionField.getValue() ? commissionField.getValue() : 0;
         const count = countField.getValue();
+        const discountType = discountTypeField.getValue();
 
-        if (this.service.discount) {
-            const discount = this.service.discount / 100;
-            if (this.service.discountOptions === 1) {
-                const newPrice = price - (price * discount);
-                newPriceField.setValue(newPrice * count);
-            } else if (this.service.discountOptions === 2) {
-                const newPrice = price - (commission * discount);
-                newPriceField.setValue(newPrice * count);
+        if (discountType === "ratio") {
+            if (this.service.discount) {
+                const discount = this.service.discount / 100;
+                if (this.service.discountOptions === 1) {
+                    const newPrice = price - (price * discount);
+                    newPriceField.setValue(newPrice * count);
+                } else if (this.service.discountOptions === 2) {
+                    const newPrice = price - (commission * discount);
+                    newPriceField.setValue(newPrice * count);
+                }
+            } else {
+                newPriceField.setValue(0)
             }
         } else {
-            newPriceField.setValue(0)
+            const discount = this.service.discount;
+            const newPrice = price - (discount);
+            newPriceField.setValue(newPrice * count);
+
         }
     }
 }
