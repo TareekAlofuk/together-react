@@ -1,27 +1,44 @@
 import * as React from "react";
 import {useState} from "react";
 import {Link} from "react-router-dom";
+import SessionManager from "../../shared/utils/SessionManager";
+import {Button} from "semantic-ui-react";
 
 export default function NavBar() {
-    const [selected, select] = useState('home');
+    const [selected, select] = useState(SessionManager.isAdmin() ? 'home' : '');
     return <div className="nav">
 
         <div className={`nav-item ${selected === 'home' ? 'selected' : ''}`}>
-            <Link to="/members" onClick={() => select('home')}>HOME</Link>
+            {
+                SessionManager.isAdmin() ?
+                    <Link to="/members" onClick={() => select('home')}>HOME</Link>
+                    :
+                    <a style={{color: '#777'}}>HOME</a>
+            }
         </div>
 
 
         <div className={`nav-item ${selected === 'services' ? 'selected' : ''}`}>
-            <Link to="/services" onClick={() => select('services')}>Services</Link>
+            {
+                SessionManager.isAdmin() || SessionManager.isControl() ?
+                    <Link to="/services" onClick={() => select('services')}>SERVICES</Link>
+                    :
+                    <a style={{color: '#777'}}>SERVICES</a>
+            }
         </div>
         <div className={`nav-item ${selected === 'wallet' ? 'selected' : ''}`}>
-            <Link to="/wallet" onClick={() => select('wallet')}>Wallet</Link>
+            {
+                SessionManager.isAdmin() || SessionManager.isAccountant() ?
+                    <Link to="/wallet" onClick={() => select('wallet')}>WALLET</Link>
+                    :
+                    <a style={{color: '#777'}}>WALLET</a>
+            }
         </div>
-        <div className={`nav-item ${selected === 'users' ? 'selected' : ''}`}>
-            <Link to="/users" onClick={() => select('users')}>Users</Link>
-        </div>
-        <div className={`nav-item ${selected === 'profile' ? 'selected' : ''}`}>
-            <Link to="/profile" onClick={() => select('profile')}>Profile</Link>
+        <div className={`nav-item`}>
+            <Link to={`/logout`} onClick={() => {
+                SessionManager.logout();
+                window.location.href = '/';
+            }}>LOGOUT</Link>
         </div>
     </div>
 }

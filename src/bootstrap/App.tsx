@@ -3,22 +3,18 @@ import * as React from 'react'
 import {Provider as ReduxProvider} from "react-redux";
 import ReduxToastr from "react-redux-toastr";
 import store from "./store";
-import AppLayout from './AppLayout';
-import AppRouter from './AppRouter';
-import {BrowserRouter} from 'react-router-dom';
 
 import "./style-loader";
 import "./validator_setup"
+import Main from "../app/main/Main";
 
 class App extends React.Component {
     render() {
         return (
             <>
                 <ReduxProvider store={store}>
-                    <BrowserRouter>
-                        <AppLayout appContent={<AppRouter/>}/>
-                    </BrowserRouter>
 
+                    <Main/>
 
                     <ReduxToastr
                         timeOut={5000}
