@@ -2,19 +2,40 @@ import * as React from 'react';
 import {getMembershipTypeText} from "../MembershipType";
 import DateUtils from "../../../shared/utils/DateUtils";
 import {Link, withRouter} from "react-router-dom";
-import {Button} from "semantic-ui-react";
+import {Button, Checkbox} from "semantic-ui-react";
 
 export interface IMemberListItemProps {
     member: any;
     history: any;
     match: any;
     location: any;
+    onSelect: (member: any, selected: boolean) => void;
 }
 
-class MemberListItem extends React.Component<IMemberListItemProps> {
+interface State {
+    selected: boolean;
+}
+
+class MemberListItem extends React.Component<IMemberListItemProps, State> {
+
+    constructor(props: any) {
+        super(props);
+        this.state = {selected: false};
+    }
+
     public render() {
         return (
             <div className="member-list-item">
+                <Checkbox onChange={() => {
+                    const newState = !this.state.selected;
+                    this.setState({selected : newState});
+                    this.props.onSelect({
+                        id: this.props.member.id,
+                        name: this.props.member.name,
+                        email : this.props.member.email,
+                        sms : this.props.member.phone
+                    }, newState);
+                }}/>
                 <div className="member-id">
                     <span>{this.props.member.id}</span>
                 </div>
@@ -53,12 +74,6 @@ class MemberListItem extends React.Component<IMemberListItemProps> {
                 </div>
 
                 <div className="member-actions">
-                    <Button className={'ui icon button blue'}>
-                        <i className={'icon mobile alternate'}/>
-                    </Button>
-                    <Button className={'ui icon button blue'}>
-                        <i className={'icon envelope'}/>
-                    </Button>
                     <Button className={'ui icon button yellow'}
                             onClick={() => {
                                 this.props.history.push(
