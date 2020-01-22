@@ -4,7 +4,6 @@ import AutoField from "../../lib/auto-form/core/AutoField/AutoField";
 import AutoFieldText from "../../lib/auto-form/components/FormElement/AutoFieldText/AutoFieldText";
 import {Button, Header} from "semantic-ui-react";
 import {toastr} from "react-redux-toastr";
-import {AxiosResponse} from "axios";
 import SessionManager from "../../shared/utils/SessionManager";
 import Config from "../../bootstrap/Config";
 
@@ -24,8 +23,8 @@ class LoginPage extends React.Component {
                 <div style={{width: 450}}>
                     <Header textAlign={'center'} size={"small"}>Together System</Header>
                     <AutoForm fields={[
-                        <AutoField name={'username'} component={AutoFieldText} placeholder={'Username'}/>,
-                        <AutoField name={'password'} component={AutoFieldText} placeholder={'Password'}
+                        <AutoField name={'username'} as={'AutoField'} component={AutoFieldText} placeholder={'Username'}/>,
+                        <AutoField name={'password'} as={'AutoField'} component={AutoFieldText} placeholder={'Password'}
                                    type={'password'}/>
                     ]}
                               renderButton={form => <div>

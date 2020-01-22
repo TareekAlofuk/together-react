@@ -2,10 +2,7 @@ import * as React from 'react'
 import AutoForm from '../../../lib/auto-form/core/AutoForm/AutoForm';
 import AutoField from '../../../lib/auto-form/core/AutoField/AutoField';
 import AutoFieldText from '../../../lib/auto-form/components/FormElement/AutoFieldText/AutoFieldText';
-import {Redirect, Route, RouteComponentProps} from "react-router";
 import Axios from "axios";
-import {url} from "inspector";
-import {log} from "util";
 import AutoFieldCheckBox from "../../../lib/auto-form/components/FormElement/AutoFieldCheckBox/AutoFieldCheckBox";
 
 
@@ -72,25 +69,25 @@ export default class InfoMember extends React.Component<MyProps, MyState> {
                 <AutoForm
 
                     fields={[
-                        <AutoField name='name' label='Name' defaultValue={this.state.name} component={AutoFieldText}/>,
+                        <AutoField as={'AutoField'} name='name' label='Name' defaultValue={this.state.name} component={AutoFieldText}/>,
 
-                        <AutoField name='phone' label='phone' defaultValue={this.state.phone}
+                        <AutoField as={'AutoField'} name='phone' label='phone' defaultValue={this.state.phone}
                                    component={AutoFieldText}/>,
-                        <AutoField name='phone2' label='phone2' defaultValue={this.state.phone2}
+                        <AutoField as={'AutoField'} name='phone2' label='phone2' defaultValue={this.state.phone2}
                                    component={AutoFieldText}/>,
-                        <AutoField name='email' label='email' defaultValue={this.state.email}
+                        <AutoField as={'AutoField'} name='email' label='email' defaultValue={this.state.email}
                                    component={AutoFieldText}/>,
-                        <AutoField name='address' label='address' defaultValue={this.state.address}
+                        <AutoField as={'AutoField'} name='address' label='address' defaultValue={this.state.address}
                                    component={AutoFieldText}/>,
-                        <AutoField name='birthdate' label='birthdate' defaultValue={this.state.birthdate}
+                        <AutoField as={'AutoField'} name='birthdate' label='birthdate' defaultValue={this.state.birthdate}
                                    component={AutoFieldText}/>,
-                        <AutoField name='jobTitle' label='jobTitle' defaultValue={this.state.jobTitle}
+                        <AutoField as={'AutoField'} name='jobTitle' label='jobTitle' defaultValue={this.state.jobTitle}
                                    component={AutoFieldText}/>,
-                        <AutoField name='disabled' label='disabled' defaultValue={this.state.disabled}
+                        <AutoField as={'AutoField'} name='disabled' label='disabled' defaultValue={this.state.disabled}
                                    component={AutoFieldCheckBox}/>,
-                        <AutoField name='archived' label='archived' defaultValue={this.state.archived}
+                        <AutoField as={'AutoField'} name='archived' label='archived' defaultValue={this.state.archived}
                                    component={AutoFieldCheckBox}/>,
-                        <AutoField name='passport' label='passport' defaultValue={this.state.passport}
+                        <AutoField as={'AutoField'} name='passport' label='passport' defaultValue={this.state.passport}
                                    component={AutoFieldText}/>,
 
                     ]}

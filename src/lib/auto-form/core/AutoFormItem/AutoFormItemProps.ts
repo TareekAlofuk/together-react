@@ -5,6 +5,7 @@ export default interface AutoFormItemProps {
     formRef?: IAutoForm;
     onFormSubmit?: (form: IAutoForm) => void;
     component?: any;
+    as: "AutoField" | "AutoFileField" | "AutoFormItem";
     onOtherChange?: (key: any, value: any, form: AutoForm) => void;
 
     [propName: string]: any;

@@ -53,14 +53,14 @@ export default class UpgradeMembership extends React.Component<Props> {
                 <Divider hidden/>
 
                 <AutoForm fields={[
-                    <AutoField component={AutoFieldText} name="until" type={"date"}
+                    <AutoField as={'AutoField'} component={AutoFieldText} name="until" type={"date"}
                                inlineLabel label="New Expiration Date" labelWidth={'140px'}
                                validationRules={{datetime: {dateOnly: true}}}/>,
-                    <AutoField component={AutoFieldSelect} name={"membershipType"} options={this.membershipOptions()}
+                    <AutoField as={'AutoField'} component={AutoFieldSelect} name={"membershipType"} options={this.membershipOptions()}
                                inlineLabel label="New Membership Type" labelWidth={'140px'}
                                validationRules={{numericality: {greaterThan: 0, lessThan: 4}}}
                     />,
-                    <AutoFormItem component={RenewButtons}/>
+                    <AutoFormItem as={'AutoFormItem'} component={RenewButtons}/>
                 ]} renderButton={form =>
                     <div>
                         <Button loading={form.state.loading} disabled={form.state.loading} color={'green'}

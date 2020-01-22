@@ -16,12 +16,12 @@ export default class MembershipManagement extends React.Component<Props> {
             <div>
                 <Header size={"large"}>Membership Management</Header>
                 <AutoForm fields={[
-                    <AutoField name={"type"} component={AutoFieldSelect} options={[
+                    <AutoField as={'AutoField'} name={"type"} component={AutoFieldSelect} options={[
                         {label: "SILVER", value: 1},
                         {label: "GOLD", value: 2},
                         {label: "BUSINESS", value: 3},
                     ]}/>,
-                    <AutoField name={'expireDate'} component={AutoFieldText} type={'date'}/>,
+                    <AutoField as={'AutoField'} name={'expireDate'} component={AutoFieldText} type={'date'}/>,
                 ]} renderButton={() => <Button>SAVE</Button>} requestConfiguration={{
                     type: "http",
                     url: ""

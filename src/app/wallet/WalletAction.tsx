@@ -22,11 +22,11 @@ export default class WalletAction extends React.Component<Props> {
                 <Divider/>
 
                 <AutoForm fields={[
-                    <AutoField name={'memberId'} component={MemberAutoCompleteField}
+                    <AutoField as={'AutoField'} name={'memberId'} component={MemberAutoCompleteField}
                                validationRules={{numericality: {greaterThan: 0}}}/>,
                     [
-                        <AutoField placeholder={"Amount"} name={'amount'} type={'number'} component={AutoFieldText}/>,
-                        <AutoField placeholder={"Receiver"} name={'receiver'} component={AutoFieldText}/>,
+                        <AutoField as={'AutoField'} placeholder={"Amount"} name={'amount'} type={'number'} component={AutoFieldText}/>,
+                        <AutoField as={'AutoField'} placeholder={"Receiver"} name={'receiver'} component={AutoFieldText}/>,
                     ]
                 ]}
                           renderButton={(form: AutoForm) => <div>

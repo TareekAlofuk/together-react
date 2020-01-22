@@ -13,6 +13,7 @@ export default class FieldsRenderer {
     private readonly form: AutoForm;
 
 
+
     constructor(form: AutoForm) {
         this.form = form;
         this.fields = form.props.fields;
@@ -24,7 +25,8 @@ export default class FieldsRenderer {
                 return this.renderManyFields(item, index);
             }
 
-            const type = item["type"]["name"];
+            const type = item.props.as;
+
             switch (type) {
                 case 'AutoField':
                     return this.renderField(item, index, true);

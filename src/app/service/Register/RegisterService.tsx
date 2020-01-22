@@ -60,39 +60,39 @@ class RegisterService extends React.Component<Props> {
         return <div id={"register-service-form"}>
             <AutoForm ref={ref => this.form = ref}
                       fields={[
-                          <AutoField component={AutoFieldSelect} name={'serviceId'}
+                          <AutoField as={'AutoField'} component={AutoFieldSelect} name={'serviceId'}
                                      validationRules={{numericality: {greaterThan: 0}}}
                                      afterValueChanged={this.onServiceChange}
                                      md={6}
                                      options={this.getServicesOptions()}/>,
 
-                          <AutoField type={"hidden"} defaultValue={this.props.member.id} component={AutoFieldText}
+                          <AutoField as={'AutoField'} type={"hidden"} defaultValue={this.props.member.id} component={AutoFieldText}
                                      name={"memberId"}/>,
 
-                          <AutoField name={'discountType'}
+                          <AutoField as={'AutoField'} name={'discountType'}
                                      title={'Discount Type'} component={AutoFieldRadioButton}
                                      defaultValue={'ratio'} afterValueChanged={() => this.calculateNewPrice()}
                                      options={[{label: 'Ratio', value: 'ratio'}, {label: 'Fixed', value: 'fixed'}]}/>,
                           [
-                              <AutoField label="Price" afterValueChanged={() => this.calculateNewPrice()}
+                              <AutoField as={'AutoField'} label="Price" afterValueChanged={() => this.calculateNewPrice()}
                                          inlineLabel placeholder={"Price"} name={'price'}
                                          type={'number'} component={AutoFieldText}/>,
-                              <AutoField label="Commission" afterValueChanged={() => this.calculateNewPrice()}
+                              <AutoField as={'AutoField'} label="Commission" afterValueChanged={() => this.calculateNewPrice()}
                                          inlineLabel placeholder={"Commission"}
                                          name={'commission'} type={'number'} component={AutoFieldText}/>,
-                              <AutoField label="Discount"
+                              <AutoField as={'AutoField'} label="Discount"
                                          inlineLabel placeholder={"Discount"} name={'discount'}
                                          type={'number'} component={AutoFieldText}/>,
-                              <AutoField label="Count" defaultValue={'1'}
+                              <AutoField as={'AutoField'} label="Count" defaultValue={'1'}
                                          afterValueChanged={() => this.calculateNewPrice()}
                                          validationRules={{numericality: {greaterThan: 0}}}
                                          inlineLabel placeholder={"Count"} name={'count'}
                                          type={'number'} component={AutoFieldText}/>,
-                              <AutoField label="Final Price" inlineLabel placeholder={"Final Price"} name={'finalPrice'}
+                              <AutoField as={'AutoField'} label="Final Price" inlineLabel placeholder={"Final Price"} name={'finalPrice'}
                                          type={'number'} readOnly component={AutoFieldText}/>
                           ],
 
-                          <AutoField name={"notes"} component={AutoFieldTextArea}/>
+                          <AutoField as={'AutoField'} name={"notes"} component={AutoFieldTextArea}/>
                       ]}
                       renderButton={(form) => <div>
                           <Button onClick={() => form.submit()} color={'green'}>REGISTER</Button>

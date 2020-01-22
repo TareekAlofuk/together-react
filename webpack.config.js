@@ -55,6 +55,3 @@ module.exports = {
         // host : "192.168.20.56"
     }
 };
-
-//TODO : send sms
-//TODO : send email

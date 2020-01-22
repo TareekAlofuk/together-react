@@ -30,47 +30,47 @@ export default class CreateMember extends React.Component<Props> {
                 <AutoForm
                     ref={ref => this.form = ref}
                     fields={[
-                        <AutoField component={AutoFieldSelect} name={'title'}
+                        <AutoField as={'AutoField'} component={AutoFieldSelect} name={'title'}
                                    inlineLabel label="Title" labelWidth={'140px'}
                                    validationRules={{presence: true, length: {minimum: 2}}}
                                    options={this.titleOption()}
                         />,
 
-                        <AutoField validationRules={{length: {minimum: 2}}}
+                        <AutoField as={'AutoField'} validationRules={{length: {minimum: 2}}}
                                    name='name' label='Name' placeholder='Name ...'
                                    inlineLabel labelWidth={'140px'}
                                    component={AutoFieldText}/>,
 
-                        <AutoField validationRules={{length: {minimum: 2}}}
+                        <AutoField as={'AutoField'} validationRules={{length: {minimum: 2}}}
                                    name='phone' label='Phone' placeholder='Phone ...'
                                    inlineLabel labelWidth={'140px'}
                                    component={AutoFieldText}/>,
 
-                        <AutoField component={AutoFieldSelect} name={'type'}
+                        <AutoField as={'AutoField'} component={AutoFieldSelect} name={'type'}
                                    inlineLabel label="Membership Type" labelWidth={'140px'}
                                    validationRules={{numericality: {greaterThan: 0, lessThan: 4}}}
                                    options={[{label: 'SLIVER', value: MembershipType.SILVER},
                                        {label: 'GOLD', value: MembershipType.GOLD},
                                        {label: 'BUSINESS', value: MembershipType.BUSINESS}]}
                         />,
-                        <AutoField name={'expirationDate'} component={AutoFieldText} type={'date'}
+                        <AutoField as={'AutoField'} name={'expirationDate'} component={AutoFieldText} type={'date'}
                                    inlineLabel label={'Expiration Date'} labelWidth={'140px'}
                                    onOtherChange={this.expirationDateOnOtherChange}
                                    validationRules={{datetime: {dateOnly: true}}}/>,
 
-                        <AutoField validationRules={{length: {minimum: 2}}}
+                        <AutoField as={'AutoField'} validationRules={{length: {minimum: 2}}}
                                    name='passportNo' label='Passport No' placeholder='Passport No ...'
                                    inlineLabel labelWidth={'140px'}
                                    component={AutoFieldText}/>,
 
-                        <AutoField validationRules={{datetime: {dateOnly: true}}}
+                        <AutoField as={'AutoField'} validationRules={{datetime: {dateOnly: true}}}
                                    name='passportExpirationDate' label='Passport Expiration Date'
                                    placeholder='Passport Expiration Date'
                                    inlineLabel labelWidth={'140px'}
                                    type={'date'}
                                    component={AutoFieldText}/>,
 
-                        <AutoField validationRules={{datetime: {dateOnly: true}}}
+                        <AutoField as={'AutoField'} validationRules={{datetime: {dateOnly: true}}}
                                    name='birthDate' label='BirthDate'
                                    placeholder='BirthDate'
                                    inlineLabel labelWidth={'140px'}
