@@ -26,7 +26,7 @@ export default class UpgradeMembership extends React.Component<Props> {
     }
 
     render() {
-        if (!this.props.route.location.state["member"]) {
+        if (!this.props.route.location.state as any["member"]) {
             return <Redirect to={`/members/${this.props.memberId}`}/>
         }
 
@@ -35,11 +35,11 @@ export default class UpgradeMembership extends React.Component<Props> {
 
                 <div style={{display: 'flex', justifyContent: 'space-between'}}>
                     <div>
-                        <Header size={"small"}>Member : {this.props.route.location.state["member"]["name"]}</Header>
+                        <Header size={"small"}>Member : {this.props.route.location.state as any["member"]["name"]}</Header>
                         <Header size={"small"}>Current Membership Type
-                            : {getMembershipTypeText(this.props.route.location.state["member"]["type"])}</Header>
+                            : {getMembershipTypeText(this.props.route.location.state as any["member"]["type"])}</Header>
                         <Header size={"small"}>Expiration Date
-                            : {this.props.route.location.state["member"]["expirationDate"]}</Header>
+                            : {this.props.route.location.state as any["member"]["expirationDate"]}</Header>
                     </div>
                     <div>
                         <Link className={'ui red button'} to={`/members/${this.props.memberId}`}>BACK</Link>
@@ -72,7 +72,7 @@ export default class UpgradeMembership extends React.Component<Props> {
                     type: "http"
                 }}
                           onSuccess={() => {
-                              const message = this.props.route.location.state["member"]["name"] + "'s membership info has been changed";
+                              const message = this.props.route.location.state as any["member"]["name"] + "'s membership info has been changed";
                               toastr.success('Succeed To Upgrade/Renew Membership', message);
                           }}
                           onError={() => {

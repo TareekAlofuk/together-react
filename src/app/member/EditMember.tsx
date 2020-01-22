@@ -29,7 +29,7 @@ export default class EditMember extends React.Component<Props> {
     private form: AutoForm = null;
 
     render() {
-        const member = this.props.route ? this.props.route.location.state.member : this.props.member;
+        const member = this.props.route ? this.props.route.location.state as any["member"] : this.props.member;
         const url = Config.SERVER_URL + "api/members/" + this.props.member.id;
         return (
             <div className={'member-form-container'}>
