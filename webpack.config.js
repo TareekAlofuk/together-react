@@ -52,7 +52,7 @@ module.exports = {
     devServer: {
         contentBase: path.join(__dirname, 'public'),
         historyApiFallback: true,
-        // host : "192.168.20.56"
+        host : "localhost"
     }
 };
 
