@@ -21,15 +21,15 @@ export default class MemberCredentials extends React.Component<IMemberCredential
                 <AutoForm
                     ref={ref => this.form = ref}
                     fields={[
-                        <AutoField inlineLabel label="Username"
+                        <AutoField as={'AutoField'} inlineLabel label="Username"
                                    labelWidth={'120px'}
                                    validationRules={{length: {minimum: 3}}}
                                    component={AutoFieldText} name="username" placeholder="Username..."/>,
-                        <AutoField inlineLabel labelWidth={'120px'} label="Password" component={AutoFieldText}
+                        <AutoField as={'AutoField'} inlineLabel labelWidth={'120px'} label="Password" component={AutoFieldText}
                                    name="password"
                                    validationRules={{length: {minimum: 4}}}
                                    placeholder="Password..."/>,
-                        <AutoField component={AutoFieldText}
+                        <AutoField as={'AutoField'} component={AutoFieldText}
                                    defaultValue={this.props.memberId} name="memberId"
                                    type={"hidden"}/>,
                     ]}

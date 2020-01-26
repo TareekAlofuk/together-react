@@ -28,12 +28,12 @@ export default class SendEmailModel extends React.Component<Props> {
                     <Row>
                         <Col>
                             <AutoForm ref={ref => this.form = ref} fields={[
-                                <AutoField name={'subject'} component={AutoFieldText}
+                                <AutoField as={'AutoField'} name={'subject'} component={AutoFieldText}
                                            defaultValue={this.props.defaultSubject}/>,
-                                <AutoField name={'message'} component={AutoFieldTextArea} rows={5}
+                                <AutoField as={'AutoField'} name={'message'} component={AutoFieldTextArea} rows={5}
                                            defaultValue={this.props.defaultMessage}
                                            placeholder={'SMS Message'}/>,
-                                <AutoField name={'members'} defaultValue={JSON.stringify(this.props.members)}
+                                <AutoField as={'AutoField'} name={'members'} defaultValue={JSON.stringify(this.props.members)}
                                            component={AutoFieldText} type={"hidden"}/>
                             ]}
                                       renderButton={() => null}

@@ -26,7 +26,7 @@ export default class SendSmsModel extends React.Component<Props> {
                     <Row>
                         <Col>
                             <AutoForm ref={ref => this.form = ref} fields={[
-                                <AutoField name={'message'} component={AutoFieldTextArea} rows={5}
+                                <AutoField as={'AutoField'} name={'message'} component={AutoFieldTextArea} rows={5}
                                            defaultValue={this.props.defaultMessage}
                                            placeholder={'SMS Message'}/>,
                             ]}

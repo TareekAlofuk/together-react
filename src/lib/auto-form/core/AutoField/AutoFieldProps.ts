@@ -12,6 +12,8 @@ export default interface AutoFieldProps extends AutoFormItemProps {
     readOnly?: boolean;
     isFile?: boolean;
 
+
+
     validationRules?: object;
     tag?: any;
 

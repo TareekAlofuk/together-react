@@ -29,7 +29,7 @@ export default class EditMember extends React.Component<Props> {
     private form: AutoForm = null;
 
     render() {
-        const member = this.props.route ? this.props.route.location.state.member : this.props.member;
+        const member = this.props.route ? this.props.route.location.state as any["member"] : this.props.member;
         const url = Config.SERVER_URL + "api/members/" + this.props.member.id;
         return (
             <div className={'member-form-container'}>
@@ -40,69 +40,69 @@ export default class EditMember extends React.Component<Props> {
                     onError={this.props.onError}
                     onSuccess={this.props.onSuccess}
                     fields={[
-                        <AutoField component={AutoFieldSelect} name={'title'}
+                        <AutoField as={'AutoField'} component={AutoFieldSelect} name={'title'}
                                    inlineLabel label="Title" labelWidth={'140px'}
                                    validationRules={{presence: true, length: {minimum: 2}}}
                                    options={memberTitleOption()}
                         />,
 
-                        <AutoField validationRules={{length: {minimum: 2}}}
+                        <AutoField as={'AutoField'} validationRules={{length: {minimum: 2}}}
                                    name='name' label='Name' placeholder='Name ...'
                                    inlineLabel labelWidth={'140px'}
                                    component={AutoFieldText}/>,
 
-                        <AutoField validationRules={{length: {minimum: 2}}}
+                        <AutoField as={'AutoField'} validationRules={{length: {minimum: 2}}}
                                    name='phone' label='Phone' placeholder='Phone ...'
                                    inlineLabel labelWidth={'140px'}
                                    component={AutoFieldText}/>,
 
-                        <AutoField component={AutoFieldSelect} name={'type'}
+                        <AutoField as={'AutoField'} component={AutoFieldSelect} name={'type'}
                                    inlineLabel label="Membership Type" labelWidth={'140px'}
                                    validationRules={{numericality: {greaterThan: 0, lessThan: 4}}}
                                    options={[{label: 'SLIVER', value: MembershipType.SILVER},
                                        {label: 'GOLD', value: MembershipType.GOLD},
                                        {label: 'BUSINESS', value: MembershipType.BUSINESS}]}
                         />,
-                        <AutoField name={'expirationDate'} component={AutoFieldText} type={'date'}
+                        <AutoField as={'AutoField'} name={'expirationDate'} component={AutoFieldText} type={'date'}
                                    inlineLabel label={'Expiration Date'} labelWidth={'140px'}
                                    onOtherChange={this.expirationDateOnOtherChange}
                                    validationRules={{datetime: {dateOnly: true}}}/>,
 
-                        <AutoField validationRules={{length: {minimum: 2}}}
+                        <AutoField as={'AutoField'} validationRules={{length: {minimum: 2}}}
                                    name='passportNo' label='Passport No' placeholder='Passport No ...'
                                    inlineLabel labelWidth={'140px'}
                                    component={AutoFieldText}/>,
 
-                        <AutoField validationRules={{datetime: {dateOnly: true}}}
+                        <AutoField as={'AutoField'} validationRules={{datetime: {dateOnly: true}}}
                                    name='passportExpirationDate' label='Passport Expiration Date'
                                    placeholder='Passport Expiration Date'
                                    inlineLabel labelWidth={'140px'}
                                    type={'date'}
                                    component={AutoFieldText}/>,
 
-                        <AutoField validationRules={{datetime: {dateOnly: true}}}
+                        <AutoField as={'AutoField'} validationRules={{datetime: {dateOnly: true}}}
                                    name='birthDate' label='BirthDate'
                                    placeholder='BirthDate'
                                    inlineLabel labelWidth={'140px'}
                                    type={'date'}
                                    component={AutoFieldText}/>,
 
-                        <AutoFormItem component={AutoFormDivider}/>,
+                        <AutoFormItem as={'AutoFormItem'} component={AutoFormDivider}/>,
 
-                        <AutoField name='secondaryPhone'
+                        <AutoField as={'AutoField'} name='secondaryPhone'
                                    inlineLabel labelWidth={'140px'} label='Secondary Phone'
                                    placeholder='Secondary Phone...' component={AutoFieldText}/>,
 
-                        <AutoField name='email'
+                        <AutoField as={'AutoField'} name='email'
                                    inlineLabel labelWidth={'140px'} label='Email'
                                    validationRules={{optional: {trim: true, email: true}}}
                                    placeholder='Email...' component={AutoFieldText}/>,
 
-                        <AutoField name='address'
+                        <AutoField as={'AutoField'} name='address'
                                    inlineLabel labelWidth={'140px'} label='Address'
                                    placeholder='Address...' component={AutoFieldText}/>,
 
-                        <AutoField name='jobTitle'
+                        <AutoField as={'AutoField'} name='jobTitle'
                                    inlineLabel labelWidth={'140px'} label='Job Title'
                                    options={JOB_TITLE_SELECT_OPTIONS}
                                    placeholder='Job Title...' component={AutoFieldCreatableSelect} clearable/>,

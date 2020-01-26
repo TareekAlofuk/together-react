@@ -55,6 +55,3 @@ module.exports = {
         host : "localhost"
     }
 };
-
-//TODO : send sms
-//TODO : send email
